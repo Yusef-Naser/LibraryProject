@@ -18,7 +18,7 @@ class MainTabBarVC : BaseVC<MainTabBarView> {
         
         presenter = MainTabBarPresenter(view : self )
         
-       // add(asChildViewController: home)
+        add(asChildViewController: home)
     }
     
     

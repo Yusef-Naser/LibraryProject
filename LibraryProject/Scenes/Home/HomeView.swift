@@ -10,13 +10,13 @@ import UIKit
 
 class HomeView : UIView {
     
-    var imageBackground : UIImageView {
+    var imageBackground : UIImageView = {
         let v = UIImageView()
-        v.image = UIImage(named: "nature")
+        v.image = #imageLiteral(resourceName: "nature")
         v.layer.cornerRadius = 10
         v.clipsToBounds = true 
         return v
-    }
+    }()
     
     
     
@@ -35,8 +35,8 @@ class HomeView : UIView {
     }
     
     private func addViews () {
-//        addSubview(imageBackground)
-//        imageBackground.anchor(top: topAnchor , leading: leadingAnchor, trailing: trailingAnchor , height: 100 )
+        addSubview(imageBackground)
+        imageBackground.anchor(top: topAnchor , leading: leadingAnchor, trailing: trailingAnchor , height: 100 )
         
         
     }
