@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CB67003279ACB8700A3C2DD /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67002279ACB8700A3C2DD /* FilterView.swift */; };
+		2CB67005279ACC9F00A3C2DD /* SString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67004279ACC9F00A3C2DD /* SString.swift */; };
+		2CB67007279ACDA500A3C2DD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67006279ACDA500A3C2DD /* SearchView.swift */; };
+		2CB67009279ACFFE00A3C2DD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67008279ACFFE00A3C2DD /* Colors.swift */; };
+		2CB6700C279AD16600A3C2DD /* CellSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6700B279AD16600A3C2DD /* CellSlider.swift */; };
+		2CB6700F279AD4A000A3C2DD /* SectionBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6700E279AD4A000A3C2DD /* SectionBooksView.swift */; };
+		2CB67011279ADB9F00A3C2DD /* CellBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67010279ADB9F00A3C2DD /* CellBook.swift */; };
+		2CB67017279AE9E900A3C2DD /* DetailBookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67013279AE9E900A3C2DD /* DetailBookPresenter.swift */; };
+		2CB67018279AE9E900A3C2DD /* DetailBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67014279AE9E900A3C2DD /* DetailBookInteractor.swift */; };
+		2CB67019279AE9E900A3C2DD /* DetailBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67015279AE9E900A3C2DD /* DetailBookView.swift */; };
+		2CB6701A279AE9E900A3C2DD /* DetailBookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67016279AE9E900A3C2DD /* DetailBookVC.swift */; };
+		2CB6701F279AF9F600A3C2DD /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6701B279AF9F600A3C2DD /* LoginPresenter.swift */; };
+		2CB67020279AF9F600A3C2DD /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6701C279AF9F600A3C2DD /* LoginInteractor.swift */; };
+		2CB67021279AF9F600A3C2DD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6701D279AF9F600A3C2DD /* LoginView.swift */; };
+		2CB67022279AF9F600A3C2DD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6701E279AF9F600A3C2DD /* LoginVC.swift */; };
 		2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */; };
 		2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */; };
 		2CE5D6E227989E0D00BBCA15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE5D6E027989E0D00BBCA15 /* Main.storyboard */; };
@@ -26,6 +41,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CB67002279ACB8700A3C2DD /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		2CB67004279ACC9F00A3C2DD /* SString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SString.swift; sourceTree = "<group>"; };
+		2CB67006279ACDA500A3C2DD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		2CB67008279ACFFE00A3C2DD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2CB6700B279AD16600A3C2DD /* CellSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSlider.swift; sourceTree = "<group>"; };
+		2CB6700E279AD4A000A3C2DD /* SectionBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBooksView.swift; sourceTree = "<group>"; };
+		2CB67010279ADB9F00A3C2DD /* CellBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBook.swift; sourceTree = "<group>"; };
+		2CB67013279AE9E900A3C2DD /* DetailBookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookPresenter.swift; sourceTree = "<group>"; };
+		2CB67014279AE9E900A3C2DD /* DetailBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookInteractor.swift; sourceTree = "<group>"; };
+		2CB67015279AE9E900A3C2DD /* DetailBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookView.swift; sourceTree = "<group>"; };
+		2CB67016279AE9E900A3C2DD /* DetailBookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookVC.swift; sourceTree = "<group>"; };
+		2CB6701B279AF9F600A3C2DD /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		2CB6701C279AF9F600A3C2DD /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		2CB6701D279AF9F600A3C2DD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2CB6701E279AF9F600A3C2DD /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		2CE5D6D727989E0D00BBCA15 /* LibraryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +87,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CB67001279ACB4C00A3C2DD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				2CB67002279ACB8700A3C2DD /* FilterView.swift */,
+				2CB67006279ACDA500A3C2DD /* SearchView.swift */,
+				2CB6700E279AD4A000A3C2DD /* SectionBooksView.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		2CB6700A279AD15F00A3C2DD /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				2CB6700B279AD16600A3C2DD /* CellSlider.swift */,
+				2CB67010279ADB9F00A3C2DD /* CellBook.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		2CB67012279AE9DC00A3C2DD /* DetailBook */ = {
+			isa = PBXGroup;
+			children = (
+				2CB67013279AE9E900A3C2DD /* DetailBookPresenter.swift */,
+				2CB67014279AE9E900A3C2DD /* DetailBookInteractor.swift */,
+				2CB67015279AE9E900A3C2DD /* DetailBookView.swift */,
+				2CB67016279AE9E900A3C2DD /* DetailBookVC.swift */,
+			);
+			path = DetailBook;
+			sourceTree = "<group>";
+		};
+		2CB67023279AF9FC00A3C2DD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2CB6701B279AF9F600A3C2DD /* LoginPresenter.swift */,
+				2CB6701C279AF9F600A3C2DD /* LoginInteractor.swift */,
+				2CB6701D279AF9F600A3C2DD /* LoginView.swift */,
+				2CB6701E279AF9F600A3C2DD /* LoginVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		2CE5D6CE27989E0D00BBCA15 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +147,7 @@
 		2CE5D6D927989E0D00BBCA15 /* LibraryProject */ = {
 			isa = PBXGroup;
 			children = (
+				2CB67001279ACB4C00A3C2DD /* components */,
 				2CE5D6EE27989E6B00BBCA15 /* Utitlites */,
 				2CE5D6F227989E6B00BBCA15 /* Scenes */,
 				2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */,
@@ -94,6 +166,8 @@
 				2CE5D6EF27989E6B00BBCA15 /* BaseVC.swift */,
 				2CE5D6F027989E6B00BBCA15 /* Extensions.swift */,
 				2CE5D6F127989E6B00BBCA15 /* StatusApi.swift */,
+				2CB67004279ACC9F00A3C2DD /* SString.swift */,
+				2CB67008279ACFFE00A3C2DD /* Colors.swift */,
 			);
 			path = Utitlites;
 			sourceTree = "<group>";
@@ -101,6 +175,8 @@
 		2CE5D6F227989E6B00BBCA15 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2CB67023279AF9FC00A3C2DD /* Login */,
+				2CB67012279AE9DC00A3C2DD /* DetailBook */,
 				2CE5D6F327989E6B00BBCA15 /* Home */,
 				2CE5D6F827989E6B00BBCA15 /* MainTabBar */,
 			);
@@ -110,6 +186,7 @@
 		2CE5D6F327989E6B00BBCA15 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2CB6700A279AD15F00A3C2DD /* cells */,
 				2CE5D6F427989E6B00BBCA15 /* HomeInteractor.swift */,
 				2CE5D6F527989E6B00BBCA15 /* HomePresenter.swift */,
 				2CE5D6F627989E6B00BBCA15 /* HomeVC.swift */,
@@ -199,16 +276,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB67018279AE9E900A3C2DD /* DetailBookInteractor.swift in Sources */,
 				2CE5D70327989E6B00BBCA15 /* HomeView.swift in Sources */,
+				2CB67022279AF9F600A3C2DD /* LoginVC.swift in Sources */,
 				2CE5D70127989E6B00BBCA15 /* HomePresenter.swift in Sources */,
 				2CE5D70227989E6B00BBCA15 /* HomeVC.swift in Sources */,
+				2CB6701F279AF9F600A3C2DD /* LoginPresenter.swift in Sources */,
+				2CB67009279ACFFE00A3C2DD /* Colors.swift in Sources */,
 				2CE5D70427989E6B00BBCA15 /* MainTabBarInteractor.swift in Sources */,
+				2CB67003279ACB8700A3C2DD /* FilterView.swift in Sources */,
+				2CB67005279ACC9F00A3C2DD /* SString.swift in Sources */,
 				2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */,
+				2CB67020279AF9F600A3C2DD /* LoginInteractor.swift in Sources */,
+				2CB67017279AE9E900A3C2DD /* DetailBookPresenter.swift in Sources */,
+				2CB6700F279AD4A000A3C2DD /* SectionBooksView.swift in Sources */,
 				2CE5D70527989E6B00BBCA15 /* MainTabBarPresenter.swift in Sources */,
+				2CB6701A279AE9E900A3C2DD /* DetailBookVC.swift in Sources */,
 				2CE5D6FD27989E6B00BBCA15 /* BaseVC.swift in Sources */,
+				2CB6700C279AD16600A3C2DD /* CellSlider.swift in Sources */,
 				2CE5D70627989E6B00BBCA15 /* MainTabBarVC.swift in Sources */,
+				2CB67019279AE9E900A3C2DD /* DetailBookView.swift in Sources */,
 				2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */,
 				2CE5D70027989E6B00BBCA15 /* HomeInteractor.swift in Sources */,
+				2CB67021279AF9F600A3C2DD /* LoginView.swift in Sources */,
+				2CB67007279ACDA500A3C2DD /* SearchView.swift in Sources */,
+				2CB67011279ADB9F00A3C2DD /* CellBook.swift in Sources */,
 				2CE5D70727989E6B00BBCA15 /* MainTabBarView.swift in Sources */,
 				2CE5D6FF27989E6B00BBCA15 /* StatusApi.swift in Sources */,
 				2CE5D6FE27989E6B00BBCA15 /* Extensions.swift in Sources */,

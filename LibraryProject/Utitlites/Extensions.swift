@@ -45,3 +45,26 @@ extension UIView {
     
     
 }
+
+public extension UIScrollView {
+    func addRefreshController() -> UIRefreshControl {
+        let r = UIRefreshControl()
+      //  r.attributedTitle = NSAttributedString(string: SString.loading )
+        self.refreshControl = r
+        self.addSubview(r)
+        return r
+    }
+}
+
+public extension UITableViewCell {
+    static func getIdentifier () -> String  {
+        return String(describing: self)
+    }
+    
+}
+
+public extension UICollectionViewCell {
+    static func getIdentifier () -> String  {
+        return String(describing: self)
+    }
+}
