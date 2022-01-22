@@ -29,6 +29,7 @@ class NavigationBar : UIView {
         let name = UILabel()
         name.textColor = .black
         name.font = UIFont.boldSystemFont(ofSize: 20)
+        name.textAlignment = .center
         return name
     }()
     
@@ -48,7 +49,7 @@ class NavigationBar : UIView {
         self.layer.cornerRadius = 30
         self.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.heightAnchor.constraint(equalToConstant: heightStatusBar + 60 ).isActive = true
-        self.backgroundColor = Colors.grayColors
+        self.backgroundColor = Colors.colorPrimary
     }
     
     private func addViews () {
@@ -58,7 +59,7 @@ class NavigationBar : UIView {
         
         backButton.anchor( leading: leadingAnchor , bottom: self.bottomAnchor , paddingLeft: 8 , paddingBottom: 8 )
 
-        labelTitle.anchor( leading: backButton.trailingAnchor , centerY: backButton.centerYAnchor , paddingLeft: 16 )
+        labelTitle.anchor( centerX: self.centerXAnchor  ,  centerY: backButton.centerYAnchor )
         
     }
     

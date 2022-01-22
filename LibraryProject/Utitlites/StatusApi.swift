@@ -1,15 +1,12 @@
 //
 //  StatusApi.swift
-//  Library
+//  LibraryProject
 //
-//  Created by yusef naser on 18/01/2022.
+//  Created by Yusef Naser on 22/01/2022.
 //
 
+import Foundation
+
 protocol StatusApi : AnyObject {
-    
-    func onError(_ message : String )
-    func onFailure (_ message : String )
-    func showLoading ()
-    func hideLoading ()
     
 }

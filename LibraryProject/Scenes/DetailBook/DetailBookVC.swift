@@ -27,7 +27,7 @@ class DetailBookVC : BaseVC<DetailBookView> {
         
         presenter = DetailBookPresenter(view : self )
         mainView.navigation.delegateNavigation = self
-        
+        presenter?.getBookDetails(id: bookItem?.biblionumber ?? 0)
     }
     
     
@@ -36,5 +36,9 @@ class DetailBookVC : BaseVC<DetailBookView> {
 extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
     func navigationDismissView() {
         self.navigationController?.popViewController(animated: true )
+    }
+    
+    func fetchData() {
+        presenter?.setConfigurationView(view: mainView)
     }
 }

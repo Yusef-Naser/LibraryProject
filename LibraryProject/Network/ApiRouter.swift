@@ -15,19 +15,24 @@ public protocol URLRequestConvertible {
 enum ApiRouter : URLRequestConvertible {
     
     case getHome
+    case getBookDetails (id : Int)
     
     private var Methods : String {
         switch self {
-        case .getHome  :
+        case .getHome , .getBookDetails  :
             return "GET"
         }
     }
     
     private var Headers : [String : String] {
         switch self {
-        case .getHome  :
+        case .getHome :
             return [
                 "content-type" : "application/json;charset=utf-8",
+            ]
+        case .getBookDetails :
+            return [
+                "Accept" : "application/marc-in-json" ,
             ]
         }
     }
@@ -35,6 +40,8 @@ enum ApiRouter : URLRequestConvertible {
         switch self {
         case .getHome :
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
+        case .getBookDetails(let id ) :
+            return "https://library.awresidence.com/api/v1/public/biblios/\(id)"
         }
         
     }
