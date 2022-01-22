@@ -10,6 +10,16 @@ import UIKit
 
 class HomeView : UIView {
     
+    let listSlider : [UIImage] = [
+        #imageLiteral(resourceName: "slider1") ,
+            #imageLiteral(resourceName: "slider2") ,
+            #imageLiteral(resourceName: "slider3") ,
+            #imageLiteral(resourceName: "slider4") ,
+            #imageLiteral(resourceName: "slider5") ,
+            #imageLiteral(resourceName: "slider6") ,
+            #imageLiteral(resourceName: "slider7") ,
+    ]
+    
     var imageBackground : UIImageView = {
         let v = UIImageView()
         v.image = #imageLiteral(resourceName: "flower")

@@ -52,12 +52,12 @@ extension HomeVC : SectionBooksViewDelegate {
 extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.getSliderCount() ?? 0
+        mainView.listSlider.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.getIdentifier() , for: indexPath ) as! CellSlider
-        cell.setImage(image: presenter?.getSlider(index: indexPath.row)?.image)
+        cell.setImage(image: mainView.listSlider[indexPath.row])
         return cell
     }
     
