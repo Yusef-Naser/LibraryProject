@@ -12,19 +12,24 @@ class LoginView : UIView {
     
     private let imageLogo : UIImageView = {
         let l = UIImageView()
-        l.layer.cornerRadius = 15
+        l.layer.cornerRadius = 50
+        l.image = #imageLiteral(resourceName: "nature")
+        l.clipsToBounds = true
         return l
     }()
     
     private let textFieldEmail : UITextField = {
         let l = UITextField()
-        
+        l.borderStyle = .roundedRect
+        l.placeholder = SString.email
         return l
     }()
     
     private let textFieldPassword : UITextField = {
         let l = UITextField()
         l.isSecureTextEntry = true
+        l.borderStyle = .roundedRect
+        l.placeholder = SString.password
         return l
     }()
     
@@ -32,6 +37,9 @@ class LoginView : UIView {
         let l = UIButton()
         l.setTitle(SString.login, for: .normal)
         l.setTitleColor(.black , for: .normal)
+        l.backgroundColor = Colors.grayColors
+        l.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        l.layer.cornerRadius = 10
         return l
     }()
     
@@ -55,9 +63,13 @@ class LoginView : UIView {
         addSubview(textFieldPassword)
         addSubview(buttonLogin)
         
-        imageLogo.anchor(top: safeAreaLayoutGuide.topAnchor , centerX: centerXAnchor , paddingTop: 30 , width: 30 , height: 30 )
+        imageLogo.anchor(top: safeAreaLayoutGuide.topAnchor , centerX: centerXAnchor , paddingTop: 30 , width: 100 , height: 100 )
         
-        textFieldEmail.anchor(top: imageLogo.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 )
+        textFieldEmail.anchor(top: imageLogo.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 , height: 50 )
+        
+        textFieldPassword.anchor(top: textFieldEmail.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
+        
+        buttonLogin.anchor(top: textFieldPassword.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
         
         
     }

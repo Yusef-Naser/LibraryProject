@@ -15,21 +15,44 @@ class HomeVC : BaseVC<HomeView> {
         super.viewDidLoad()
         
         presenter = HomePresenter(view : self )
-        mainView.setDelegates(delegate: self )
+        mainView.setDelegates(delegate: self ) // collectionview and SectionBooksViewDelegate
+        mainView.searchView.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(actionSearch)))
         
     }
     
+    @objc private func actionSearch () {
+        parentNavigationController?.pushViewController(SearchVC() , animated: true )
+    }
     
 }
 
 extension HomeVC : ProHomeView {
+    func getListNewBooks(list: [ModelLatest]) {
+        mainView.sectionNewBooks.arrayItems = list
+    }
+    
+    func getListFeatureBooks(list: [ModelLatest]) {
+        mainView.sectionFeatureBooks.arrayItems = list
+    }
+    
+    func fetchData() {
+        mainView.collectioViewSlider.reloadData()
+    }
+    
+}
+
+extension HomeVC : SectionBooksViewDelegate {
+    
+    func clickOnBook(item: ModelLatest?) {
+        self.navigationController?.pushViewController(DetailBookVC(bookItem: item ), animated: true )
+    }
     
 }
 
 extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        presenter?.getSliderCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

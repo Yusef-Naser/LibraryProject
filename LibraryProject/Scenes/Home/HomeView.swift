@@ -24,8 +24,9 @@ class HomeView : UIView {
         return l
     }()
     
-    private let searchView : SearchView = {
-        let l = SearchView()
+    let searchView : SearchItemView = {
+        let l = SearchItemView()
+        l.disableSearchText()
         return l
     }()
     
@@ -65,12 +66,12 @@ class HomeView : UIView {
         return l
     }()
     
-    private let sectionNewBooks : SectionBooksView = {
+    let sectionNewBooks : SectionBooksView = {
         let l = SectionBooksView(title: SString.newBooks)
         return l
     }()
     
-    private let sectionFeatureBooks : SectionBooksView = {
+    let sectionFeatureBooks : SectionBooksView = {
         let l = SectionBooksView(title: SString.featureBooks)
         return l
     }()
@@ -136,6 +137,8 @@ class HomeView : UIView {
     func setDelegates (delegate : HomeVC?) {
         collectioViewSlider.delegate = delegate
         collectioViewSlider.dataSource = delegate
+        sectionFeatureBooks.delegateView = delegate
+        sectionNewBooks.delegateView = delegate
     }
     
 }

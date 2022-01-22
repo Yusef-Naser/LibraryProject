@@ -13,6 +13,9 @@ struct SString {
     static var newBooks : String {return getText(key: "newBooks")}
     static var featureBooks : String {return getText(key: "featureBooks")}
     static var login : String {return getText(key: "login")}
+    static var email : String {return getText(key: "email")}
+    static var password : String {return getText(key: "password")}
+    static var bookDetails : String {return getText(key: "bookDetails")}
     
     
     private static func getText (key : String) -> String {
@@ -26,6 +29,9 @@ struct SString {
         "newBooks" : "New books" ,
         "featureBooks" : "Feature books" ,
         "login" : "Login" ,
+        "email" : "Email" ,
+        "password" : "Password" ,
+        "bookDetails" : "Book details" ,
     
     ]
     

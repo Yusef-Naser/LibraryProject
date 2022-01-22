@@ -7,7 +7,19 @@
 
 import UIKit
 
+protocol SectionBooksViewDelegate : AnyObject {
+    func clickOnBook (item : ModelLatest?)
+}
+
 class SectionBooksView : UIView {
+    
+    weak var delegateView : SectionBooksViewDelegate?
+    
+    var arrayItems : [ModelLatest] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private let labelTitle : UILabel = {
         let l = UILabel()
@@ -77,17 +89,22 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        arrayItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellBook.getIdentifier() , for: indexPath ) as! CellBook
-        cell.setTitle(title: "title")
+        let item = arrayItems[indexPath.row]
+        cell.setTitle(title: item.title)
+        
         return cell
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegateView?.clickOnBook(item: arrayItems[indexPath.row])
+    }
     
     
     

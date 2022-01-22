@@ -11,17 +11,30 @@ class DetailBookVC : BaseVC<DetailBookView> {
     
     private var presenter : ProDetailBookPresetner?
     
-    override func viewDidLoad(){
+    private var bookItem : ModelLatest? = nil
+    
+    init(bookItem : ModelLatest?) {
+        super.init(nibName: nil , bundle: nil)
+        self.bookItem = bookItem
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = DetailBookPresenter(view : self )
-        
+        mainView.navigation.delegateNavigation = self
         
     }
     
     
 }
 
-extension DetailBookVC : ProDetailBookView {
-    
+extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
+    func navigationDismissView() {
+        self.navigationController?.popViewController(animated: true )
+    }
 }

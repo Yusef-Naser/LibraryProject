@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchView : UIView {
+class SearchItemView : UIView {
     
-    private let textField : UITextField = {
+    let textField : UITextField = {
         let l = UITextField()
         l.placeholder = SString.search
         return l
@@ -35,6 +35,8 @@ class SearchView : UIView {
         addViews()
         self.backgroundColor = Colors.grayColors
         self.layer.cornerRadius = 10
+        self.isUserInteractionEnabled = true
+        textField.returnKeyType = .search
     }
     
     private func addViews () {
@@ -45,6 +47,10 @@ class SearchView : UIView {
         textField.anchor(top: topAnchor , leading: leadingAnchor , bottom: bottomAnchor , paddingTop: 8, paddingLeft: 8 , paddingBottom: 8 , height: 50 )
         iconSearch.anchor( leading: textField.trailingAnchor , trailing: trailingAnchor, centerY: textField.centerYAnchor , paddingLeft: 8 , paddingRight: 8 , width: 25 , height: 25 )
         
+    }
+    
+    func disableSearchText () {
+        textField.isEnabled = false
     }
     
 }
