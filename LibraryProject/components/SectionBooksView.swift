@@ -97,6 +97,7 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellBook.getIdentifier() , for: indexPath ) as! CellBook
         let item = arrayItems[indexPath.row]
         cell.setTitle(title: item.title)
+        cell.setImage(image: item.image)
         
         return cell
         

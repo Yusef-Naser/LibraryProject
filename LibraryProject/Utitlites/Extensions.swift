@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PINRemoteImage
 
 extension UIView {
     
@@ -66,5 +67,20 @@ public extension UITableViewCell {
 public extension UICollectionViewCell {
     static func getIdentifier () -> String  {
         return String(describing: self)
+    }
+}
+
+
+public extension UIImageView {
+
+    func loadImage (url : String , placeHolder : UIImage = #imageLiteral(resourceName: "placeholder") ) {
+        self.pin_updateWithProgress = true
+        self.pin_setImage(from: URL(string: url ) , placeholderImage: placeHolder )
+    }
+
+    
+    func setTintColor (color : UIColor) {
+        self.image = self.image?.withRenderingMode(.alwaysTemplate)
+        self.tintColor = color
     }
 }

@@ -40,8 +40,8 @@ class CellSlider : UICollectionViewCell {
         
     }
     
-    func setImage (image : UIImage?) {
-        imageSlider.image = image
+    func setImage (image : String?) {
+        imageSlider.loadImage(url: image ?? "")
     }
     
 }

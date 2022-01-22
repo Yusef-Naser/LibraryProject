@@ -12,7 +12,8 @@ class HomeView : UIView {
     
     var imageBackground : UIImageView = {
         let v = UIImageView()
-        v.image = #imageLiteral(resourceName: "nature")
+        v.image = #imageLiteral(resourceName: "flower")
+        v.contentMode = .scaleAspectFill
         v.layer.cornerRadius = 10
         v.clipsToBounds = true 
         return v
@@ -90,7 +91,7 @@ class HomeView : UIView {
     
     private let imageViewFooter : UIImageView = {
         let l = UIImageView()
-        l.image = #imageLiteral(resourceName: "nature")
+        l.image = #imageLiteral(resourceName: "flower")
         l.contentMode = .scaleAspectFill
         l.layer.cornerRadius = 10
         l.clipsToBounds = true

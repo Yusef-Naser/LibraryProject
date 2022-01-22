@@ -35,12 +35,12 @@ class DetailBookView : UIView {
     
     private let parentView = UIView ()
     
-    private let imageBook : UIImageView = {
+    let imageBook : UIImageView = {
         let l = UIImageView()
         l.contentMode = .scaleAspectFill
         l.layer.cornerRadius = 10
         l.clipsToBounds = true
-        l.image =  #imageLiteral(resourceName: "nature")
+       
         return l
     }()
     

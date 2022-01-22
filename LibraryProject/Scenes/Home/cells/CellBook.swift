@@ -53,7 +53,11 @@ class CellBook : UICollectionViewCell {
     
     func setTitle (title : String?) {
         labelTitle.text = title
-        imageBook.image = #imageLiteral(resourceName: "nature")
     }
+    
+    func setImage (image : String?) {
+        imageBook.loadImage(url: image ?? "")
+    }
+    
     
 }

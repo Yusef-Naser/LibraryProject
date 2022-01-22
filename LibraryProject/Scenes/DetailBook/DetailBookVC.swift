@@ -27,6 +27,7 @@ class DetailBookVC : BaseVC<DetailBookView> {
         
         presenter = DetailBookPresenter(view : self )
         mainView.navigation.delegateNavigation = self
+        mainView.imageBook.loadImage(url: bookItem?.image ?? "" )
         presenter?.getBookDetails(id: bookItem?.biblionumber ?? 0)
     }
     
