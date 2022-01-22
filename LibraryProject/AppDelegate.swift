@@ -18,21 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 
-//        parentNavigationController = UINavigationController(rootViewController: MainTabBarVC())
-//
-//        window?.rootViewController = parentNavigationController
+        parentNavigationController = UINavigationController(rootViewController: LoginVC())
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-        parentNavigationController = UINavigationController()
-        parentNavigationController?.navigationBar.isHidden = true
-        parentNavigationController?.navigationBar.barTintColor = UIColor.orange
-        parentNavigationController?.navigationBar.tintColor = UIColor.white
-        parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        let vc = MainLayoutTapsRouter.createModule()
-        parentNavigationController?.viewControllers = [vc]
         window?.rootViewController = parentNavigationController
-        window?.makeKeyAndVisible()
+
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//
+//        parentNavigationController = UINavigationController()
+//        parentNavigationController?.navigationBar.isHidden = true
+//        parentNavigationController?.navigationBar.barTintColor = UIColor.orange
+//        parentNavigationController?.navigationBar.tintColor = UIColor.white
+//        parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+//        let vc = MainLayoutTapsRouter.createModule()
+//        parentNavigationController?.viewControllers = [vc]
+//        window?.rootViewController = parentNavigationController
+//        window?.makeKeyAndVisible()
 
         
         return true

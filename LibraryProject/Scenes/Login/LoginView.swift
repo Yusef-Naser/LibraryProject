@@ -37,7 +37,7 @@ class LoginView : UIView {
         let l = UIButton()
         l.setTitle(SString.login, for: .normal)
         l.setTitleColor(.black , for: .normal)
-        l.backgroundColor = Colors.grayColors
+        l.backgroundColor = Colors.colorPrimary
         l.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         l.layer.cornerRadius = 10
         return l
