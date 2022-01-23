@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,7 @@
 		2CBC67FB279C37E40041E39A /* StatusApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC67FA279C37E40041E39A /* StatusApi.swift */; };
 		2CBC67FD279C3CCD0041E39A /* ModelBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC67FC279C3CCD0041E39A /* ModelBook.swift */; };
 		2CBC6800279C4D340041E39A /* ViewBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC67FF279C4D340041E39A /* ViewBookDetail.swift */; };
+		2CBFDA33279E026C00561CC2 /* ModelSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFDA32279E026C00561CC2 /* ModelSearch.swift */; };
 		2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */; };
 		2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */; };
 		2CE5D6E227989E0D00BBCA15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE5D6E027989E0D00BBCA15 /* Main.storyboard */; };
@@ -97,6 +98,7 @@
 		2CBC67FA279C37E40041E39A /* StatusApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusApi.swift; sourceTree = "<group>"; };
 		2CBC67FC279C3CCD0041E39A /* ModelBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBook.swift; sourceTree = "<group>"; };
 		2CBC67FF279C4D340041E39A /* ViewBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBookDetail.swift; sourceTree = "<group>"; };
+		2CBFDA32279E026C00561CC2 /* ModelSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearch.swift; sourceTree = "<group>"; };
 		2CE5D6D727989E0D00BBCA15 /* LibraryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				2CBC67F6279C0E2E0041E39A /* ModelHome.swift */,
 				2CBC67FC279C3CCD0041E39A /* ModelBook.swift */,
+				2CBFDA32279E026C00561CC2 /* ModelSearch.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -340,7 +343,6 @@
 				1556BD608846D7D97D347A7B /* Pods-LibraryProject.debug.xcconfig */,
 				7C41865A491C2F11EB9B1D65 /* Pods-LibraryProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -475,6 +477,7 @@
 				2CE5D70427989E6B00BBCA15 /* MainTabBarInteractor.swift in Sources */,
 				2CB67005279ACC9F00A3C2DD /* SString.swift in Sources */,
 				05B3D264279C3684007AB73C /* FilterView.swift in Sources */,
+				2CBFDA33279E026C00561CC2 /* ModelSearch.swift in Sources */,
 				2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */,
 				2CBC67F4279C0CAC0041E39A /* ApiRouter.swift in Sources */,
 				2CB67020279AF9F600A3C2DD /* LoginInteractor.swift in Sources */,

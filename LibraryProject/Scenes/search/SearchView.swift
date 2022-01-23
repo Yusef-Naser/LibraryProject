@@ -20,7 +20,7 @@ class SearchView : UIView {
         return l
     }()
     
-    private let collectionView : UICollectionView = {
+    let collectionView : UICollectionView = {
         let layout = ResizingFlowLayout(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
         layout.height = 250
         
@@ -29,7 +29,7 @@ class SearchView : UIView {
         l.register(CellBook.self , forCellWithReuseIdentifier: CellBook.getIdentifier())
         return l
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()

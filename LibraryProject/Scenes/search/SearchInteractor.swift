@@ -8,6 +8,17 @@
 
 class SearchInteractor {
     
-   
+    func getSearch (text : String , completion : @escaping CompletionHandler<ModelSearch>) {
+        ApiClient<ModelSearch>.performRequest(route: .search(text: text )) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data , nil, statusCode)
+                return
+            case .error(let error ) :
+                completion(nil, error, statusCode)
+                return
+            }
+        }
+    }
     
 }

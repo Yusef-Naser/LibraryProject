@@ -23,6 +23,10 @@ class SearchVC : BaseVC<SearchView> {
 }
 
 extension SearchVC : ProSearchView , NavigationBarDelegate {
+    func fetchData() {
+        mainView.collectionView.reloadData()
+    }
+    
     func navigationDismissView() {
         self.navigationController?.popViewController(animated: true )
     }
@@ -30,12 +34,12 @@ extension SearchVC : ProSearchView , NavigationBarDelegate {
 
 extension SearchVC : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        presenter?.getDataCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellBook.getIdentifier() , for: indexPath ) as! CellBook
-        cell.setTitle(title: "title")
+        cell.setTitle(title: presenter?.getItem(index: indexPath.row))
         return cell
     }
     
@@ -49,6 +53,7 @@ extension SearchVC : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.mainView.endEditing(true )
+        self.presenter?.getSearch(text: textField.text ?? "")
         return true
     }
     
