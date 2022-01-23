@@ -17,10 +17,12 @@ enum ApiRouter : URLRequestConvertible {
     case getHome
     case getBookDetails (id : Int)
     case search (text : String)
+    case itemsBook (id : Int)
     
     private var Methods : String {
         switch self {
-        case .getHome , .getBookDetails , .search  :
+        case .getHome , .getBookDetails , .search ,
+             .itemsBook :
             return "GET"
         }
     }
@@ -35,6 +37,8 @@ enum ApiRouter : URLRequestConvertible {
             return [
                 "Accept" : "application/marc-in-json" ,
             ]
+        case .itemsBook :
+            return [:]
         }
     }
     private var Paths : String {
@@ -43,6 +47,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
         case .getBookDetails(let id ) :
             return "https://library.awresidence.com/api/v1/public/biblios/\(id)"
+        case .itemsBook(let id ) :
+            return "https://library.awresidence.com/api/v1/public/biblios/\(id)/items?fbclid=IwAR2abkzHyO_i7IRTjP9W-4hOLOauPiJlB4l2-5qXWuVtNx2QaOmpkUFxKjU"
         case .search(let text) :
             if text == "" {
                 return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"

@@ -44,6 +44,9 @@
 		2CBC67FD279C3CCD0041E39A /* ModelBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC67FC279C3CCD0041E39A /* ModelBook.swift */; };
 		2CBC6800279C4D340041E39A /* ViewBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC67FF279C4D340041E39A /* ViewBookDetail.swift */; };
 		2CBFDA33279E026C00561CC2 /* ModelSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFDA32279E026C00561CC2 /* ModelSearch.swift */; };
+		2CBFDA35279E0A9800561CC2 /* ModelItemsBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFDA34279E0A9800561CC2 /* ModelItemsBook.swift */; };
+		2CBFDA37279E0BDF00561CC2 /* FitTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFDA36279E0BDF00561CC2 /* FitTableView.swift */; };
+		2CBFDA3A279E0C3F00561CC2 /* CellItemBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFDA39279E0C3F00561CC2 /* CellItemBook.swift */; };
 		2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */; };
 		2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */; };
 		2CE5D6E227989E0D00BBCA15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE5D6E027989E0D00BBCA15 /* Main.storyboard */; };
@@ -99,6 +102,9 @@
 		2CBC67FC279C3CCD0041E39A /* ModelBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBook.swift; sourceTree = "<group>"; };
 		2CBC67FF279C4D340041E39A /* ViewBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBookDetail.swift; sourceTree = "<group>"; };
 		2CBFDA32279E026C00561CC2 /* ModelSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearch.swift; sourceTree = "<group>"; };
+		2CBFDA34279E0A9800561CC2 /* ModelItemsBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItemsBook.swift; sourceTree = "<group>"; };
+		2CBFDA36279E0BDF00561CC2 /* FitTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitTableView.swift; sourceTree = "<group>"; };
+		2CBFDA39279E0C3F00561CC2 /* CellItemBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItemBook.swift; sourceTree = "<group>"; };
 		2CE5D6D727989E0D00BBCA15 /* LibraryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				2CBC67F8279C37B30041E39A /* SearchItemView.swift */,
 				05B3D261279C3683007AB73C /* FilterView.swift */,
 				05B3D262279C3683007AB73C /* SectionBooksView.swift */,
+				2CBFDA36279E0BDF00561CC2 /* FitTableView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 		2CB67012279AE9DC00A3C2DD /* DetailBook */ = {
 			isa = PBXGroup;
 			children = (
+				2CBFDA38279E0C2800561CC2 /* cell */,
 				2CBC67FE279C4D2B0041E39A /* views */,
 				2CB67013279AE9E900A3C2DD /* DetailBookPresenter.swift */,
 				2CB67014279AE9E900A3C2DD /* DetailBookInteractor.swift */,
@@ -230,6 +238,7 @@
 				2CBC67F6279C0E2E0041E39A /* ModelHome.swift */,
 				2CBC67FC279C3CCD0041E39A /* ModelBook.swift */,
 				2CBFDA32279E026C00561CC2 /* ModelSearch.swift */,
+				2CBFDA34279E0A9800561CC2 /* ModelItemsBook.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -240,6 +249,14 @@
 				2CBC67FF279C4D340041E39A /* ViewBookDetail.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		2CBFDA38279E0C2800561CC2 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				2CBFDA39279E0C3F00561CC2 /* CellItemBook.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		2CE5D6CE27989E0D00BBCA15 = {
@@ -470,6 +487,7 @@
 				2CB67022279AF9F600A3C2DD /* LoginVC.swift in Sources */,
 				2CE5D70127989E6B00BBCA15 /* HomePresenter.swift in Sources */,
 				2CBC67ED279C00DF0041E39A /* NavigationBar.swift in Sources */,
+				2CBFDA3A279E0C3F00561CC2 /* CellItemBook.swift in Sources */,
 				2CBC67F9279C37B30041E39A /* SearchItemView.swift in Sources */,
 				2CE5D70227989E6B00BBCA15 /* HomeVC.swift in Sources */,
 				2CB6701F279AF9F600A3C2DD /* LoginPresenter.swift in Sources */,
@@ -505,7 +523,9 @@
 				2CB67011279ADB9F00A3C2DD /* CellBook.swift in Sources */,
 				2CE5D70727989E6B00BBCA15 /* MainTabBarView.swift in Sources */,
 				2CE5D6FE27989E6B00BBCA15 /* Extensions.swift in Sources */,
+				2CBFDA37279E0BDF00561CC2 /* FitTableView.swift in Sources */,
 				05B3D26E279C369A007AB73C /* StoryboardName.swift in Sources */,
+				2CBFDA35279E0A9800561CC2 /* ModelItemsBook.swift in Sources */,
 				05B3D265279C3684007AB73C /* SectionBooksView.swift in Sources */,
 				05B3D26D279C369A007AB73C /* UserDefaultManager.swift in Sources */,
 			);

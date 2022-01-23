@@ -21,4 +21,17 @@ class DetailBookInteractor {
         }
     }
     
+    func getItemsBook (id : Int , completion : @escaping CompletionHandler<ModelItemsBookArray>) {
+        ApiClient<ModelItemsBookArray>.performRequest(route: .itemsBook(id: id )) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion( data , nil, statusCode)
+                return
+            case .error(let error) :
+                completion(nil, error , statusCode)
+                return
+            }
+        }
+    }
+    
 }

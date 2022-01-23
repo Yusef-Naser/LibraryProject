@@ -89,6 +89,13 @@ class DetailBookView : UIView {
         return l
     }()
     
+    let fitTableView : FitTableView = {
+        let l = FitTableView()
+        l.register(CellItemBook.self , forCellReuseIdentifier: CellItemBook.getIdentifier())
+        l.separatorStyle = .none
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
@@ -111,6 +118,7 @@ class DetailBookView : UIView {
         parentView.addSubview(labelTitle)
         parentView.addSubview(labelPersonalName)
         parentView.addSubview(stackView)
+        parentView.addSubview(fitTableView)
         
         
         navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
@@ -122,7 +130,9 @@ class DetailBookView : UIView {
         
         labelPersonalName.anchor(top: labelTitle.bottomAnchor , leading: imageBook.trailingAnchor , trailing: parentView.trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingRight: 8 )
         
-        stackView.anchor(top: imageBook.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16  )
+        stackView.anchor(top: imageBook.bottomAnchor , leading: parentView.leadingAnchor  , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16  )
+        
+        fitTableView.anchor(top: stackView.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
         
     }
     

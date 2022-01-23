@@ -8,12 +8,15 @@
 
 protocol ProDetailBookView : StatusApi {
     func fetchData ()
+    func fetchItemBooks ()
 }
 
 protocol ProDetailBookPresetner {
 
     func getBookDetails ( id : Int )
     func setConfigurationView (view : DetailBookViewConfiguration)
+    func getItemsBook (id : Int )
+    var modelItemsBook : ModelItemsBookArray? {get set}
 }
 
 
@@ -23,6 +26,7 @@ class DetailBookPresenter : ProDetailBookPresetner {
     private let interactor = DetailBookInteractor()
     
     private var modelBook : ModelBook? = nil
+    var modelItemsBook : ModelItemsBookArray? = nil
     
     
     init(view : ProDetailBookView ) {
@@ -37,6 +41,16 @@ class DetailBookPresenter : ProDetailBookPresetner {
             
             self.modelBook = data
             self.view?.fetchData()
+        }
+    }
+    
+    func getItemsBook(id: Int) {
+        interactor.getItemsBook(id: id) { data , error , statusCode in
+            guard let data = data  else {
+                return
+            }
+            self.modelItemsBook = data
+            self.view?.fetchItemBooks()
         }
     }
     
