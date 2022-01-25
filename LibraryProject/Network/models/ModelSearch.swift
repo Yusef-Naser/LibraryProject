@@ -15,12 +15,13 @@ struct ModelSearch: Codable {
         case version = "@version"
     }
     
-    func getTitleArray () -> [String] {
+    func getTitleArray () -> [(String , String)] {
         let s = zsSearchRetrieveResponse?.zsRecords?.zsRecord
-        var arrayStrings : [String] = []
+        var arrayStrings : [(String , String)] = []
         for item in s ?? [] {
             let str = getSingleTitle(record: item)
-            arrayStrings.append(str)
+            let id = getBookNumber(record: item)
+            arrayStrings.append( (str , id) )
         }
         
         return arrayStrings
@@ -50,6 +51,16 @@ struct ModelSearch: Codable {
             }
         }
         return a + b + c + d + the
+    }
+    
+    private func getBookNumber (record : ZsRecord?) -> String {
+        let data = record?.zsRecordData?.record?.datafield?.filter({$0.tag == "999"}).first
+        
+        let c = data?.subfield?.getArray().filter({$0.code == "c"}).first
+        
+        return c?.t ?? ""
+        
+        
     }
     
 }

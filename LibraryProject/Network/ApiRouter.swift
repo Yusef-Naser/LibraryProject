@@ -18,18 +18,21 @@ enum ApiRouter : URLRequestConvertible {
     case getBookDetails (id : Int)
     case search (text : String)
     case itemsBook (id : Int)
+    case login (userName : String , password : String)
     
     private var Methods : String {
         switch self {
         case .getHome , .getBookDetails , .search ,
              .itemsBook :
             return "GET"
+        case .login :
+            return "POST"
         }
     }
     
     private var Headers : [String : String] {
         switch self {
-        case .getHome , .search :
+        case .getHome , .search , .login :
             return [
                 "content-type" : "application/json;charset=utf-8",
             ]
@@ -43,6 +46,8 @@ enum ApiRouter : URLRequestConvertible {
     }
     private var Paths : String {
         switch self {
+        case  .login  :
+            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication"
         case .getHome :
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
         case .getBookDetails(let id ) :
@@ -57,6 +62,18 @@ enum ApiRouter : URLRequestConvertible {
         }
         
     }
+    
+    private var parameters : [String : Any] {
+        switch self {
+        case .getBookDetails , .getHome , .itemsBook , .search :
+            return [:]
+        case let .login(userName , password ) :
+            return [
+                "userid" : userName ,
+                "password" : password
+            ]
+        }
+    }
         
         func asURLRequest() -> URLRequest {
             //let url = "\(Constants.BaseURL)\(Paths)"
@@ -64,6 +81,17 @@ enum ApiRouter : URLRequestConvertible {
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
             urlRequest.allHTTPHeaderFields = Headers
+            urlRequest.httpMethod = Methods
+            
+            if Methods != "GET"{
+                
+                do {
+                    urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                    }catch{
+                        print(error.localizedDescription)
+                    }
+            }
+            
             return urlRequest
         }
 }

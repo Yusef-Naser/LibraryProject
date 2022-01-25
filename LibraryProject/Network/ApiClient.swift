@@ -35,6 +35,7 @@ class ApiClient <T : Decodable > {
                 }
                 if let data = data {
                     do{
+                        print(String(data: data , encoding: .utf8))
                         let responseModel = try decoder.decode(T.self, from: data)
                         completion(.success(responseModel), statusCode)
                     }catch(let e){

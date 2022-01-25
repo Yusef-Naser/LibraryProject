@@ -18,22 +18,22 @@ class LoginView : UIView {
         return l
     }()
     
-    private let textFieldEmail : UITextField = {
+    let textFieldEmail : UITextField = {
         let l = UITextField()
         l.borderStyle = .roundedRect
         l.placeholder = SString.email
         return l
     }()
     
-    private let textFieldPassword : UITextField = {
+    let textFieldPassword : UITextField = {
         let l = UITextField()
-        l.isSecureTextEntry = true
+      //  l.isSecureTextEntry = true
         l.borderStyle = .roundedRect
         l.placeholder = SString.password
         return l
     }()
     
-    private let buttonLogin : UIButton = {
+    let buttonLogin : UIButton = {
         let l = UIButton()
         l.setTitle(SString.login, for: .normal)
         l.setTitleColor(.black , for: .normal)
@@ -55,6 +55,12 @@ class LoginView : UIView {
     
     private func initViews () {
         addViews()
+        
+        #if DEBUG
+            textFieldEmail.text = "app"
+            textFieldPassword.text = "AppUser2022"
+        #endif
+        
     }
     
     private func addViews () {

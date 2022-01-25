@@ -51,12 +51,12 @@ class CellBook : UICollectionViewCell {
         
     }
     
-    func setTitle (title : String?) {
+    func setTitle (title : String? ) {
         labelTitle.text = title
     }
     
     func setImage (image : String?) {
-        imageBook.loadImage(url: image ?? "")
+        imageBook.loadImage(url:  image ?? "" )
     }
     
     

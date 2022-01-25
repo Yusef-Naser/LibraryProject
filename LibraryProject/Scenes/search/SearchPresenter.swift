@@ -14,7 +14,7 @@ protocol ProSearchPresetner {
 
     func getSearch (text : String)
     func getDataCount () -> Int
-    func getItem (index : Int) -> String?
+    func getItem (index : Int) -> (String , String)?
     
 }
 
@@ -23,7 +23,7 @@ class SearchPresenter : ProSearchPresetner {
     
     weak var view : ProSearchView?
     private let interactor = SearchInteractor()
-    private var dataArray : [String] = []
+    private var dataArray : [(String , String)] = []
     
     
     init(view : ProSearchView ) {
@@ -46,7 +46,7 @@ class SearchPresenter : ProSearchPresetner {
         dataArray.count
     }
     
-    func getItem(index: Int) -> String? {
+    func getItem(index: Int) -> (String , String)? {
         guard getDataCount() > index else {
             return nil
         }

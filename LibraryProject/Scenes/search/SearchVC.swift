@@ -39,12 +39,16 @@ extension SearchVC : UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellBook.getIdentifier() , for: indexPath ) as! CellBook
-        cell.setTitle(title: presenter?.getItem(index: indexPath.row))
+        cell.setTitle(title: presenter?.getItem(index: indexPath.row)?.0)
+        let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
+        cell.setImage(image: icon + "\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(DetailBookVC(bookItem: nil ), animated: true )
+        let item = presenter?.getItem(index: indexPath.row)
+        let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
+        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: Int(item?.1 ?? "0") ?? 0, title: item?.0, image: icon + "\(presenter?.getItem(index: indexPath.row)?.1 ?? "")" )), animated: true )
     }
     
 }
