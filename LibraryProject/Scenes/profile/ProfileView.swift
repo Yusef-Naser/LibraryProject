@@ -76,7 +76,7 @@ class ProfileView : UIView {
     
     
     
-    private let buttonUpdate : LButton = {
+    let buttonUpdate : LButton = {
         let l = LButton()
         l.setTitle(SString.update , for: .normal)
         return l

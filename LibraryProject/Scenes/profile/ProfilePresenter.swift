@@ -12,7 +12,7 @@ protocol ProProfileView : StatusApi {
 
 protocol ProProfilePresetner {
 
-    
+    func updateProfile ()
 }
 
 
@@ -23,6 +23,10 @@ class ProfilePresenter : ProProfilePresetner {
     
     init(view : ProProfileView ) {
         self.view = view
+    }
+    
+    func updateProfile() {
+        interactor.updateProfile()
     }
     
 }

@@ -21,24 +21,28 @@ enum ApiRouter : URLRequestConvertible {
     case login (userName : String , password : String)
     case getCheckoutList
     case getSuggestions
+    case updateProfile (data : [String : Any])
     
     private var Methods : HTTPMethod {
         switch self {
         case .getHome , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions :
             return .get
-        case .login :
+        case .login  :
             return .post
+        case .updateProfile :
+            return .put
         }
     }
     
     private var Headers : HTTPHeaders {
         switch self {
-        case .getHome , .search , .login :
+        case .getHome , .search , .login  :
             return [
                 "content-type" : "application/json;charset=utf-8",
             ]
-        case .getBookDetails , .getCheckoutList , .getSuggestions :
+        case .getBookDetails , .getCheckoutList , .getSuggestions ,
+             .updateProfile :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" ,
@@ -68,6 +72,9 @@ enum ApiRouter : URLRequestConvertible {
             
         case .getSuggestions :
             return "https://library.awresidence.com/api/v1/suggestions"
+            
+        case .updateProfile :
+            return "https://library.awresidence.com/api/v1/patrons/4"
         }
         
     }
@@ -77,6 +84,8 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails , .getHome , .itemsBook , .search ,
              .getCheckoutList , .getSuggestions :
             return [:]
+        case .updateProfile(let data ) :
+            return data 
         case let .login(userName , password ) :
             return [
                 "userid" : userName ,

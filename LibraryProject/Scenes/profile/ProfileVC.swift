@@ -16,7 +16,11 @@ class ProfileVC : BaseVC<ProfileView> {
         
         presenter = ProfilePresenter(view : self )
         mainView.navigation.delegateNavigation = self
-        
+        mainView.buttonUpdate.addTarget(self , action: #selector(actionUpdate ), for: .touchUpInside)
+    }
+    
+    @objc private func actionUpdate () {
+        presenter?.updateProfile()
     }
     
     
