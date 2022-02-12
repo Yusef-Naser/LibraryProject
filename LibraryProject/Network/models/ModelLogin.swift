@@ -19,7 +19,7 @@ struct ModelLogin: Codable {
 
 // MARK: - Response
 struct Response: Codable {
-    let status: Status?
+    let status , borrowerid : Status?
 }
 
 // MARK: - Status

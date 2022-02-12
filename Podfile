@@ -7,5 +7,6 @@ target 'LibraryProject' do
 
   # Pods for LibraryProject
 pod "PINRemoteImage"
+pod "Alamofire"
 
 end

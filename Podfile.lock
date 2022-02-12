@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.3)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
     - PINCache/Core (= 3.0.3)
@@ -16,19 +17,22 @@ PODS:
     - PINRemoteImage/Core
 
 DEPENDENCIES:
+  - Alamofire
   - PINRemoteImage
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - PINCache
     - PINOperation
     - PINRemoteImage
 
 SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
 
-PODFILE CHECKSUM: fb7ec9fe53b99a8e940b1605c5dcf3c8bce5a95f
+PODFILE CHECKSUM: 005ea8ab99ed171366e816236f92e6b47ccba1bc
 
 COCOAPODS: 1.10.1

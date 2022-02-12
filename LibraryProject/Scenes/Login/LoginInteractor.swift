@@ -14,11 +14,16 @@ class LoginInteractor {
             case .success(let data) :
                 completion(data ,nil , statusCode)
                 return
-            case .error(let error ) :
+            case .failure(let error ) :
                 completion(nil , error, statusCode)
                 return
             }
         }
+        
+        ApiClient<ModelLogin>.performRequestString(route: .login(userName: userName, password: password)) { result in
+            print(result.result)
+        }
+        
     }
     
 }

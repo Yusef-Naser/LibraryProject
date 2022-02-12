@@ -20,6 +20,16 @@ struct SString {
     static var subjects : String {return getText(key: "subjects")}
     static var DDCClassification : String {return getText(key: "DDCClassification")}
     static var description : String {return getText(key: "description")}
+    static var changePassword : String {return getText(key: "changePassword")}
+    static var profile : String {return getText(key: "profile")}
+    static var update : String {return getText(key: "update")}
+    static var name : String {return getText(key: "name")}
+    static var cardNumber : String {return getText(key: "cardNumber")}
+    static var address : String {return getText(key: "address")}
+    static var menu : String {return getText(key: "menu")}
+    static var checkoutList : String {return getText(key: "checkoutList")}
+    static var suggestions : String {return getText(key: "suggestions")}
+    static var addSuggest : String {return getText(key: "addSuggest")}
     
     
     private static func getText (key : String) -> String {
@@ -40,6 +50,16 @@ struct SString {
         "subjects" : "Subjects" ,
         "DDCClassification" : "DDC Classification" ,
         "description" : "Description" ,
+        "changePassword" : "Change Password" ,
+        "profile" : "Profile" ,
+        "update" : "Update" ,
+        "name" : "Name" ,
+        "cardNumber" : "Card Number" ,
+        "address" : "Address" ,
+        "menu" : "Menu" ,
+        "checkoutList" : "Checkout List" ,
+        "suggestions" : "Suggestions" ,
+        "addSuggest" : "Add Suggest" ,
     
     ]
     

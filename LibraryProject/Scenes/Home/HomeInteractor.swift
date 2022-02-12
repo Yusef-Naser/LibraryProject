@@ -14,7 +14,7 @@ class HomeInteractor {
             case .success(let data) :
                 completion(data , nil, statusCode)
                 return
-            case .error(let error) :
+            case .failure(let error) :
                 completion(nil, error, statusCode)
                 return
             }

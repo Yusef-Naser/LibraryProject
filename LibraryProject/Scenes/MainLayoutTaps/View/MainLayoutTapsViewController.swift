@@ -6,9 +6,9 @@ class MainLayoutTapsViewController: UITabBarController{
     @IBOutlet weak var customizedTabBar: CustomizedTabBar!
     
     let tabBarSafeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
-    var home = UINavigationController(rootViewController: HomeVC())
-    var setting  = UINavigationController(rootViewController: HomeVC())
-    var favourite = UINavigationController(rootViewController: HomeVC())
+    var home = HomeVC() // UINavigationController(rootViewController: )
+    var setting  = MenuVC() //UINavigationController(rootViewController: HomeVC())
+    var favourite = HomeVC() //UINavigationController(rootViewController: HomeVC())
     
     var roundCircleview: CircleView = {
        let view = CircleView()
@@ -48,13 +48,13 @@ class MainLayoutTapsViewController: UITabBarController{
     }
     
     private func handleClickOnSelectedTabBarItem(){
-        if selectedIndex == 0 {
-            popToRootVC(view: favourite)
-        }else if selectedIndex == 1 {
-            popToRootVC(view: home)
-        }else {
-            popToRootVC(view: setting)
-        }
+//        if selectedIndex == 0 {
+//            popToRootVC(view: favourite)
+//        }else if selectedIndex == 1 {
+//            popToRootVC(view: home)
+//        }else {
+//            popToRootVC(view: setting)
+//        }
     }
     
     private func popToRootVC(view: UINavigationController) {

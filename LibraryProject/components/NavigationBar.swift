@@ -63,4 +63,8 @@ class NavigationBar : UIView {
         
     }
     
+    func hideBackButton () {
+        backButton.isHidden = true
+    }
+    
 }
