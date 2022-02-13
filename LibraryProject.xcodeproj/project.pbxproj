@@ -79,6 +79,7 @@
 		2CC1AE6A27B44CFE0067A3B3 /* CellCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6927B44CFE0067A3B3 /* CellCheckout.swift */; };
 		2CC1AE6C27B459410067A3B3 /* ModelCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6B27B459410067A3B3 /* ModelCheckout.swift */; };
 		2CC1AE6E27B4599C0067A3B3 /* StringIntValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6D27B4599C0067A3B3 /* StringIntValue.swift */; };
+		2CCE762527B848E20084134D /* LTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE762427B848E20084134D /* LTextField.swift */; };
 		2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */; };
 		2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */; };
 		2CE5D6E227989E0D00BBCA15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE5D6E027989E0D00BBCA15 /* Main.storyboard */; };
@@ -170,6 +171,7 @@
 		2CC1AE6B27B459410067A3B3 /* ModelCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCheckout.swift; sourceTree = "<group>"; };
 		2CC1AE6D27B4599C0067A3B3 /* StringIntValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIntValue.swift; sourceTree = "<group>"; };
 		2CC9E6B527AC5231000ECBF7 /* LibraryProject copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LibraryProject copy-Info.plist"; path = "/Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject copy-Info.plist"; sourceTree = "<absolute>"; };
+		2CCE762427B848E20084134D /* LTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTextField.swift; sourceTree = "<group>"; };
 		2CE5D6D727989E0D00BBCA15 /* LibraryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				05B3D262279C3683007AB73C /* SectionBooksView.swift */,
 				2CBFDA36279E0BDF00561CC2 /* FitTableView.swift */,
 				2CC1AAB727AD6167006A6021 /* LButton.swift */,
+				2CCE762427B848E20084134D /* LTextField.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				2CC1AAA927AD50B2006A6021 /* MenuView.swift in Sources */,
 				05B3D26E279C369A007AB73C /* StoryboardName.swift in Sources */,
 				2CC1AAC127AD63F8006A6021 /* ProfileVC.swift in Sources */,
+				2CCE762527B848E20084134D /* LTextField.swift in Sources */,
 				2CBE05F527B779A900CBC02F /* ModelSuggestions.swift in Sources */,
 				2CBFDA35279E0A9800561CC2 /* ModelItemsBook.swift in Sources */,
 				2CC1AAB327AD54B5006A6021 /* ChangePasswordPresenter.swift in Sources */,

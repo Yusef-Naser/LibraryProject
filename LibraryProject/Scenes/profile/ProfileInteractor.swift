@@ -8,10 +8,10 @@
 
 class ProfileInteractor {
     
-    func updateProfile () {
+    func updateProfile (completion : @escaping CompletionHandler<String>) {
         
         let data : [String : Any] = [
-            "surname": "app20222",
+            "surname": "app20222    gg   ",
             "city": "Damietta",
             "address": "yes it work",
             "category_id": "S",

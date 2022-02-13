@@ -9,7 +9,10 @@ import UIKit
 
 class AddSuggestView : UIView {
     
-    
+    var textFieldTitle : UITextField {
+        let l = UITextField()
+        return l
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

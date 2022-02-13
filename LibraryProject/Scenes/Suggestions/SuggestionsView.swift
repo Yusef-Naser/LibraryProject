@@ -23,7 +23,7 @@ class SuggestionsView : UIView {
         return l
     }()
     
-    private let buttonAddSuggest : LButton = {
+    let buttonAddSuggest : LButton = {
         let l = LButton()
         l.setTitle(SString.addSuggest , for: .normal )
         return l

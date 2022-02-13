@@ -26,7 +26,9 @@ class ProfilePresenter : ProProfilePresetner {
     }
     
     func updateProfile() {
-        interactor.updateProfile()
+        interactor.updateProfile { data , error, statusCode in
+            
+        }
     }
     
 }

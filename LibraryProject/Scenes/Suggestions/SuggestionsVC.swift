@@ -17,7 +17,12 @@ class SuggestionsVC : BaseVC<SuggestionsView> {
         presenter = SuggestionsPresenter(view : self )
         mainView.setDelegate(delegate: self )
         presenter?.getSuggestions()
+        mainView.buttonAddSuggest.addTarget(self , action: #selector(actionAddSuggest), for: .touchUpInside)
         
+    }
+    
+    @objc private func actionAddSuggest () {
+        self.navigationController?.pushViewController(AddSuggestVC() , animated: true )
     }
     
     
