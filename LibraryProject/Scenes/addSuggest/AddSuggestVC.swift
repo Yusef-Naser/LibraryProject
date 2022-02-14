@@ -15,13 +15,15 @@ class AddSuggestVC : BaseVC<AddSuggestView> {
         super.viewDidLoad()
         
         presenter = AddSuggestPresenter(view : self )
-        
+        mainView.navigation.delegateNavigation = self
         
     }
     
     
 }
 
-extension AddSuggestVC : ProAddSuggestView {
-    
+extension AddSuggestVC : ProAddSuggestView , NavigationBarDelegate {
+    func navigationDismissView() {
+        self.navigationController?.popViewController(animated: true )
+    }
 }

@@ -449,8 +449,8 @@
 			children = (
 				2CBC67F0279C0B2D0041E39A /* Network */,
 				05B3D25F279C3683007AB73C /* components */,
-				2CE5D6F227989E6B00BBCA15 /* Scenes */,
 				2CE5D6EE27989E6B00BBCA15 /* Utitlites */,
+				2CE5D6F227989E6B00BBCA15 /* Scenes */,
 				2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */,
 				2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */,
 				2CE5D6E027989E0D00BBCA15 /* Main.storyboard */,

@@ -20,7 +20,11 @@ class LTextField : UITextField {
     }
     
     func initViews () {
-        
+        addConstraints()
+        self.borderStyle = .line
+        self.layer.borderColor = Colors.grayColors.cgColor
+        self.layer.borderWidth = 0.5
+
     }
     
     func addConstraints () {

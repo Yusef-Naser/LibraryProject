@@ -49,6 +49,7 @@ class ListCheckoutView : UIView {
     func setDelegates (delegate : ListCheckoutVC?) {
         tableView.delegate = delegate
         tableView.dataSource = delegate
+        navigation.delegateNavigation = delegate
     }
     
     

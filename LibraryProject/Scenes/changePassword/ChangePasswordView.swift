@@ -16,20 +16,14 @@ class ChangePasswordView : UIView {
         return l
     }()
     
-    private let textfieldPassword : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    private let textfieldPassword : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.password
         return l
     }()
     
-    private let textfieldRePassword : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    private let textfieldRePassword : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.password
         return l
     }()

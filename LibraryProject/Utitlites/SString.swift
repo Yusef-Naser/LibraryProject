@@ -30,6 +30,18 @@ struct SString {
     static var checkoutList : String {return getText(key: "checkoutList")}
     static var suggestions : String {return getText(key: "suggestions")}
     static var addSuggest : String {return getText(key: "addSuggest")}
+    static var title : String { return getText(key: "title")}
+    static var author : String { return getText(key: "author")}
+    static var copyrightDate : String { return getText(key: "copyrightDate")}
+    static var publisher : String { return getText(key: "publisher")}
+    static var collectionTitle : String { return getText(key: "collectionTitle")}
+    static var publicationPlace : String { return getText(key: "publicationPlace")}
+    static var quantity : String { return getText(key: "quantity")}
+    static var itemType : String { return getText(key: "itemType")}
+    static var library : String { return getText(key: "library")}
+    static var notes : String { return getText(key: "notes")}
+    static var submit : String { return getText(key: "submit")}
+    
     
     
     private static func getText (key : String) -> String {
@@ -60,6 +72,17 @@ struct SString {
         "checkoutList" : "Checkout List" ,
         "suggestions" : "Suggestions" ,
         "addSuggest" : "Add Suggest" ,
+        "title" : "Title" ,
+        "author" : "Author" ,
+        "copyrightDate" : "Copyright Date" ,
+        "publisher" : "Publisher" ,
+        "collectionTitle" : "Collection title" ,
+        "publicationPlace" : "Publication Place" ,
+        "quantity" : "Quantity" ,
+        "itemType" : "Item type" ,
+        "library" : "Library" ,
+        "notes" : "Notes" ,
+        "submit" : "Submit" ,
     
     ]
     

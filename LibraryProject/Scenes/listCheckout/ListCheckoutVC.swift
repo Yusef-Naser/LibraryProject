@@ -28,9 +28,12 @@ class ListCheckoutVC : BaseVC<ListCheckoutView> {
     
 }
 
-extension ListCheckoutVC : ProListCheckoutView {
+extension ListCheckoutVC : ProListCheckoutView , NavigationBarDelegate {
     func fetchCheckoutList() {
         mainView.tableView.reloadData()
+    }
+    func navigationDismissView() {
+        self.navigationController?.popViewController(animated: true )
     }
 }
 
