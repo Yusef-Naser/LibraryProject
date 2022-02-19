@@ -31,7 +31,9 @@ class SearchPresenter : ProSearchPresetner {
     }
     
     func getSearch(text: String) {
+        self.view?.showLoading()
         interactor.getSearch(text: text) { data , error , statusCode in
+            self.view?.hideLoading()
             guard let data = data else {
                 return
             }

@@ -25,61 +25,61 @@ class AddSuggestView : UIView {
     }()
        
     
-    private let textFieldTitle : LTextField = {
+    let textFieldTitle : LTextField = {
         let l = LTextField()
         l.placeholder = SString.title
         return l
     }()
     
-    private let textFieldAuthor : LTextField = {
+    let textFieldAuthor : LTextField = {
         let l = LTextField()
         l.placeholder = SString.author
         return l
     }()
     
-    private let textFieldCopyRightDate : LTextField = {
+    let textFieldCopyRightDate : LTextField = {
         let l = LTextField()
         l.placeholder = SString.copyrightDate
         return l
     }()
     
-    private let textFieldPublisher : LTextField = {
+    let textFieldPublisher : LTextField = {
         let l = LTextField()
         l.placeholder = SString.publisher
         return l
     }()
     
-    private let textFieldCollectionTitle : LTextField = {
+    let textFieldCollectionTitle : LTextField = {
         let l = LTextField()
         l.placeholder = SString.collectionTitle
         return l
     }()
     
-    private let textFieldPublicationPlace : LTextField = {
+    let textFieldPublicationPlace : LTextField = {
         let l = LTextField()
         l.placeholder = SString.publicationPlace
         return l
     }()
     
-    private let textFieldQuantity : LTextField = {
+    let textFieldQuantity : LTextField = {
         let l = LTextField()
         l.placeholder = SString.quantity
         return l
     }()
     
-    private let textFieldItemType : LTextField = {
+    let textFieldItemType : LTextField = {
         let l = LTextField()
         l.placeholder = SString.itemType
         return l
     }()
     
-    private let textFieldLibrary : LTextField = {
+    let textFieldLibrary : LTextField = {
         let l = LTextField()
         l.placeholder = SString.library
         return l
     }()
     
-    private let textFieldNotes : LTextField = {
+    let textFieldNotes : LTextField = {
         let l = LTextField()
         l.placeholder = SString.notes
         return l

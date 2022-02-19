@@ -9,20 +9,18 @@ import UIKit
 
 class BaseVC <T : UIView> : UIViewController , StatusApi  {
     
-    func onError(_ message: String) {
-        
-    }
-    
-    func onFailure(_ message: String) {
-        
+    func showMessage(_ message: String) {
+        SnackBar.instance.setMessage(message)
     }
     
     func showLoading() {
-        
+        Loading.instance.hideLoading()
+        Loading.instance.showLoading(view: self.mainView)
     }
     
     func hideLoading() {
-        
+        refreshController?.endRefreshing()
+        Loading.instance.hideLoading()
     }
     
     var refreshController : UIRefreshControl?

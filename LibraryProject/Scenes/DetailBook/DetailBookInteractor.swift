@@ -50,4 +50,25 @@ class DetailBookInteractor {
         }
     }
     
+    func addHold (completion : @escaping CompletionHandler<ModelHold>) {
+        let data : [String : Any] = [
+                "patron_id":4,
+                "pickup_library_id":"ROST",
+                "biblio_id":3426
+        ]
+        ApiClient<ModelHold>.performRequest(route: .addHold(data: data )) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data ,nil , statusCode)
+                return
+            case .failure(let error) :
+                completion(nil, error, statusCode)
+                return
+            }
+        }
+        
+
+        
+    }
+    
 }

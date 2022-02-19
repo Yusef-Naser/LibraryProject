@@ -21,13 +21,26 @@ class AddSuggestVC : BaseVC<AddSuggestView> {
     
     
     @objc private func actionSubmit () {
-        presenter?.addSuggest(title: "title suggest")
+        presenter?.addSuggest(title: mainView.textFieldTitle.text ?? "" ,
+                              author: mainView.textFieldAuthor.text ?? "" ,
+                              copyRightDate: mainView.textFieldCopyRightDate.text ?? "" ,
+                              publisher: mainView.textFieldPublisher.text ?? "" ,
+                              collectionTitle: mainView.textFieldCollectionTitle.text ?? "",
+                              publicationPlace: mainView.textFieldPublicationPlace.text ?? "" ,
+                              quantity: mainView.textFieldQuantity.text ?? "" ,
+                              itemType: mainView.textFieldItemType.text ?? "" ,
+                              library: mainView.textFieldLibrary.text ?? "" ,
+                              notes: mainView.textFieldNotes.text ?? "")
     }
     
 }
 
 extension AddSuggestVC : ProAddSuggestView , NavigationBarDelegate {
     func navigationDismissView() {
+        self.navigationController?.popViewController(animated: true )
+    }
+    
+    func fetchData() {
         self.navigationController?.popViewController(animated: true )
     }
 }

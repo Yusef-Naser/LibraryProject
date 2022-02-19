@@ -27,7 +27,9 @@ class ChangePasswordPresenter : ProChangePasswordPresetner {
     }
     
     func changePassword(password: String, repeatedPassword: String, oldPassword: String) {
+        self.view?.showLoading()
         interactor.changePassword(oldPassword: oldPassword, password: password , repeatedPassword: repeatedPassword) { data , error, statusCode in
+            self.view?.hideLoading()
             if data?.getValue() == "" {
                 self.view?.responseData()
             }

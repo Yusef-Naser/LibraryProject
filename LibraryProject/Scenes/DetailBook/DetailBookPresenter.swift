@@ -9,6 +9,7 @@
 protocol ProDetailBookView : StatusApi {
     func fetchData ()
     func fetchItemBooks ()
+    func addHoldSuccess ()
 }
 
 protocol ProDetailBookPresetner {
@@ -17,6 +18,7 @@ protocol ProDetailBookPresetner {
     func setConfigurationView (view : DetailBookViewConfiguration)
     func getItemsBook (id : Int )
     var modelItemsBook : ModelItemsBookArray? {get set}
+    func addHold ()
 }
 
 
@@ -34,7 +36,9 @@ class DetailBookPresenter : ProDetailBookPresetner {
     }
     
     func getBookDetails(id: Int) {
+        self.view?.showLoading()
         interactor.getBookDetails(bookID: id) { data , error , statusCode in
+            self.view?.hideLoading()
             guard let data = data else {
                 return
             }
@@ -45,7 +49,9 @@ class DetailBookPresenter : ProDetailBookPresetner {
     }
     
     func getItemsBook(id: Int) {
+        self.view?.showLoading()
         interactor.getItemsBook(id: id) { data , error , statusCode in
+            self.view?.hideLoading()
             guard let data = data  else {
                 return
             }
@@ -64,6 +70,22 @@ class DetailBookPresenter : ProDetailBookPresetner {
         view.setSubjects(subjects: model.getTitle(type: .subjects))
         view.DDCClassification(classification: model.getTitle(type: .classificationNumber))
         view.getDescription(des: model.getTitle(type: .description))
+    }
+    
+    
+    func addHold() {
+        self.view?.showLoading()
+        interactor.addHold { data , error , statusCode in
+            self.view?.hideLoading()
+            if let data = data  {
+                if data.error != nil {
+                    self.view?.showMessage(data.error ?? "" )
+                    return
+                }else {
+                    self.view?.addHoldSuccess()
+                }
+            }
+        }
     }
     
 }

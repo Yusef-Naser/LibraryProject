@@ -31,7 +31,9 @@ class SuggestionsPresenter : ProSuggestionsPresetner {
     }
     
     func getSuggestions() {
+        self.view?.showLoading()
         interactor.getSuggestions { data , error , statusCode in
+            self.view?.hideLoading()
             guard let data = data else {
                 return
             }

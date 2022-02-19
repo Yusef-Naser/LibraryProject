@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "294A5C5B-F470-4ABB-A608-DDDC783404D2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LibraryProject/Scenes/Login/LoginInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "10AD7B19-190A-471D-A9C4-763629C73885"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -46,8 +30,56 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "getItem(itemID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "10AD7B19-190A-471D-A9C4-763629C73885 - b7a075c6c1c5d5c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LibraryProject.ListCheckoutPresenter.getItem(itemID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "10AD7B19-190A-471D-A9C4-763629C73885 - 10bdcf0c817410b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;LibraryProject.ModelItem&gt;, Swift.Optional&lt;Alamofire.AFError&gt;, Swift.Int) -&gt; () in LibraryProject.ListCheckoutPresenter.getItem(itemID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "321">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0451CF04-128D-4CBC-A753-762E81A434D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "getItem(itemID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,7 +87,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0451CF04-128D-4CBC-A753-762E81A434D1"
+            uuid = "31C89B64-5712-4A13-9427-382B39491C70"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getItem(itemID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE6F907F-0023-4D15-9860-B1B981A5CE9A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -71,38 +119,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "31C89B64-5712-4A13-9427-382B39491C70"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "getItem(itemID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BE6F907F-0023-4D15-9860-B1B981A5CE9A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "getItem(itemID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1AC87E23-872E-40C3-9F58-7BCB44C5F39B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -110,8 +126,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "getItem(itemID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +142,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "getItem(itemID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,10 +158,42 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "getBook(bibloID:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BF344721-BB6D-484E-8293-65AF06C13A54 - 559e3c2e30182939"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LibraryProject.ListCheckoutPresenter.getBook(bibloID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "BF344721-BB6D-484E-8293-65AF06C13A54 - 90c05c68682b4868"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;LibraryProject.ModelBook&gt;, Swift.Optional&lt;Alamofire.AFError&gt;, Swift.Int) -&gt; () in LibraryProject.ListCheckoutPresenter.getBook(bibloID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "303">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -158,8 +206,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "getBook(bibloID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +222,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "getBook(bibloID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,10 +238,42 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "getBookForHold(bibloID:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B516DA37-03D3-49A1-8E74-D88DA6EE91D6 - 25e4d2f127ed254d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LibraryProject.ListCheckoutPresenter.getBookForHold(bibloID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "222">
+               </Location>
+               <Location
+                  uuid = "B516DA37-03D3-49A1-8E74-D88DA6EE91D6 - 3439709e562e0ae4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;LibraryProject.ModelBook&gt;, Swift.Optional&lt;Alamofire.AFError&gt;, Swift.Int) -&gt; () in LibraryProject.ListCheckoutPresenter.getBookForHold(bibloID: Swift.String) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "303">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,8 +286,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "getBookForHold(bibloID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +302,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "getBookForHold(bibloID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +318,8 @@
             filePath = "LibraryProject/Scenes/listCheckout/ListCheckoutPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "getBook(bibloID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -273,6 +353,102 @@
             startingLineNumber = "25"
             endingLineNumber = "25"
             landmarkName = "changePassword(oldPassword:password:repeatedPassword:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B6CEA1E-2548-471A-951A-114EC59397AE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/DetailBook/DetailBookInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "addHold(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4818A216-5FD3-4591-85BE-A13707A61919"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/DetailBook/DetailBookInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "addHold(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F6D4D1B-46F1-47F4-B2FA-940E09D977D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/Login/LoginInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "login(userName:password:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F126B35-9921-4B8F-BED1-769B14F70AE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/Login/LoginInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "login(userName:password:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1AEBE0C1-4FE9-4C46-AE32-8679506D6E2B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/Login/LoginPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "login(userName:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C722F3B0-E526-4078-9243-7D03EE221065"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/Login/LoginPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "login(userName:password:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

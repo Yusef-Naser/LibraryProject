@@ -18,7 +18,7 @@ enum ApiRouter : URLRequestConvertible {
     case getBookDetails (id : Int)
     case search (text : String)
     case itemsBook (id : Int)
-    case login (userName : String , password : String)
+    case login (data : [String : Any])
     case getCheckoutList
     case getSuggestions
     case updateProfile (data : [String : Any])
@@ -28,16 +28,17 @@ enum ApiRouter : URLRequestConvertible {
     case getHoldList
     case addCheckout (data : [String : Any])
     case changePassword (data : [String : Any])
+    case addHold (data : [String : Any])
     
     private var Methods : HTTPMethod {
         switch self {
         case .getHome , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
-             .getHoldList :
+             .getHoldList , .login :
             return .get
-        case .login , .addSuggest , .addCheckout ,
-                .changePassword :
+        case .addSuggest , .addCheckout ,
+             .changePassword , .addHold :
             return .post
         case .updateProfile :
             return .put
@@ -53,7 +54,7 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails , .getCheckoutList , .getSuggestions ,
                 .updateProfile , .addSuggest ,
                 .getItemByItemID , .getBibloItem , .getHoldList ,
-                .addCheckout , .changePassword :
+                .addCheckout , .changePassword , .addHold :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
@@ -65,8 +66,8 @@ enum ApiRouter : URLRequestConvertible {
     }
     private var Paths : String {
         switch self {
-        case  .login  :
-            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication"
+        case  .login(let data )  :
+            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication?userid=app&password=AppUser2022"
         case .getHome :
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
         case .getBookDetails(let id ) :
@@ -100,6 +101,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/api/v1/checkouts"
         case .changePassword :
             return "https://library.awresidence.com/api/v1/public/patrons/4/password"
+        case .addHold :
+            return "https://library.awresidence.com/api/v1/holds"
         }
         
     }
@@ -111,13 +114,10 @@ enum ApiRouter : URLRequestConvertible {
                 .getBibloItem , .getHoldList :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
-                .addCheckout(let data) , .changePassword(let data ):
+                .addCheckout(let data) , .changePassword(let data ) ,
+                .addHold(let data ) , .login( let data ):
             return data 
-        case let .login(userName , password ) :
-            return [
-                "userid" : userName ,
-                "password" : password
-            ]
+      
         }
     }
         

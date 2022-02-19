@@ -8,5 +8,7 @@ target 'LibraryProject' do
   # Pods for LibraryProject
 pod "PINRemoteImage"
 pod "Alamofire"
+pod "TTGSnackbar"
+pod 'JGProgressHUD'
 
 end

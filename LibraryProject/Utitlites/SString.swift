@@ -48,6 +48,7 @@ struct SString {
     static var libraryID : String { return getText(key: "libraryID")}
     static var repeatedPassword : String { return getText(key: "repeatedPassword")}
     static var oldPassword : String { return getText(key: "oldPassword")}
+    static var addHold : String {return getText(key: "addHold")}
     
     
     
@@ -97,6 +98,7 @@ struct SString {
         "libraryID" : "Library ID" ,
         "repeatedPassword" : "Repeated Password" ,
         "oldPassword" : "Old Password" ,
+        "addHold" : "Add hold" ,
     ]
     
 }

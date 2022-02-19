@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.3)
+  - JGProgressHUD (2.2)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
     - PINCache/Core (= 3.0.3)
@@ -15,24 +16,31 @@ PODS:
   - PINRemoteImage/PINCache (3.0.3):
     - PINCache (~> 3.0.3)
     - PINRemoteImage/Core
+  - TTGSnackbar (1.10.5)
 
 DEPENDENCIES:
   - Alamofire
+  - JGProgressHUD
   - PINRemoteImage
+  - TTGSnackbar
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - JGProgressHUD
     - PINCache
     - PINOperation
     - PINRemoteImage
+    - TTGSnackbar
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
+  TTGSnackbar: 2bd245d2bbf83639483410273fd936af0b7ba2a9
 
-PODFILE CHECKSUM: 005ea8ab99ed171366e816236f92e6b47ccba1bc
+PODFILE CHECKSUM: 30a95269cccc74c0c2a7450a1318232c2fb72c4f
 
 COCOAPODS: 1.10.1

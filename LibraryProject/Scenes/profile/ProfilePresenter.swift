@@ -28,7 +28,9 @@ class ProfilePresenter : ProProfilePresetner {
     }
     
     func updateProfile (name : String , city : String , address : String, categoryID : String , libraryID : String) {
+        self.view?.showLoading()
         interactor.updateProfile(name: name , city: city , address: address , categoryID: categoryID, libraryID: libraryID) { data , error, statusCode in
+            self.view?.hideLoading()
             guard let data = data else {
                 return
             }

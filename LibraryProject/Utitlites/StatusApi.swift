@@ -8,5 +8,7 @@
 import Foundation
 
 protocol StatusApi : AnyObject {
-    
+    func showMessage(_ message: String)
+    func showLoading()
+    func hideLoading()
 }

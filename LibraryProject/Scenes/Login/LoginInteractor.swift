@@ -9,7 +9,13 @@
 class LoginInteractor {
     
     func login (userName : String , password : String , completion : @escaping CompletionHandler<ModelLogin>) {
-        ApiClient<ModelLogin>.performRequest(route: .login(userName: userName , password: password )) { result , statusCode in
+        
+        let data : [String : Any] = [
+            "userid" : userName ,
+            "password" : password
+        ]
+        
+        ApiClient<ModelLogin>.performRequest(route: .login(data: data )) { result , statusCode in
             switch result {
             case .success(let data) :
                 completion(data ,nil , statusCode)
@@ -20,10 +26,8 @@ class LoginInteractor {
             }
         }
         
-        ApiClient<ModelLogin>.performRequestString(route: .login(userName: userName, password: password)) { result in
-            print(result.result)
-        }
-        
     }
+    
+    
     
 }

@@ -16,9 +16,14 @@ class SuggestionsVC : BaseVC<SuggestionsView> {
         
         presenter = SuggestionsPresenter(view : self )
         mainView.setDelegate(delegate: self )
-        presenter?.getSuggestions()
+        
         mainView.buttonAddSuggest.addTarget(self , action: #selector(actionAddSuggest), for: .touchUpInside)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getSuggestions()
     }
     
     @objc private func actionAddSuggest () {

@@ -49,6 +49,7 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     }
     
     func getHoldList () {
+        self.view?.showLoading()
         interactor.getHoldList { data , error , statusCode in
             guard let data = data else {
                 return
@@ -62,9 +63,10 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     }
     
     func getBookForHold (bibloID : String) {
-        
+        self.view?.showLoading()
         interactor.getBook(bibloID: bibloID) { data , error , statusCode in
             guard let data = data else {
+                self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }
@@ -81,6 +83,7 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     
     
     func getCheckoutList() {
+        self.view?.showLoading()
         interactor.getCheckoutList { data , error , statusCode in
             guard let data = data else {
                 return
@@ -120,12 +123,14 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     func getBook (bibloID : String) {
         interactor.getBook(bibloID: bibloID) { data , error , statusCode in
             guard let data = data else {
+                self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }
             self.listBooks.append(data)
             self.listItems.remove(at: 0)
             guard self.listItems.count > 0 else {
+                self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }
