@@ -52,5 +52,15 @@ class ListCheckoutView : UIView {
         navigation.delegateNavigation = delegate
     }
     
+    func setTitle (screenType : ScreenType) {
+        switch screenType {
+        case .checkout:
+            navigation.labelTitle.text = SString.checkoutList
+        case .hold:
+            navigation.labelTitle.text = SString.holdList
+        case .none :
+            return
+        }
+    }
     
 }

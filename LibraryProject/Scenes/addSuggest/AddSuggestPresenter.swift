@@ -12,6 +12,7 @@ protocol ProAddSuggestView : StatusApi {
 
 protocol ProAddSuggestPresetner {
 
+    func addSuggest (title : String)
     
 }
 
@@ -25,4 +26,9 @@ class AddSuggestPresenter : ProAddSuggestPresetner {
         self.view = view
     }
     
+    func addSuggest(title: String) {
+        interactor.addSuggest(title: title) { data , error, statusCode in
+            
+        }
+    }
 }

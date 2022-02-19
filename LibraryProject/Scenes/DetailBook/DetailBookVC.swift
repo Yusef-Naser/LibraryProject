@@ -32,8 +32,13 @@ class DetailBookVC : BaseVC<DetailBookView> {
         mainView.imageBook.loadImage(url: bookItem?.image ?? "" )
         presenter?.getBookDetails(id: bookItem?.biblionumber ?? 0)
         presenter?.getItemsBook(id: bookItem?.biblionumber ?? 0)
+        mainView.buttonAddCheckout.addTarget(self , action: #selector(actionAddButton), for: .touchUpInside)
+        
     }
     
+    @objc private func actionAddButton () {
+        
+    }
     
 }
 

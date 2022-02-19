@@ -7,11 +7,12 @@
 
 
 protocol ProChangePasswordView : StatusApi {
-    
+    func responseData ()
 }
 
 protocol ProChangePasswordPresetner {
 
+    func changePassword (password : String , repeatedPassword : String, oldPassword : String)
     
 }
 
@@ -25,4 +26,11 @@ class ChangePasswordPresenter : ProChangePasswordPresetner {
         self.view = view
     }
     
+    func changePassword(password: String, repeatedPassword: String, oldPassword: String) {
+        interactor.changePassword(oldPassword: oldPassword, password: password , repeatedPassword: repeatedPassword) { data , error, statusCode in
+            if data?.getValue() == "" {
+                self.view?.responseData()
+            }
+        }
+    }
 }

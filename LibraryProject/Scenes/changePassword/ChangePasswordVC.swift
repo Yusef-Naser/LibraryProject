@@ -16,14 +16,20 @@ class ChangePasswordVC : BaseVC<ChangePasswordView> {
         
         presenter = ChangePasswordPresenter(view : self )
         mainView.navigation.delegateNavigation = self
-        
+        mainView.buttonChange.addTarget(self , action: #selector(actionChangePassword ), for: .touchUpInside)
+    }
+    
+    @objc private func actionChangePassword () {
+        presenter?.changePassword(password: mainView.textfieldPassword.text ?? "" , repeatedPassword: mainView.textfieldRePassword.text ?? "" , oldPassword: mainView.textfieldOldPassword.text ?? "")
     }
     
     
 }
 
 extension ChangePasswordVC : ProChangePasswordView , NavigationBarDelegate {
-    
+    func responseData() {
+        self.navigationController?.popViewController(animated: true )
+    }
     func navigationDismissView() {
         self.navigationController?.popViewController(animated: true )
     }

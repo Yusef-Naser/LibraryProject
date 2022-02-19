@@ -9,33 +9,33 @@ import UIKit
 
 class CellCheckout : UITableViewCell {
     
-    private let labelTitle : UILabel = {
+    let labelTitle : UILabel = {
         let l = UILabel()
         l.text = SString.title
         l.numberOfLines = 0
         return l
     }()
     
-    private let labelAuthor : UILabel = {
+    let labelAuthor : UILabel = {
         let l = UILabel()
         l.text = SString.author
         l.numberOfLines = 0
         return l
     }()
     
-    private let labelRate : UILabel = {
+    let labelRate : UILabel = {
         let l = UILabel()
         l.text = "rate"
         return l
     }()
     
-    private let labelItemType : UILabel = {
+    let labelItemType : UILabel = {
         let l = UILabel()
         l.text = "itemType"
         return l
     }()
     
-    private let labelCallNumber : UILabel = {
+    let labelCallNumber : UILabel = {
         let l = UILabel()
         l.text = "call number"
         return l

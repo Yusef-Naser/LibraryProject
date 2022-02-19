@@ -7,15 +7,31 @@
 
 import UIKit
 
+enum ScreenType {
+    case checkout
+    case hold
+    case none
+}
+
 class ListCheckoutVC : BaseVC<ListCheckoutView> {
     
     private var presenter : ProListCheckoutPresetner?
+    private var screenType : ScreenType = .none
+    
+    init(screenType : ScreenType) {
+        super.init(nibName: nil , bundle: nil)
+        self.screenType = screenType
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        presenter = ListCheckoutPresenter(view : self )
-        presenter?.getCheckoutList()
+        presenter = ListCheckoutPresenter(view : self , screenType: screenType)
+        mainView.setTitle(screenType: screenType)
+        presenter?.getListData()
         mainView.setDelegates(delegate: self )
         refreshController = mainView.tableView.addRefreshController()
         refreshController?.addTarget(self , action: #selector(actionRefresh ), for: .valueChanged)
@@ -44,7 +60,9 @@ extension ListCheckoutVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellCheckout.getIdentifier() , for: indexPath ) as! CellCheckout
-        
+        let book = presenter?.getCheckoutElement(index: indexPath.row)
+        cell.labelTitle.text = book?.getTitle(type: .title)
+        cell.labelAuthor.text = book?.getTitle(type: .subjects)
         return cell
     }
     

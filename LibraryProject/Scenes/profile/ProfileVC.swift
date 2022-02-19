@@ -20,13 +20,27 @@ class ProfileVC : BaseVC<ProfileView> {
     }
     
     @objc private func actionUpdate () {
-        presenter?.updateProfile()
+        presenter?.updateProfile(name: mainView.textfieldName.text ?? "" ,
+                                 city: mainView.textfieldCity.text ?? "" ,
+                                 address: mainView.textfieldAddress.text ?? "",
+                                 categoryID: mainView.textfieldCategoryID.text ?? "",
+                                 libraryID: mainView.textfieldLibraryID.text ?? "" )
     }
     
     
 }
 
 extension ProfileVC : ProProfileView , NavigationBarDelegate {
+    
+    func fetchData() {
+        mainView.textfieldName.text = presenter?.getUserData()?.surname
+        mainView.textfieldCity.text = presenter?.getUserData()?.city
+        mainView.textfieldAddress.text = presenter?.getUserData()?.address
+        mainView.textfieldCategoryID.text = presenter?.getUserData()?.categoryID
+        mainView.textfieldLibraryID.text = presenter?.getUserData()?.libraryID
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func navigationDismissView() {
         self.navigationController?.popViewController(animated: true )
     }

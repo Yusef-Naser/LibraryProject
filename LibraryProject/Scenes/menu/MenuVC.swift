@@ -15,6 +15,7 @@ class MenuVC : BaseVC<MenuView> {
         SString.changePassword ,
         SString.profile ,
         SString.checkoutList ,
+        SString.holdList ,
         SString.suggestions
     ]
     
@@ -56,7 +57,9 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource {
         case SString.profile :
             self.navigationController?.pushViewController(ProfileVC() , animated: true )
         case SString.checkoutList :
-            self.navigationController?.pushViewController(ListCheckoutVC() , animated: true )
+            self.navigationController?.pushViewController(ListCheckoutVC(screenType: .checkout) , animated: true )
+        case SString.holdList :
+            self.navigationController?.pushViewController(ListCheckoutVC(screenType: .hold ), animated: true )
         case SString.suggestions :
             self.navigationController?.pushViewController(SuggestionsVC() , animated: true)
         default:

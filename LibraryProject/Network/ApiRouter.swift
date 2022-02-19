@@ -23,13 +23,21 @@ enum ApiRouter : URLRequestConvertible {
     case getSuggestions
     case updateProfile (data : [String : Any])
     case addSuggest (data : [String : Any])
+    case getItemByItemID (itemID : String)
+    case getBibloItem (bibloID : String)
+    case getHoldList
+    case addCheckout (data : [String : Any])
+    case changePassword (data : [String : Any])
     
     private var Methods : HTTPMethod {
         switch self {
         case .getHome , .getBookDetails , .search ,
-             .itemsBook , .getCheckoutList , .getSuggestions :
+             .itemsBook , .getCheckoutList , .getSuggestions ,
+             .getItemByItemID , .getBibloItem  ,
+             .getHoldList :
             return .get
-        case .login , .addSuggest  :
+        case .login , .addSuggest , .addCheckout ,
+                .changePassword :
             return .post
         case .updateProfile :
             return .put
@@ -43,10 +51,13 @@ enum ApiRouter : URLRequestConvertible {
                 "content-type" : "application/json;charset=utf-8",
             ]
         case .getBookDetails , .getCheckoutList , .getSuggestions ,
-                .updateProfile , .addSuggest :
+                .updateProfile , .addSuggest ,
+                .getItemByItemID , .getBibloItem , .getHoldList ,
+                .addCheckout , .changePassword :
             return [
                 "Accept" : "application/marc-in-json" ,
-                "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" ,
+                "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
+               // "Authorization": "Basic YXBwOkFwcFVzZXIyMDIx" //app:AppUser2021
             ]
         case .itemsBook :
             return [:]
@@ -79,6 +90,16 @@ enum ApiRouter : URLRequestConvertible {
             
         case .addSuggest :
             return "https://library.awresidence.com/api/v1/suggestions"
+        case .getItemByItemID(let itemID) :
+            return "https://library.awresidence.com/api/v1/items/\(itemID)"
+        case .getBibloItem(let bibloID ) :
+            return "https://library.awresidence.com/api/v1/public/biblios/\(bibloID)"
+        case .getHoldList :
+            return "https://library.awresidence.com/api/v1/holds?patron_id=4"
+        case .addCheckout :
+            return "https://library.awresidence.com/api/v1/checkouts"
+        case .changePassword :
+            return "https://library.awresidence.com/api/v1/public/patrons/4/password"
         }
         
     }
@@ -86,9 +107,11 @@ enum ApiRouter : URLRequestConvertible {
     private var parameters : [String : Any] {
         switch self {
         case .getBookDetails , .getHome , .itemsBook , .search ,
-             .getCheckoutList , .getSuggestions :
+                .getCheckoutList , .getSuggestions , .getItemByItemID ,
+                .getBibloItem , .getHoldList :
             return [:]
-        case .updateProfile(let data ) , .addSuggest(let data ):
+        case .updateProfile(let data ) , .addSuggest(let data ) ,
+                .addCheckout(let data) , .changePassword(let data ):
             return data 
         case let .login(userName , password ) :
             return [

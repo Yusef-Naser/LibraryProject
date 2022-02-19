@@ -16,9 +16,13 @@ class AddSuggestVC : BaseVC<AddSuggestView> {
         
         presenter = AddSuggestPresenter(view : self )
         mainView.navigation.delegateNavigation = self
-        
+        mainView.buttonSubmit.addTarget(self , action: #selector(actionSubmit), for: .touchUpInside)
     }
     
+    
+    @objc private func actionSubmit () {
+        presenter?.addSuggest(title: "title suggest")
+    }
     
 }
 

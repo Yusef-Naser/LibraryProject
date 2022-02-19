@@ -31,14 +31,15 @@ class ProfileView : UIView {
         l.distribution = .fillEqually
         
         l.addArrangedSubview(textfieldName)
-        l.addArrangedSubview(textfieldCardNumber)
+        l.addArrangedSubview(textfieldCity)
         l.addArrangedSubview(textfieldAddress)
-        l.addArrangedSubview(textfieldEmail)
+        l.addArrangedSubview(textfieldCategoryID)
+        l.addArrangedSubview(textfieldLibraryID)
         l.addArrangedSubview(buttonUpdate)
         return l
     }()
     
-    private let textfieldName : UITextField = {
+    let textfieldName : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
@@ -47,16 +48,16 @@ class ProfileView : UIView {
         return l
     }()
     
-    private let textfieldCardNumber : UITextField = {
+    let textfieldCity : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
         l.layer.borderWidth = 0.5
-        l.placeholder = SString.cardNumber
+        l.placeholder = SString.city
         return l
     }()
     
-    private let textfieldAddress : UITextField = {
+    let textfieldAddress : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
@@ -65,16 +66,23 @@ class ProfileView : UIView {
         return l
     }()
     
-    private let textfieldEmail : UITextField = {
+    let textfieldCategoryID : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
         l.layer.borderWidth = 0.5
-        l.placeholder = SString.email
+        l.placeholder = SString.categoryID
         return l
     }()
     
-    
+    let textfieldLibraryID : UITextField = {
+        let l = UITextField()
+        l.borderStyle = .line
+        l.layer.borderColor = Colors.grayColors.cgColor
+        l.layer.borderWidth = 0.5
+        l.placeholder = SString.libraryID
+        return l
+    }()
     
     let buttonUpdate : LButton = {
         let l = LButton()

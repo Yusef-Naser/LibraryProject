@@ -20,4 +20,44 @@ class ListCheckoutInteractor {
             }
         }
     }
+    
+    func getItem (item : String , completion : @escaping CompletionHandler<ModelItem>) {
+        ApiClient<ModelItem>.performRequest(route: .getItemByItemID(itemID: item)) { result , statusCode in
+            switch result {
+            case .success(let data ) :
+                completion(data , nil , statusCode)
+                return
+            case .failure(let error) :
+                completion(nil , error , statusCode)
+                return
+            }
+        }
+    }
+    
+    func getBook (bibloID : String , completion : @escaping CompletionHandler<ModelBook>) {
+        ApiClient<ModelBook>.performRequest(route: .getBibloItem(bibloID: bibloID )) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion (data , nil , statusCode )
+                return
+            case .failure(let error) :
+                completion(nil , error , statusCode )
+                return
+            }
+        }
+    }
+    
+    func getHoldList (completion : @escaping CompletionHandler<ModelListHold>) {
+        ApiClient<ModelListHold>.performRequest(route: .getHoldList) { result , statusCode in
+            switch result {
+            case .success(let data ) :
+                completion(data , nil , statusCode)
+                return
+            case .failure(let error) :
+                completion (nil , error , statusCode)
+                return
+            }
+        }
+    }
+    
 }

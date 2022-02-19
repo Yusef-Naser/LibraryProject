@@ -34,4 +34,20 @@ class DetailBookInteractor {
         }
     }
     
+    func addCheckout (completion : @escaping CompletionHandler<String>) {
+        
+        let data : [String : Any] = [
+            
+            "patron_id": "4",
+            "barcode": "8262",
+            "due_date":"2023-03-02",
+            "issue_date":"2022-02-16"
+            
+        ]
+        
+        ApiClient<String>.performRequest(route: .addCheckout(data: data )) { result , statusCode in
+            
+        }
+    }
+    
 }

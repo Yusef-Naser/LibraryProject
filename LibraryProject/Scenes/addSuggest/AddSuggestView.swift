@@ -107,7 +107,7 @@ class AddSuggestView : UIView {
         return l
     }()
     
-    private let buttonSubmit : LButton = {
+    let buttonSubmit : LButton = {
         let l = LButton()
         l.setTitle(SString.submit, for: .normal)
         return l

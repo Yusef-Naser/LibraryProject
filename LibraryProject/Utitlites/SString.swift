@@ -41,6 +41,13 @@ struct SString {
     static var library : String { return getText(key: "library")}
     static var notes : String { return getText(key: "notes")}
     static var submit : String { return getText(key: "submit")}
+    static var holdList : String { return getText(key: "holdList")}
+    static var addCheckout : String { return getText(key: "addCheckout")}
+    static var city : String { return getText(key: "city")}
+    static var categoryID : String { return getText(key: "categoryID")}
+    static var libraryID : String { return getText(key: "libraryID")}
+    static var repeatedPassword : String { return getText(key: "repeatedPassword")}
+    static var oldPassword : String { return getText(key: "oldPassword")}
     
     
     
@@ -83,7 +90,13 @@ struct SString {
         "library" : "Library" ,
         "notes" : "Notes" ,
         "submit" : "Submit" ,
-    
+        "holdList" : "Hold List" ,
+        "addCheckout" : "Add Checkout" ,
+        "city" : "City" ,
+        "categoryID" : "Category ID" ,
+        "libraryID" : "Library ID" ,
+        "repeatedPassword" : "Repeated Password" ,
+        "oldPassword" : "Old Password" ,
     ]
     
 }

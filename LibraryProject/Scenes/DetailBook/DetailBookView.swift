@@ -96,6 +96,12 @@ class DetailBookView : UIView {
         return l
     }()
     
+    let buttonAddCheckout : LButton = {
+        let l = LButton()
+        l.setTitle(SString.addCheckout, for: .normal)
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
@@ -113,6 +119,7 @@ class DetailBookView : UIView {
     private func addViews () {
         addSubview(navigation)
         addSubview(scrollView)
+        addSubview(buttonAddCheckout)
         
         parentView.addSubview(imageBook)
         parentView.addSubview(labelTitle)
@@ -122,7 +129,9 @@ class DetailBookView : UIView {
         
         
         navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        scrollView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor )
+        scrollView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: buttonAddCheckout.topAnchor , trailing: trailingAnchor )
+        
+        buttonAddCheckout.anchor( leading: leadingAnchor , bottom: safeAreaLayoutGuide.bottomAnchor , trailing: trailingAnchor , paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         
         imageBook.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor  , paddingTop: 16 , paddingLeft: 16 , paddingBottom: 16 , width: 110 , height: 160 )
         
@@ -135,6 +144,8 @@ class DetailBookView : UIView {
         fitTableView.anchor(top: stackView.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
         
     }
+    
+    
     
     
 }

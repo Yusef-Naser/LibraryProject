@@ -8,18 +8,25 @@
 
 class ProfileInteractor {
     
-    func updateProfile (completion : @escaping CompletionHandler<String>) {
+    func updateProfile (name : String , city : String , address : String , categoryID : String , libraryID : String , completion : @escaping CompletionHandler<ModelUser>) {
         
         let data : [String : Any] = [
-            "surname": "app20222    gg   ",
-            "city": "Damietta",
-            "address": "yes it work",
+            "surname":  name,
+            "city":  city ,
+            "address":  address ,
             "category_id": "S",
             "library_id": "ROST"
         ]
         
-        ApiClient<String>.performRequestString(route: .updateProfile(data: data)) { result  in
-            print(result.result)
+        ApiClient<ModelUser>.performRequest (route: .updateProfile(data: data)) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data , nil , statusCode)
+                return
+            case .failure(let error) :
+                completion(nil , error , statusCode)
+                return
+            }
         }
     }
     

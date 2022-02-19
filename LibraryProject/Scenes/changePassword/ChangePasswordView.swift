@@ -16,19 +16,25 @@ class ChangePasswordView : UIView {
         return l
     }()
     
-    private let textfieldPassword : LTextField = {
+    let textfieldPassword : LTextField = {
         let l = LTextField()
         l.placeholder = SString.password
         return l
     }()
     
-    private let textfieldRePassword : LTextField = {
+    let textfieldRePassword : LTextField = {
         let l = LTextField()
-        l.placeholder = SString.password
+        l.placeholder = SString.repeatedPassword
         return l
     }()
     
-    private let buttonChange : LButton = {
+    let textfieldOldPassword : LTextField = {
+        let l = LTextField()
+        l.placeholder = SString.oldPassword
+        return l
+    }()
+    
+    let buttonChange : LButton = {
         let l = LButton()
         l.setTitle(SString.changePassword, for: .normal)
         return l
@@ -42,6 +48,7 @@ class ChangePasswordView : UIView {
         
         l.addArrangedSubview(textfieldPassword)
         l.addArrangedSubview(textfieldRePassword)
+        l.addArrangedSubview(textfieldOldPassword)
         
         return l
     }()
