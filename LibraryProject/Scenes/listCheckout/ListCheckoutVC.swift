@@ -18,6 +18,8 @@ class ListCheckoutVC : BaseVC<ListCheckoutView> {
     private var presenter : ProListCheckoutPresetner?
     private var screenType : ScreenType = .none
     
+
+    
     init(screenType : ScreenType) {
         super.init(nibName: nil , bundle: nil)
         self.screenType = screenType
@@ -42,6 +44,7 @@ class ListCheckoutVC : BaseVC<ListCheckoutView> {
         presenter?.refreshCheckout()
     }
     
+
 }
 
 extension ListCheckoutVC : ProListCheckoutView , NavigationBarDelegate {
@@ -62,11 +65,12 @@ extension ListCheckoutVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellCheckout.getIdentifier() , for: indexPath ) as! CellCheckout
         let book = presenter?.getCheckoutElement(index: indexPath.row)
         cell.labelTitle.text = book?.getTitle(type: .title)
-        cell.labelAuthor.text = book?.getTitle(type: .subjects)
+        cell.labelAuthor.text = book?.getTitle(type: .author)
+        cell.labelCallNumber.text = book?.getTitle(type: .callNumber , subfields: [.a , .b])
+        cell.labelItemType.text = book?.getTitle(type: .itemType , subfields: [.c])
         return cell
     }
     
-    
-    
-    
 }
+
+

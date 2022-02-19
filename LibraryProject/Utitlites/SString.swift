@@ -49,7 +49,10 @@ struct SString {
     static var repeatedPassword : String { return getText(key: "repeatedPassword")}
     static var oldPassword : String { return getText(key: "oldPassword")}
     static var addHold : String {return getText(key: "addHold")}
-    
+    static var logout : String {return getText(key: "logout")}
+    static var checkin : String {return getText(key: "checkin")}
+    static var checkout : String {return getText(key: "checkout")}
+    static var close : String {return getText(key: "close")}
     
     
     private static func getText (key : String) -> String {
@@ -99,6 +102,10 @@ struct SString {
         "repeatedPassword" : "Repeated Password" ,
         "oldPassword" : "Old Password" ,
         "addHold" : "Add hold" ,
+        "logout" : "Logout" ,
+        "checkin" : "Checkin" ,
+        "checkout" : "checkout",
+        "close" : "Close" ,
     ]
     
 }

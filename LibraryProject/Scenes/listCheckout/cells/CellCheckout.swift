@@ -13,6 +13,7 @@ class CellCheckout : UITableViewCell {
         let l = UILabel()
         l.text = SString.title
         l.numberOfLines = 0
+        l.text = "title"
         return l
     }()
     
@@ -20,12 +21,7 @@ class CellCheckout : UITableViewCell {
         let l = UILabel()
         l.text = SString.author
         l.numberOfLines = 0
-        return l
-    }()
-    
-    let labelRate : UILabel = {
-        let l = UILabel()
-        l.text = "rate"
+        l.text = "author"
         return l
     }()
     
@@ -60,17 +56,15 @@ class CellCheckout : UITableViewCell {
         
         contentView.addSubview(labelTitle)
         contentView.addSubview(labelAuthor)
-        contentView.addSubview(labelRate)
         contentView.addSubview(labelItemType)
         contentView.addSubview(labelCallNumber)
         
-        labelTitle.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , paddingTop: 8, paddingLeft: 8 )
-        labelItemType.anchor(top: contentView.topAnchor , leading: labelTitle.trailingAnchor , trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft : 8, paddingRight: 8 )
+        labelTitle.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
+
+        labelAuthor.anchor(top: labelTitle.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8)
+        labelCallNumber.anchor(top: labelAuthor.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
         
-        labelAuthor.anchor(top: labelTitle.bottomAnchor , leading: contentView.leadingAnchor , paddingTop: 8, paddingLeft: 8 )
-        labelCallNumber.anchor(top: labelItemType.bottomAnchor , leading: labelAuthor.trailingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
-        
-        labelRate.anchor(top: labelAuthor.bottomAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
+        labelItemType.anchor(top: labelCallNumber.bottomAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft : 8, paddingBottom: 8 ,paddingRight: 8 )
         
     }
     

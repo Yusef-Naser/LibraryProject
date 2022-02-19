@@ -31,6 +31,7 @@ class ChangePasswordPresenter : ProChangePasswordPresetner {
         interactor.changePassword(oldPassword: oldPassword, password: password , repeatedPassword: repeatedPassword) { data , error, statusCode in
             self.view?.hideLoading()
             if data?.getValue() == "" {
+                SharedData.instance.setNewPassword(pass: password)
                 self.view?.responseData()
             }
         }

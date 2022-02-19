@@ -27,7 +27,7 @@ class LoginView : UIView {
     
     let textFieldPassword : UITextField = {
         let l = UITextField()
-      //  l.isSecureTextEntry = true
+        l.isSecureTextEntry = true
         l.borderStyle = .roundedRect
         l.placeholder = SString.password
         return l

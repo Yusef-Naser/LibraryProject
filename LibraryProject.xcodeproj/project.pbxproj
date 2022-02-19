@@ -21,6 +21,8 @@
 		2C51F83B27C0CFD1007E40AF /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83927C0CFD1007E40AF /* SnackBar.swift */; };
 		2C51F83C27C0CFD1007E40AF /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83A27C0CFD1007E40AF /* Loading.swift */; };
 		2C51F83E27C0D699007E40AF /* ModelHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83D27C0D699007E40AF /* ModelHold.swift */; };
+		2C51F84227C0E244007E40AF /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F84127C0E244007E40AF /* SharedData.swift */; };
+		2C51F84427C1136D007E40AF /* ModelBookV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F84327C1136D007E40AF /* ModelBookV2.swift */; };
 		2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */; };
 		2C7066A727BB5E1800825EAE /* ModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066A627BB5E1800825EAE /* ModelItem.swift */; };
 		2C7066AB27BB6CC100825EAE /* ModelListHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066AA27BB6CC100825EAE /* ModelListHold.swift */; };
@@ -119,6 +121,8 @@
 		2C51F83927C0CFD1007E40AF /* SnackBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
 		2C51F83A27C0CFD1007E40AF /* Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		2C51F83D27C0D699007E40AF /* ModelHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHold.swift; sourceTree = SOURCE_ROOT; };
+		2C51F84127C0E244007E40AF /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		2C51F84327C1136D007E40AF /* ModelBookV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBookV2.swift; sourceTree = "<group>"; };
 		2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
 		2C7066A627BB5E1800825EAE /* ModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItem.swift; sourceTree = "<group>"; };
 		2C7066AA27BB6CC100825EAE /* ModelListHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListHold.swift; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 				2CC13C0F27BE155D00C1E51C /* ModelUser.swift */,
 				2CC13C1127BE1DD600C1E51C /* ModelChangePassword.swift */,
 				2C51F83D27C0D699007E40AF /* ModelHold.swift */,
+				2C51F84327C1136D007E40AF /* ModelBookV2.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				2CB67008279ACFFE00A3C2DD /* Colors.swift */,
 				2CBC67EE279C02E00041E39A /* ResizingFlowLayout.swift */,
 				2CBC67FA279C37E40041E39A /* StatusApi.swift */,
+				2C51F84127C0E244007E40AF /* SharedData.swift */,
 			);
 			path = Utitlites;
 			sourceTree = "<group>";
@@ -724,6 +730,7 @@
 				2CB6701A279AE9E900A3C2DD /* DetailBookVC.swift in Sources */,
 				2CC1AE6C27B459410067A3B3 /* ModelCheckout.swift in Sources */,
 				05B3D253279C3593007AB73C /* MainLayoutTapsRouter.swift in Sources */,
+				2C51F84427C1136D007E40AF /* ModelBookV2.swift in Sources */,
 				2C51F83C27C0CFD1007E40AF /* Loading.swift in Sources */,
 				2CBC67FD279C3CCD0041E39A /* ModelBook.swift in Sources */,
 				2CE5D6FD27989E6B00BBCA15 /* BaseVC.swift in Sources */,
@@ -736,6 +743,7 @@
 				2CC1AAAA27AD50B2006A6021 /* MenuVC.swift in Sources */,
 				2CC13C1027BE155D00C1E51C /* ModelUser.swift in Sources */,
 				2CBE05ED27B7760C00CBC02F /* SuggestionsPresenter.swift in Sources */,
+				2C51F84227C0E244007E40AF /* SharedData.swift in Sources */,
 				2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */,
 				2CB67021279AF9F600A3C2DD /* LoginView.swift in Sources */,
 				2CBC67E9279C00930041E39A /* SearchInteractor.swift in Sources */,
@@ -910,6 +918,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BA36LG6AN9;
 				INFOPLIST_FILE = LibraryProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -930,6 +939,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BA36LG6AN9;
 				INFOPLIST_FILE = LibraryProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

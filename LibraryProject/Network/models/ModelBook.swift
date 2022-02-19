@@ -16,6 +16,20 @@ enum EnumStringType {
     case publicationDetails
     case subjects
     case description
+    case author
+    case address
+    case callNumber
+    case itemType
+    case subfields([SubFields])
+    
+    enum SubFields {
+        case a
+        case b
+        case c
+        case d
+        case the
+        case all
+    }
 }
 
 struct ModelBook: Codable {
@@ -86,7 +100,80 @@ struct ModelBook: Codable {
         return f
     }
     
-    func getTitle (type : EnumStringType) -> String? {
+    private func getAuthorObject () -> FieldClass? {
+        
+        var f : FieldClass? = nil
+        
+        for item in fields ?? [] {
+            if item["100"] != nil {
+                if f == nil {
+                    f = item["100"]?.getValue() as? FieldClass
+                }else if let fff = item["100"]?.getValue() as? FieldClass {
+                    for i in fff.subfields ?? [] {
+                        f?.subfields?.append(i)
+                    }
+                }
+            }
+        }
+        return f
+    }
+    
+    private func getAddressObject () -> FieldClass? {
+        
+        var f : FieldClass? = nil
+        
+        for item in fields ?? [] {
+            if item["245"] != nil {
+                if f == nil {
+                    f = item["245"]?.getValue() as? FieldClass
+                }else if let fff = item["245"]?.getValue() as? FieldClass {
+                    for i in fff.subfields ?? [] {
+                        f?.subfields?.append(i)
+                    }
+                }
+            }
+        }
+        return f
+    }
+    
+    private func getItemTypeObject () -> FieldClass? {
+        
+        var f : FieldClass? = nil
+        
+        for item in fields ?? [] {
+            if item["942"] != nil {
+                if f == nil {
+                    f = item["942"]?.getValue() as? FieldClass
+                }else if let fff = item["942"]?.getValue() as? FieldClass {
+                    for i in fff.subfields ?? [] {
+                        f?.subfields?.append(i)
+                    }
+                }
+            }
+        }
+        return f
+    }
+    
+    private func getCallNumberObject () -> FieldClass? {
+        
+        var f : FieldClass? = nil
+        
+        for item in fields ?? [] {
+            if item["082"] != nil {
+                if f == nil {
+                    f = item["082"]?.getValue() as? FieldClass
+                }else if let fff = item["082"]?.getValue() as? FieldClass {
+                    for i in fff.subfields ?? [] {
+                        f?.subfields?.append(i)
+                    }
+                }
+            }
+        }
+        return f
+    }
+    
+    
+    func getTitle (type : EnumStringType, subfields : [EnumStringType.SubFields] = [.all]) -> String? {
         var item : FieldClass? = nil
         switch type {
         case .classificationNumber:
@@ -101,6 +188,14 @@ struct ModelBook: Codable {
             item = getSubjectObject()
         case .description :
             item = getDescriptionObject()
+        case .author :
+            item = getAuthorObject()
+        case .address :
+            item = getAddressObject()
+        case .itemType :
+            item = getItemTypeObject()
+        case .callNumber :
+            item = getCallNumberObject()
         default:
             break
         }
@@ -114,15 +209,15 @@ struct ModelBook: Codable {
         var the = ""
         
         for i in item.subfields ?? [] {
-            if let aa = i.a {
+            if let aa = i.a , (subfields.contains(.a) || subfields.contains(.all) ) {
                 a = a + " " + aa
-            }else if let bb = i.b {
+            }else if let bb = i.b , (subfields.contains(.b) || subfields.contains(.all) ) {
                 b = b + " " + bb
-            }else if let cc = i.c {
+            }else if let cc = i.c , (subfields.contains(.c) || subfields.contains(.all) ) {
                 c = c + " " + cc
-            }else if let dd = i.d {
+            }else if let dd = i.d , (subfields.contains(.d) || subfields.contains(.all) ) {
                 d = d + " " + dd
-            }else if let t = i.the2 {
+            }else if let t = i.the2 , (subfields.contains(.the) || subfields.contains(.all) ) {
                 the = the + " " + t
             }
         }

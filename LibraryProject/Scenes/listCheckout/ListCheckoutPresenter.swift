@@ -73,6 +73,7 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
             self.listBooks.append(data)
             self.listHolds.remove(at: 0)
             guard self.listHolds.count > 0 else {
+                self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }

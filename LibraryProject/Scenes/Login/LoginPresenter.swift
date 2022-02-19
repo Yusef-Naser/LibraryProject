@@ -35,6 +35,8 @@ class LoginPresenter : ProLoginPresetner {
                 return
             }
             if data.borrowerid != nil {
+                SharedData.instance.setUserID(id: data.borrowerid)
+                SharedData.instance.setBase64(user: userName , pass: password)
                 self.view?.loginSuccess()
             }else {
                 self.view?.loginFailed()

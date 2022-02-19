@@ -57,7 +57,8 @@ enum ApiRouter : URLRequestConvertible {
                 .addCheckout , .changePassword , .addHold :
             return [
                 "Accept" : "application/marc-in-json" ,
-                "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
+                "Authorization" : "Basic \(SharedData.instance.getBase64())"
+              //  "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
                // "Authorization": "Basic YXBwOkFwcFVzZXIyMDIx" //app:AppUser2021
             ]
         case .itemsBook :
@@ -65,9 +66,14 @@ enum ApiRouter : URLRequestConvertible {
         }
     }
     private var Paths : String {
+        
+        let userID = SharedData.instance.getUserID()
+        
         switch self {
         case  .login(let data )  :
-            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication?userid=app&password=AppUser2022"
+            let user = data ["userid"] ?? ""
+            let pass = data ["password"] ?? ""
+            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication?userid=\(user)&password=\(pass)"
         case .getHome :
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
         case .getBookDetails(let id ) :
@@ -81,26 +87,27 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=1&maximumRecords=10"
             
         case .getCheckoutList :
-            return "https://library.awresidence.com/api/v1/checkouts?patron_id=4"
+            return "https://library.awresidence.com/api/v1/checkouts?patron_id=\(userID)"
             
         case .getSuggestions :
             return "https://library.awresidence.com/api/v1/suggestions"
             
         case .updateProfile :
-            return "https://library.awresidence.com/api/v1/patrons/4"
+            return "https://library.awresidence.com/api/v1/patrons/\(userID)"
             
         case .addSuggest :
             return "https://library.awresidence.com/api/v1/suggestions"
         case .getItemByItemID(let itemID) :
             return "https://library.awresidence.com/api/v1/items/\(itemID)"
         case .getBibloItem(let bibloID ) :
-            return "https://library.awresidence.com/api/v1/public/biblios/\(bibloID)"
+          //  return "https://library.awresidence.com/api/v1/public/biblios/\(bibloID)"  // return ModelBook
+        return "https://library.awresidence.com/api/v1/biblios/\(bibloID)"// return ModelBookV2
         case .getHoldList :
-            return "https://library.awresidence.com/api/v1/holds?patron_id=4"
+            return "https://library.awresidence.com/api/v1/holds?patron_id=\(userID)"
         case .addCheckout :
             return "https://library.awresidence.com/api/v1/checkouts"
         case .changePassword :
-            return "https://library.awresidence.com/api/v1/public/patrons/4/password"
+            return "https://library.awresidence.com/api/v1/public/patrons/\(userID)/password"
         case .addHold :
             return "https://library.awresidence.com/api/v1/holds"
         }

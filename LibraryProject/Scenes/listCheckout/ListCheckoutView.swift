@@ -23,6 +23,8 @@ class ListCheckoutView : UIView {
         return l
     }()
     
+ 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
@@ -41,8 +43,9 @@ class ListCheckoutView : UIView {
         addSubview(navigation)
         addSubview(tableView)
         
+        
         navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        tableView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
+        tableView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: safeAreaLayoutGuide.bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         
     }
     

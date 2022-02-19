@@ -38,7 +38,7 @@ class DetailBookInteractor {
         
         let data : [String : Any] = [
             
-            "patron_id": "4",
+            "patron_id": "\(SharedData.instance.getUserID())",
             "barcode": "8262",
             "due_date":"2023-03-02",
             "issue_date":"2022-02-16"
@@ -52,7 +52,7 @@ class DetailBookInteractor {
     
     func addHold (completion : @escaping CompletionHandler<ModelHold>) {
         let data : [String : Any] = [
-                "patron_id":4,
+                "patron_id":SharedData.instance.getUserID(),
                 "pickup_library_id":"ROST",
                 "biblio_id":3426
         ]
@@ -66,8 +66,6 @@ class DetailBookInteractor {
                 return
             }
         }
-        
-
         
     }
     

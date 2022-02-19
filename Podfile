@@ -10,5 +10,6 @@ pod "PINRemoteImage"
 pod "Alamofire"
 pod "TTGSnackbar"
 pod 'JGProgressHUD'
+pod 'BarcodeScanner'
 
 end

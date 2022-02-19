@@ -84,7 +84,9 @@ class DetailBookPresenter : ProDetailBookPresetner {
                 }else {
                     self.view?.addHoldSuccess()
                 }
+                
             }
+            
         }
     }
     
