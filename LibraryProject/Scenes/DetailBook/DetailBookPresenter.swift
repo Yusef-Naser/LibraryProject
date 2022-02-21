@@ -18,7 +18,7 @@ protocol ProDetailBookPresetner {
     func setConfigurationView (view : DetailBookViewConfiguration)
     func getItemsBook (id : Int )
     var modelItemsBook : ModelItemsBookArray? {get set}
-    func addHold ()
+    func addHold ( id : Int )
 }
 
 
@@ -73,9 +73,9 @@ class DetailBookPresenter : ProDetailBookPresetner {
     }
     
     
-    func addHold() {
+    func addHold( id : Int ) {
         self.view?.showLoading()
-        interactor.addHold { data , error , statusCode in
+        interactor.addHold(biblioID: id, libraryID: "ROST") { data , error , statusCode in
             self.view?.hideLoading()
             if let data = data  {
                 if data.error != nil {

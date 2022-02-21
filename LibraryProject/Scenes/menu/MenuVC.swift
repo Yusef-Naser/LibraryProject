@@ -136,8 +136,10 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
         if controller.view.tag == TAG_CHECKIN {
             print(code)
+            self.presenter?.removeCheckout(barcode: code)
         }else if controller.view.tag == TAG_CHECKOUT {
             print(code)
+            self.presenter?.addCheckout(barcode: code)
         }
         
         controller.reset()

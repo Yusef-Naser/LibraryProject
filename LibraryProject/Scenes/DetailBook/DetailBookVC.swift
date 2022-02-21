@@ -37,7 +37,7 @@ class DetailBookVC : BaseVC<DetailBookView> {
     }
     
     @objc private func actionAddHold () {
-        presenter?.addHold()
+        presenter?.addHold(id: bookItem?.biblionumber ?? 0)
     }
     
 }

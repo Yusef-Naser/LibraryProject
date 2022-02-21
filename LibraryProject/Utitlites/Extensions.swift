@@ -84,3 +84,17 @@ public extension UIImageView {
         self.tintColor = color
     }
 }
+
+
+extension Date {
+    func getDateString (formate : String , afterPeriodOfMonths : Int) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formate
+        dateFormatter.locale = Locale(identifier: "en" )
+        if afterPeriodOfMonths > 0 {
+            return dateFormatter.string(from: Calendar.current.date(byAdding: .month , value: afterPeriodOfMonths, to: self ) ?? self)
+        }else {
+           return dateFormatter.string(from: self)
+        }
+    }
+}

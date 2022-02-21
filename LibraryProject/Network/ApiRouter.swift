@@ -27,6 +27,7 @@ enum ApiRouter : URLRequestConvertible {
     case getBibloItem (bibloID : String)
     case getHoldList
     case addCheckout (data : [String : Any])
+    case removeCheckout (data : [String : Any])
     case changePassword (data : [String : Any])
     case addHold (data : [String : Any])
     
@@ -37,7 +38,7 @@ enum ApiRouter : URLRequestConvertible {
              .getItemByItemID , .getBibloItem  ,
              .getHoldList , .login :
             return .get
-        case .addSuggest , .addCheckout ,
+        case .addSuggest , .addCheckout , .removeCheckout ,
              .changePassword , .addHold :
             return .post
         case .updateProfile :
@@ -54,7 +55,7 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails , .getCheckoutList , .getSuggestions ,
                 .updateProfile , .addSuggest ,
                 .getItemByItemID , .getBibloItem , .getHoldList ,
-                .addCheckout , .changePassword , .addHold :
+                .addCheckout , .removeCheckout , .changePassword , .addHold :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization" : "Basic \(SharedData.instance.getBase64())"
@@ -106,6 +107,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/api/v1/holds?patron_id=\(userID)"
         case .addCheckout :
             return "https://library.awresidence.com/api/v1/checkouts"
+        case .removeCheckout :
+            return "https://library.awresidence.com/api/v1/checkin"
         case .changePassword :
             return "https://library.awresidence.com/api/v1/public/patrons/\(userID)/password"
         case .addHold :
@@ -122,7 +125,7 @@ enum ApiRouter : URLRequestConvertible {
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
                 .addCheckout(let data) , .changePassword(let data ) ,
-                .addHold(let data ) , .login( let data ):
+                .addHold(let data ) , .login( let data ) , .removeCheckout(let data ):
             return data 
       
         }

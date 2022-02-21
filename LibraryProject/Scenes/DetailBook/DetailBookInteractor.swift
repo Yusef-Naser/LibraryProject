@@ -34,27 +34,13 @@ class DetailBookInteractor {
         }
     }
     
-    func addCheckout (completion : @escaping CompletionHandler<String>) {
-        
-        let data : [String : Any] = [
-            
-            "patron_id": "\(SharedData.instance.getUserID())",
-            "barcode": "8262",
-            "due_date":"2023-03-02",
-            "issue_date":"2022-02-16"
-            
-        ]
-        
-        ApiClient<String>.performRequest(route: .addCheckout(data: data )) { result , statusCode in
-            
-        }
-    }
+   
     
-    func addHold (completion : @escaping CompletionHandler<ModelHold>) {
+    func addHold (biblioID : Int , libraryID : String , completion : @escaping CompletionHandler<ModelHold>) {
         let data : [String : Any] = [
                 "patron_id":SharedData.instance.getUserID(),
                 "pickup_library_id":"ROST",
-                "biblio_id":3426
+                "biblio_id":biblioID
         ]
         ApiClient<ModelHold>.performRequest(route: .addHold(data: data )) { result , statusCode in
             switch result {
