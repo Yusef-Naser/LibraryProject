@@ -11,5 +11,7 @@ pod "Alamofire"
 pod "TTGSnackbar"
 pod 'JGProgressHUD'
 pod 'BarcodeScanner'
+pod 'IQKeyboardManagerSwift'
+
 
 end

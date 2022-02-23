@@ -18,6 +18,8 @@
 		05B3D26D279C369A007AB73C /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3D269279C369A007AB73C /* UserDefaultManager.swift */; };
 		05B3D26E279C369A007AB73C /* StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3D26A279C369A007AB73C /* StoryboardName.swift */; };
 		0C44E69C96681DB909D8468D /* Pods_LibraryProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2EF749A950304DAFD1DF8 /* Pods_LibraryProject.framework */; };
+		2C0986B927C5A9B7000D4699 /* ModelAddCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0986B827C5A9B7000D4699 /* ModelAddCheckout.swift */; };
+		2C0986BB27C5AFD4000D4699 /* ModelLibraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0986BA27C5AFD4000D4699 /* ModelLibraries.swift */; };
 		2C51F83B27C0CFD1007E40AF /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83927C0CFD1007E40AF /* SnackBar.swift */; };
 		2C51F83C27C0CFD1007E40AF /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83A27C0CFD1007E40AF /* Loading.swift */; };
 		2C51F83E27C0D699007E40AF /* ModelHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83D27C0D699007E40AF /* ModelHold.swift */; };
@@ -118,6 +120,8 @@
 		05B3D269279C369A007AB73C /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		05B3D26A279C369A007AB73C /* StoryboardName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
 		1556BD608846D7D97D347A7B /* Pods-LibraryProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibraryProject.debug.xcconfig"; path = "Target Support Files/Pods-LibraryProject/Pods-LibraryProject.debug.xcconfig"; sourceTree = "<group>"; };
+		2C0986B827C5A9B7000D4699 /* ModelAddCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAddCheckout.swift; sourceTree = "<group>"; };
+		2C0986BA27C5AFD4000D4699 /* ModelLibraries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLibraries.swift; sourceTree = "<group>"; };
 		2C51F83927C0CFD1007E40AF /* SnackBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
 		2C51F83A27C0CFD1007E40AF /* Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		2C51F83D27C0D699007E40AF /* ModelHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHold.swift; sourceTree = SOURCE_ROOT; };
@@ -336,6 +340,8 @@
 				2CC13C1127BE1DD600C1E51C /* ModelChangePassword.swift */,
 				2C51F83D27C0D699007E40AF /* ModelHold.swift */,
 				2C51F84327C1136D007E40AF /* ModelBookV2.swift */,
+				2C0986B827C5A9B7000D4699 /* ModelAddCheckout.swift */,
+				2C0986BA27C5AFD4000D4699 /* ModelLibraries.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -701,6 +707,7 @@
 				2CBC67F9279C37B30041E39A /* SearchItemView.swift in Sources */,
 				2CBE05FD27B77BE900CBC02F /* AddSuggestView.swift in Sources */,
 				2CC1AAA727AD50B2006A6021 /* MenuPresenter.swift in Sources */,
+				2C0986BB27C5AFD4000D4699 /* ModelLibraries.swift in Sources */,
 				2CE5D70227989E6B00BBCA15 /* HomeVC.swift in Sources */,
 				2CB6701F279AF9F600A3C2DD /* LoginPresenter.swift in Sources */,
 				2CC1AAAD27AD52D5006A6021 /* CellMenu.swift in Sources */,
@@ -745,6 +752,7 @@
 				2CBE05ED27B7760C00CBC02F /* SuggestionsPresenter.swift in Sources */,
 				2C51F84227C0E244007E40AF /* SharedData.swift in Sources */,
 				2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */,
+				2C0986B927C5A9B7000D4699 /* ModelAddCheckout.swift in Sources */,
 				2CB67021279AF9F600A3C2DD /* LoginView.swift in Sources */,
 				2CBC67E9279C00930041E39A /* SearchInteractor.swift in Sources */,
 				2CBE05FC27B77BE900CBC02F /* AddSuggestInteractor.swift in Sources */,

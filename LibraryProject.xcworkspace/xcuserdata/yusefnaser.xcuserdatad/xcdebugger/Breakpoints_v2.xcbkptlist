@@ -132,5 +132,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68E9C0A2-235D-448D-BD39-FD989A4BABF7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/menu/MenuInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "addCheckout(barcode:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8AA670CE-600E-4C7E-A0C3-7D65B2EA7DCC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/menu/MenuInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "addCheckout(barcode:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF1893BE-87A9-4895-9545-357C8FCFF31D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/menu/MenuInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "addCheckout(barcode:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF1893BE-87A9-4895-9545-357C8FCFF31D - 1fcf2963db542b5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LibraryProject.MenuInteractor.addCheckout(barcode: Swift.String, completion: (Swift.Optional&lt;LibraryProject.ModelAddCheckout&gt;, Swift.Optional&lt;Alamofire.AFError&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/menu/MenuInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "1427">
+               </Location>
+               <Location
+                  uuid = "FF1893BE-87A9-4895-9545-357C8FCFF31D - 916ba8b4659ec7cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;LibraryProject.ModelAddCheckout, Alamofire.AFError&gt;, Swift.Int) -&gt; () in LibraryProject.MenuInteractor.addCheckout(barcode: Swift.String, completion: (Swift.Optional&lt;LibraryProject.ModelAddCheckout&gt;, Swift.Optional&lt;Alamofire.AFError&gt;, Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "LibraryProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/YusefNaser/MacOs/projects/LibraryProject/LibraryProject/Scenes/menu/MenuInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "262">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6CEFC12-6AEC-4BB3-B211-975480EE9623"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/addSuggest/AddSuggestInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "addSuggest(title:author:copyRightDate:publisher:collectionTitle:publicationPlace:quantity:itemType:library:notes:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4756CD8F-7322-429B-BC54-AB265E139842"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LibraryProject/Scenes/addSuggest/AddSuggestInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "addSuggest(title:author:copyRightDate:publisher:collectionTitle:publicationPlace:quantity:itemType:library:notes:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -9,6 +9,8 @@ import UIKit
 
 class AddSuggestView : UIView {
     
+    var completionActionDoneToolBar : ( ()->Void )?
+    
     let navigation : NavigationBar = {
         let l = NavigationBar()
         l.labelTitle.text = SString.addSuggest
@@ -37,9 +39,21 @@ class AddSuggestView : UIView {
         return l
     }()
     
-    let textFieldCopyRightDate : LTextField = {
+    lazy var textFieldCopyRightDate : LTextField = {
         let l = LTextField()
         l.placeholder = SString.copyrightDate
+        l.inputView = pickerDate
+        return l
+    }()
+    
+    let pickerDate : UIDatePicker = {
+        let l = UIDatePicker()
+        l.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            l.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         return l
     }()
     
@@ -73,11 +87,22 @@ class AddSuggestView : UIView {
         return l
     }()
     
-    let textFieldLibrary : LTextField = {
+    lazy var textFieldLibrary : LTextField = {
         let l = LTextField()
         l.placeholder = SString.library
+        l.inputView = pickerViewTopics
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
+        toolbar.barStyle = .default
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBar))]
+        toolbar.sizeToFit()
+        
+        l.inputAccessoryView = toolbar
+        
         return l
     }()
+    
+    let pickerViewTopics = UIPickerView()
     
     let textFieldNotes : LTextField = {
         let l = LTextField()
@@ -100,7 +125,7 @@ class AddSuggestView : UIView {
         l.addArrangedSubview(textFieldQuantity)
         l.addArrangedSubview(textFieldItemType)
         l.addArrangedSubview(textFieldLibrary)
-        l.addArrangedSubview(textFieldNotes)
+        l.addArrangedSubview(textFieldNotes) 
         
         textFieldTitle.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
@@ -140,5 +165,8 @@ class AddSuggestView : UIView {
         
     }
     
+    @objc private func actionDoneToolBar () {
+        completionActionDoneToolBar?()
+    }
     
 }

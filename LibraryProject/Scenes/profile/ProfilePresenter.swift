@@ -8,12 +8,18 @@
 
 protocol ProProfileView : StatusApi {
     func fetchData ()
+    func fetchLibraries ()
 }
 
 protocol ProProfilePresetner {
 
     func updateProfile (name : String , city : String , address : String, categoryID : String ,   libraryID : String)
     func getUserData () -> ModelUser?
+    
+    func getLibraries ()
+    func getLibrariesCount () -> Int
+    func getLibrary (index : Int) -> ModelLibrary?
+    
 }
 
 
@@ -22,6 +28,8 @@ class ProfilePresenter : ProProfilePresetner {
     weak var view : ProProfileView?
     private let interactor = ProfileInteractor()
     private var userObject : ModelUser? = nil
+    
+    private var listLibraries = ModelLibraries()
     
     init(view : ProProfileView ) {
         self.view = view
@@ -41,5 +49,27 @@ class ProfilePresenter : ProProfilePresetner {
     
     func getUserData() -> ModelUser? {
         return userObject
+    }
+    
+    
+    func getLibraries () {
+        self.view?.showLoading()
+        interactor.getLibraries { data , error , statusCode in
+            self.view?.hideLoading()
+            guard let data = data else {
+                return
+            }
+            self.listLibraries = data
+            self.view?.fetchLibraries()
+        }
+    }
+    func getLibrariesCount () -> Int {
+        listLibraries.count
+    }
+    func getLibrary (index : Int) -> ModelLibrary? {
+        guard getLibrariesCount() > index else {
+            return nil
+        }
+        return listLibraries[index]
     }
 }

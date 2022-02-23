@@ -37,4 +37,17 @@ class AddSuggestInteractor {
         }
     }
     
+    func getLibraries (completion : @escaping CompletionHandler<ModelLibraries>) {
+        ApiClient<ModelLibraries>.performRequest(route: .getLibraries ) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data , nil, statusCode)
+                return
+            case .failure(let error) :
+                completion(nil, error, statusCode)
+                return
+            }
+        }
+    }
+    
 }

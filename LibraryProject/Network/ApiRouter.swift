@@ -30,13 +30,14 @@ enum ApiRouter : URLRequestConvertible {
     case removeCheckout (data : [String : Any])
     case changePassword (data : [String : Any])
     case addHold (data : [String : Any])
+    case getLibraries
     
     private var Methods : HTTPMethod {
         switch self {
         case .getHome , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
-             .getHoldList , .login :
+             .getHoldList , .login , .getLibraries :
             return .get
         case .addSuggest , .addCheckout , .removeCheckout ,
              .changePassword , .addHold :
@@ -55,7 +56,8 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails , .getCheckoutList , .getSuggestions ,
                 .updateProfile , .addSuggest ,
                 .getItemByItemID , .getBibloItem , .getHoldList ,
-                .addCheckout , .removeCheckout , .changePassword , .addHold :
+                .addCheckout , .removeCheckout , .changePassword ,
+                .addHold , .getLibraries :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization" : "Basic \(SharedData.instance.getBase64())"
@@ -113,6 +115,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/api/v1/public/patrons/\(userID)/password"
         case .addHold :
             return "https://library.awresidence.com/api/v1/holds"
+        case .getLibraries :
+            return "https://library.awresidence.com/api/v1/libraries"
         }
         
     }
@@ -121,7 +125,7 @@ enum ApiRouter : URLRequestConvertible {
         switch self {
         case .getBookDetails , .getHome , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
-                .getBibloItem , .getHoldList :
+                .getBibloItem , .getHoldList, .getLibraries :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
                 .addCheckout(let data) , .changePassword(let data ) ,

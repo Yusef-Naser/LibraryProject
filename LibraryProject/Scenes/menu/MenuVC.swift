@@ -65,23 +65,26 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
     }
     
     func actionCheckout() {
-        scannerBarcode = BarcodeScannerViewController()
         
-        let l = UIButton()
-        l.setTitle(SString.close , for: .normal)
-        l.setTitleColor(.red , for: .normal)
-        l.addTarget(self , action: #selector(actionCloseScanner), for: .touchUpInside)
         
-        scannerBarcode.view.addSubview(l)
-        l.anchor(top: scannerBarcode.view.safeAreaLayoutGuide.topAnchor , leading: scannerBarcode.view.leadingAnchor, paddingTop: 8, paddingLeft: 16 )
-        
-        scannerBarcode.view.tag = TAG_CHECKOUT
-        scannerBarcode.isOneTimeSearch = true
-        scannerBarcode.codeDelegate = self
-        scannerBarcode.errorDelegate = self
-        scannerBarcode.dismissalDelegate = self
-
-        self.navigationController?.pushViewController(scannerBarcode, animated: true)
+        self.presenter?.addCheckout(barcode: "8230")
+//        scannerBarcode = BarcodeScannerViewController()
+//        
+//        let l = UIButton()
+//        l.setTitle(SString.close , for: .normal)
+//        l.setTitleColor(.red , for: .normal)
+//        l.addTarget(self , action: #selector(actionCloseScanner), for: .touchUpInside)
+//        
+//        scannerBarcode.view.addSubview(l)
+//        l.anchor(top: scannerBarcode.view.safeAreaLayoutGuide.topAnchor , leading: scannerBarcode.view.leadingAnchor, paddingTop: 8, paddingLeft: 16 )
+//        
+//        scannerBarcode.view.tag = TAG_CHECKOUT
+//        scannerBarcode.isOneTimeSearch = true
+//        scannerBarcode.codeDelegate = self
+//        scannerBarcode.errorDelegate = self
+//        scannerBarcode.dismissalDelegate = self
+//
+//        self.navigationController?.pushViewController(scannerBarcode, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

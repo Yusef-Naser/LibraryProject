@@ -9,7 +9,7 @@ import Foundation
 
 class MenuInteractor {
     
-    func addCheckout (barcode : String , completion : @escaping CompletionHandler<String>) {
+    func addCheckout (barcode : String , completion : @escaping CompletionHandler<ModelAddCheckout>) {
         
         let data : [String : Any] = [
             
@@ -20,7 +20,7 @@ class MenuInteractor {
             
         ]
         
-        ApiClient<String>.performRequest(route: .addCheckout(data: data )) { result , statusCode in
+        ApiClient<ModelAddCheckout>.performRequest(route: .addCheckout(data: data )) { result , statusCode in
             switch result {
             case .success(let data) :
                 completion(data ,nil, statusCode)
@@ -38,7 +38,6 @@ class MenuInteractor {
             
             "patron_id": "\(SharedData.instance.getUserID())",
             "barcode": barcode
-            
             
         ]
         

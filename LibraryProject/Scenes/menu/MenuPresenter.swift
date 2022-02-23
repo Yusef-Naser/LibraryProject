@@ -32,7 +32,7 @@ class MenuPresenter : ProMenuPresetner {
         self.view?.showLoading()
         interactor.addCheckout(barcode: barcode) { data , error , statusCode in
             self.view?.hideLoading()
-            if data == "" {
+            if let v = data?.getValue() as? String , v == "" {
                 self.view?.showMessage("success")
             }else {
                 self.view?.showMessage("error")

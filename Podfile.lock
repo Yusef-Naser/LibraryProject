@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.4.3)
   - BarcodeScanner (5.0.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - JGProgressHUD (2.2)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
@@ -22,6 +23,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BarcodeScanner
+  - IQKeyboardManagerSwift
   - JGProgressHUD
   - PINRemoteImage
   - TTGSnackbar
@@ -30,6 +32,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - BarcodeScanner
+    - IQKeyboardManagerSwift
     - JGProgressHUD
     - PINCache
     - PINOperation
@@ -39,12 +42,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   BarcodeScanner: 2f5a53198eae49dc39bf61f2c1f05c04e01ff72d
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   TTGSnackbar: 2bd245d2bbf83639483410273fd936af0b7ba2a9
 
-PODFILE CHECKSUM: a424c3d6fc3a12207d172814421f2ce759c775da
+PODFILE CHECKSUM: 0c5d0c3b36c0056110920e7f91b664b122f43441
 
 COCOAPODS: 1.10.1

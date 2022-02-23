@@ -8,6 +8,7 @@
 
 protocol ProAddSuggestView : StatusApi {
     func fetchData ()
+    func fetchLibraries ()
 }
 
 protocol ProAddSuggestPresetner {
@@ -16,7 +17,9 @@ protocol ProAddSuggestPresetner {
                      publisher : String , collectionTitle : String ,
                      publicationPlace : String , quantity : String , itemType : String ,
                      library : String , notes : String)
-    
+    func getLibraries ()
+    func getLibrariesCount () -> Int
+    func getLibrary (index : Int) -> ModelLibrary?
 }
 
 
@@ -24,7 +27,7 @@ class AddSuggestPresenter : ProAddSuggestPresetner {
     
     weak var view : ProAddSuggestView?
     private let interactor = AddSuggestInteractor()
-    
+    private var listLibraries = ModelLibraries()
     init(view : ProAddSuggestView ) {
         self.view = view
     }
@@ -43,4 +46,26 @@ class AddSuggestPresenter : ProAddSuggestPresetner {
             self.view?.fetchData()
         }
     }
+    
+    func getLibraries () {
+        self.view?.showLoading()
+        interactor.getLibraries { data , error , statusCode in
+            self.view?.hideLoading()
+            guard let data = data else {
+                return
+            }
+            self.listLibraries = data
+            self.view?.fetchLibraries()
+        }
+    }
+    func getLibrariesCount () -> Int {
+        listLibraries.count
+    }
+    func getLibrary (index : Int) -> ModelLibrary? {
+        guard getLibrariesCount() > index else {
+            return nil
+        }
+        return listLibraries[index]
+    }
+    
 }

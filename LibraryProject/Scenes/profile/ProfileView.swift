@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileView : UIView {
     
+    var completionActionDoneToolBar : ( ()->Void )?
+    
     let navigation : NavigationBar = {
         let l = NavigationBar()
         l.labelTitle.text = SString.profile
@@ -75,14 +77,26 @@ class ProfileView : UIView {
         return l
     }()
     
-    let textfieldLibraryID : UITextField = {
+    lazy var textfieldLibraryID : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
         l.layer.borderWidth = 0.5
         l.placeholder = SString.libraryID
+        
+        l.inputView = pickerViewTopics
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
+        toolbar.barStyle = .default
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBar))]
+        toolbar.sizeToFit()
+        
+        l.inputAccessoryView = toolbar
+        
         return l
     }()
+    
+    let pickerViewTopics = UIPickerView()
     
     let buttonUpdate : LButton = {
         let l = LButton()
@@ -112,5 +126,8 @@ class ProfileView : UIView {
         scrollView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 )
     }
     
+    @objc private func actionDoneToolBar () {
+        completionActionDoneToolBar?()
+    }
     
 }
