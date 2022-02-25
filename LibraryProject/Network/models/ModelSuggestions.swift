@@ -7,9 +7,10 @@
 
 struct ModelSuggestion: Codable {
     let title: String?
+    let libraryID: String?
 //    let acceptedBy, acceptedDate: String?
 //    let archived: Bool?
-//    let author: String?
+    let author: String?
 //    let biblioID, budgetID: String?
 //    let collectionTitle: String?
 //    let copyrightDate: Int?
@@ -18,7 +19,7 @@ struct ModelSuggestion: Codable {
 //    let itemPrice: Double?
 //    let itemType: String?
 //    let lastStatusChangeBy, lastStatusChangeDate: String?
-//    let libraryID: String?
+//
 //    let managedBy, managedDate: String?
 //    let note, patronReason, publicationPlace, publicationYear: String?
 //    let publisherCode, quantity: String?
@@ -32,10 +33,11 @@ struct ModelSuggestion: Codable {
 //    let totalPrice, volumeDesc: String?
 
     enum CodingKeys: String, CodingKey {
-        case title
+        case title , author
+        case libraryID = "library_id"
 //        case acceptedBy = "accepted_by"
 //        case acceptedDate = "accepted_date"
-//        case archived, author
+//        case archived
 //        case biblioID = "biblio_id"
 //        case budgetID = "budget_id"
 //        case collectionTitle = "collection_title"
@@ -45,7 +47,7 @@ struct ModelSuggestion: Codable {
 //        case itemType = "item_type"
 //        case lastStatusChangeBy = "last_status_change_by"
 //        case lastStatusChangeDate = "last_status_change_date"
-//        case libraryID = "library_id"
+//
 //        case managedBy = "managed_by"
 //        case managedDate = "managed_date"
 //        case note

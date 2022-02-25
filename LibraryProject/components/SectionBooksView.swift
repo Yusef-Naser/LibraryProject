@@ -82,7 +82,7 @@ class SectionBooksView : UIView {
     
 }
 
-extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , CellBookDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: (collectionView.frame.width / 2 ) - 5 , height: collectionView.frame.height - 5)
@@ -98,6 +98,16 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         let item = arrayItems[indexPath.row]
         cell.setTitle(title: item.title)
         cell.setImage(image: item.image)
+        cell.delegateCell = self
+        
+        let favorites = SharedData.instance.getFavorites()
+        if favorites.contains(where: { itemFavorite in
+            itemFavorite.id == item.biblionumber
+        }) {
+            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+        }else {
+            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "Path 37"), for: .normal)
+        }
         
         return cell
         
@@ -108,5 +118,16 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
     }
     
     
-    
+    func actionFavorite(cell: CellBook) {
+        guard let index = collectionView.indexPath(for: cell ) else {
+            return
+        }
+        if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "Path 37") {
+            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: arrayItems[index.row]))
+        }else {
+            cell.buttonFavorite.setImage( #imageLiteral(resourceName: "Path 37") , for: .normal)
+            SharedData.instance.removeFavorite(id: arrayItems[index.row].biblionumber ?? 0)
+        }
+    }
 }

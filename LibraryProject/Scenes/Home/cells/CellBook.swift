@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CellBookDelegate : AnyObject {
+    func actionFavorite (cell : CellBook)
+}
+
 class CellBook : UICollectionViewCell {
+    
+    weak var delegateCell : CellBookDelegate?
     
     private let imageBook : UIImageView = {
         let l = UIImageView()
@@ -23,7 +29,11 @@ class CellBook : UICollectionViewCell {
         return l
     }()
     
-    
+    let buttonFavorite : UIButton = {
+        let l = UIButton()
+        l.setImage(#imageLiteral(resourceName: "Path 37"), for: .normal )
+        return l
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,17 +47,21 @@ class CellBook : UICollectionViewCell {
     
     private func initViews () {
         addViews()
+        buttonFavorite.addTarget(self , action: #selector( actionFavorite ), for: .touchUpInside)
     }
     
     private func addViews () {
         
         contentView.addSubview(imageBook)
         contentView.addSubview(labelTitle)
+        contentView.addSubview(buttonFavorite)
         
         imageBook.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: labelTitle.topAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 )
         
         labelTitle.anchor( leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         labelTitle.heightAnchor.constraint(equalToConstant: 30).isActive = true 
+        
+        buttonFavorite.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , paddingTop: 8, paddingLeft: 8 , width: 40 , height: 40 )
         
     }
     
@@ -59,5 +73,9 @@ class CellBook : UICollectionViewCell {
         imageBook.loadImage(url:  image ?? "" )
     }
     
+    
+    @objc private func actionFavorite () {
+        delegateCell?.actionFavorite(cell: self)
+    }
     
 }

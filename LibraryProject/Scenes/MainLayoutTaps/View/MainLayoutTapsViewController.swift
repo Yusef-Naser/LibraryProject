@@ -8,7 +8,7 @@ class MainLayoutTapsViewController: UITabBarController{
     let tabBarSafeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
     var home = HomeVC() // UINavigationController(rootViewController: )
     var setting  = MenuVC() //UINavigationController(rootViewController: HomeVC())
-    var favourite = HomeVC() //UINavigationController(rootViewController: HomeVC())
+    var favourite = FavoritesVC() //UINavigationController(rootViewController: HomeVC())
     
     var roundCircleview: CircleView = {
        let view = CircleView()

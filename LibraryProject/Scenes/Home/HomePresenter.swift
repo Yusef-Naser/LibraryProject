@@ -43,6 +43,13 @@ class HomePresenter : ProHomePresetner {
             self.view?.getListNewBooks(list: data.menu?.homePage?.latest ?? [])
             self.view?.getListFeatureBooks(list: data.menu?.homePage?.suggested ?? [])
             self.sliderArray = data.menu?.homePage?.silder ?? []
+            if let c = data.menu?.categories , c.count > 0 {
+                var variable : [String:String] = [:]
+                c.forEach { item in
+                    variable[item.keys.first ?? ""] = item.values.first ?? ""
+                }
+                SharedData.instance.setCategories(categories: variable)
+            }
             self.view?.fetchData()
         }
     }

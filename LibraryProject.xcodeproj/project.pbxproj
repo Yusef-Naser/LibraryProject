@@ -106,6 +106,12 @@
 		2CE5D70527989E6B00BBCA15 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6FA27989E6B00BBCA15 /* MainTabBarPresenter.swift */; };
 		2CE5D70627989E6B00BBCA15 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6FB27989E6B00BBCA15 /* MainTabBarVC.swift */; };
 		2CE5D70727989E6B00BBCA15 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6FC27989E6B00BBCA15 /* MainTabBarView.swift */; };
+		2CF4A36A27C8C21A002E34EC /* ModelProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A36927C8C21A002E34EC /* ModelProfile.swift */; };
+		2CF4A37027C90AAE002E34EC /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A36C27C90AAE002E34EC /* FavoritesPresenter.swift */; };
+		2CF4A37127C90AAE002E34EC /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A36D27C90AAE002E34EC /* FavoritesInteractor.swift */; };
+		2CF4A37227C90AAE002E34EC /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A36E27C90AAE002E34EC /* FavoritesView.swift */; };
+		2CF4A37327C90AAE002E34EC /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A36F27C90AAE002E34EC /* FavoritesVC.swift */; };
+		2CF4A37527C90CE2002E34EC /* ModelFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4A37427C90CE2002E34EC /* ModelFavorite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +217,12 @@
 		2CE5D6FA27989E6B00BBCA15 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		2CE5D6FB27989E6B00BBCA15 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
 		2CE5D6FC27989E6B00BBCA15 /* MainTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		2CF4A36927C8C21A002E34EC /* ModelProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProfile.swift; sourceTree = "<group>"; };
+		2CF4A36C27C90AAE002E34EC /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		2CF4A36D27C90AAE002E34EC /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
+		2CF4A36E27C90AAE002E34EC /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		2CF4A36F27C90AAE002E34EC /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		2CF4A37427C90CE2002E34EC /* ModelFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFavorite.swift; sourceTree = "<group>"; };
 		7C41865A491C2F11EB9B1D65 /* Pods-LibraryProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibraryProject.release.xcconfig"; path = "Target Support Files/Pods-LibraryProject/Pods-LibraryProject.release.xcconfig"; sourceTree = "<group>"; };
 		E5D2EF749A950304DAFD1DF8 /* Pods_LibraryProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LibraryProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -342,6 +354,8 @@
 				2C51F84327C1136D007E40AF /* ModelBookV2.swift */,
 				2C0986B827C5A9B7000D4699 /* ModelAddCheckout.swift */,
 				2C0986BA27C5AFD4000D4699 /* ModelLibraries.swift */,
+				2CF4A36927C8C21A002E34EC /* ModelProfile.swift */,
+				2CF4A37427C90CE2002E34EC /* ModelFavorite.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -513,6 +527,7 @@
 		2CE5D6F227989E6B00BBCA15 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2CF4A36B27C90AA1002E34EC /* Favorites */,
 				2CBE05F627B77BD300CBC02F /* addSuggest */,
 				2CBE05E827B7760200CBC02F /* Suggestions */,
 				2CC1AE5727B44C240067A3B3 /* listCheckout */,
@@ -550,6 +565,17 @@
 				2CE5D6FC27989E6B00BBCA15 /* MainTabBarView.swift */,
 			);
 			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		2CF4A36B27C90AA1002E34EC /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				2CF4A36C27C90AAE002E34EC /* FavoritesPresenter.swift */,
+				2CF4A36D27C90AAE002E34EC /* FavoritesInteractor.swift */,
+				2CF4A36E27C90AAE002E34EC /* FavoritesView.swift */,
+				2CF4A36F27C90AAE002E34EC /* FavoritesVC.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		4C2C24CA6184768315E1F4B4 /* Frameworks */ = {
@@ -727,6 +753,7 @@
 				2CBC67F7279C0E2E0041E39A /* ModelHome.swift in Sources */,
 				2CB67017279AE9E900A3C2DD /* DetailBookPresenter.swift in Sources */,
 				2CBC6800279C4D340041E39A /* ViewBookDetail.swift in Sources */,
+				2CF4A37527C90CE2002E34EC /* ModelFavorite.swift in Sources */,
 				2C7066A727BB5E1800825EAE /* ModelItem.swift in Sources */,
 				2CBC67EA279C00930041E39A /* SearchView.swift in Sources */,
 				2CE5D70527989E6B00BBCA15 /* MainTabBarPresenter.swift in Sources */,
@@ -746,18 +773,22 @@
 				2CB67019279AE9E900A3C2DD /* DetailBookView.swift in Sources */,
 				2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */,
 				2CE5D70027989E6B00BBCA15 /* HomeInteractor.swift in Sources */,
+				2CF4A37027C90AAE002E34EC /* FavoritesPresenter.swift in Sources */,
 				2CBC67EB279C00930041E39A /* SearchVC.swift in Sources */,
 				2CC1AAAA27AD50B2006A6021 /* MenuVC.swift in Sources */,
 				2CC13C1027BE155D00C1E51C /* ModelUser.swift in Sources */,
 				2CBE05ED27B7760C00CBC02F /* SuggestionsPresenter.swift in Sources */,
 				2C51F84227C0E244007E40AF /* SharedData.swift in Sources */,
 				2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */,
+				2CF4A36A27C8C21A002E34EC /* ModelProfile.swift in Sources */,
 				2C0986B927C5A9B7000D4699 /* ModelAddCheckout.swift in Sources */,
 				2CB67021279AF9F600A3C2DD /* LoginView.swift in Sources */,
 				2CBC67E9279C00930041E39A /* SearchInteractor.swift in Sources */,
 				2CBE05FC27B77BE900CBC02F /* AddSuggestInteractor.swift in Sources */,
+				2CF4A37227C90AAE002E34EC /* FavoritesView.swift in Sources */,
 				2CC1AE6427B44C4B0067A3B3 /* ListCheckoutPresenter.swift in Sources */,
 				2CBC67EF279C02E00041E39A /* ResizingFlowLayout.swift in Sources */,
+				2CF4A37327C90AAE002E34EC /* FavoritesVC.swift in Sources */,
 				2CC1AE6727B44C4B0067A3B3 /* ListCheckoutVC.swift in Sources */,
 				2CC1AAB627AD54B5006A6021 /* ChangePasswordVC.swift in Sources */,
 				05B3D24F279C3593007AB73C /* TabBarCircleView.swift in Sources */,
@@ -776,6 +807,7 @@
 				2CBE05F527B779A900CBC02F /* ModelSuggestions.swift in Sources */,
 				2CBFDA35279E0A9800561CC2 /* ModelItemsBook.swift in Sources */,
 				2CC1AAB327AD54B5006A6021 /* ChangePasswordPresenter.swift in Sources */,
+				2CF4A37127C90AAE002E34EC /* FavoritesInteractor.swift in Sources */,
 				05B3D265279C3684007AB73C /* SectionBooksView.swift in Sources */,
 				05B3D26D279C369A007AB73C /* UserDefaultManager.swift in Sources */,
 			);

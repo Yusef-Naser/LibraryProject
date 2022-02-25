@@ -10,7 +10,10 @@ import UIKit
 
 class ProfileView : UIView {
     
-    var completionActionDoneToolBar : ( ()->Void )?
+    var completionActionDoneToolBarLibrary : ( ()->Void )?
+    var completionActionDoneToolBarCategory : ( ()->Void )?
+    
+    var LIBRARY_TAG = 1 , CATEGORY_TAG = 2
     
     let navigation : NavigationBar = {
         let l = NavigationBar()
@@ -68,12 +71,22 @@ class ProfileView : UIView {
         return l
     }()
     
-    let textfieldCategoryID : UITextField = {
+    lazy var textfieldCategoryID : UITextField = {
         let l = UITextField()
         l.borderStyle = .line
         l.layer.borderColor = Colors.grayColors.cgColor
         l.layer.borderWidth = 0.5
         l.placeholder = SString.categoryID
+        
+        l.inputView = pickerViewCategory
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
+        toolbar.barStyle = .default
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBarCategory))]
+        toolbar.sizeToFit()
+        
+        l.inputAccessoryView = toolbar
+        
         return l
     }()
     
@@ -84,11 +97,11 @@ class ProfileView : UIView {
         l.layer.borderWidth = 0.5
         l.placeholder = SString.libraryID
         
-        l.inputView = pickerViewTopics
+        l.inputView = pickerViewLibrary
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
         toolbar.barStyle = .default
-        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBar))]
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBarLibrary))]
         toolbar.sizeToFit()
         
         l.inputAccessoryView = toolbar
@@ -96,7 +109,16 @@ class ProfileView : UIView {
         return l
     }()
     
-    let pickerViewTopics = UIPickerView()
+    lazy var pickerViewLibrary : UIPickerView = {
+        let l = UIPickerView()
+        l.tag = LIBRARY_TAG
+        return l
+    }()
+    lazy var pickerViewCategory : UIPickerView = {
+        let l = UIPickerView()
+        l.tag = CATEGORY_TAG
+        return l
+    }()
     
     let buttonUpdate : LButton = {
         let l = LButton()
@@ -126,8 +148,12 @@ class ProfileView : UIView {
         scrollView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 )
     }
     
-    @objc private func actionDoneToolBar () {
-        completionActionDoneToolBar?()
+    @objc private func actionDoneToolBarLibrary () {
+        completionActionDoneToolBarLibrary?()
+    }
+    
+    @objc private func actionDoneToolBarCategory () {
+        completionActionDoneToolBarCategory?()
     }
     
 }

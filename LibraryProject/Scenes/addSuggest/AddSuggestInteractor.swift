@@ -14,15 +14,15 @@ class AddSuggestInteractor {
                      library : String , notes : String , completion : @escaping CompletionHandler<ModelSuggestion>) {
         let data : [String : Any] = [
             "title" : title ,
-            "note" : notes ,
+          //  "note" : notes ,
             "author" : author ,
-            "copyright_date" : copyRightDate ,
-            "publication_place" : publicationPlace ,
-            "item_type" : itemType ,
-            "quantity" : quantity ,
-            "collection_title" : collectionTitle ,
-            "library_id" : library ,
-            "publisher_code" : publisher 
+//            "copyright_date" : copyRightDate ,
+//            "publication_place" : publicationPlace ,
+//            "item_type" : itemType ,
+//            "quantity" : quantity ,
+//            "collection_title" : collectionTitle ,
+            "library_id" : library 
+           // "publisher_code" : publisher
             
         ]
         ApiClient<ModelSuggestion>.performRequest(route: .addSuggest(data: data )) { result , statusCode in
@@ -49,5 +49,6 @@ class AddSuggestInteractor {
             }
         }
     }
+    
     
 }

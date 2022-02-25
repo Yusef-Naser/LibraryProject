@@ -8,17 +8,17 @@
 
 class ProfileInteractor {
     
-    func updateProfile (name : String , city : String , address : String , categoryID : String , libraryID : String , completion : @escaping CompletionHandler<ModelUser>) {
+    func updateProfile (name : String , city : String , address : String , categoryID : String , libraryID : String , completion : @escaping CompletionHandler<ModelProfile>) {
         
         let data : [String : Any] = [
             "surname":  name,
             "city":  city ,
             "address":  address ,
-            "category_id": "S",
-            "library_id": "ROST"
+            "category_id": categoryID ,
+            "library_id": libraryID
         ]
         
-        ApiClient<ModelUser>.performRequest (route: .updateProfile(data: data)) { result , statusCode in
+        ApiClient<ModelProfile>.performRequest (route: .updateProfile(data: data)) { result , statusCode in
             switch result {
             case .success(let data) :
                 completion(data , nil , statusCode)
@@ -33,6 +33,19 @@ class ProfileInteractor {
     
     func getLibraries (completion : @escaping CompletionHandler<ModelLibraries>) {
         ApiClient<ModelLibraries>.performRequest(route: .getLibraries ) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data , nil, statusCode)
+                return
+            case .failure(let error) :
+                completion(nil, error, statusCode)
+                return
+            }
+        }
+    }
+    
+    func getProfile (completion : @escaping CompletionHandler<ModelProfile>) {
+        ApiClient<ModelProfile>.performRequest(route: .getProfile ) { result , statusCode in
             switch result {
             case .success(let data) :
                 completion(data , nil, statusCode)

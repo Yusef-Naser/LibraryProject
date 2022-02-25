@@ -53,6 +53,8 @@ extension SuggestionsVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellSuggest.getIdentifier() , for: indexPath) as! CellSuggest
         cell.setTitle(title: presenter?.getSuggest(index: indexPath.row)?.title)
+        cell.setAuthor(author: presenter?.getSuggest(index: indexPath.row)?.author)
+        cell.setLibrary(library: presenter?.getSuggest(index: indexPath.row)?.libraryID)
         return cell
     }
     

@@ -47,9 +47,9 @@ class HomeView : UIView {
         l.spacing = 10
         
         l.addArrangedSubview(searchView)
-        l.addArrangedSubview(filterView)
+     //   l.addArrangedSubview(filterView)
         
-        filterView.widthAnchor.constraint(equalTo: searchView.widthAnchor , multiplier: 0.5).isActive = true
+    //    filterView.widthAnchor.constraint(equalTo: searchView.widthAnchor , multiplier: 0.5).isActive = true
         
         return l
     }()

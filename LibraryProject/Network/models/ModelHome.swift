@@ -14,12 +14,14 @@ struct ModelMenu : Codable {
     let searchURL: String?
     let logo: String?
     let homePage: ModelHomePage?
-
+    let categories: [[String : String]]?
+    
     enum CodingKeys: String, CodingKey {
         case apiURL = "api_url"
         case searchURL = "search_url"
         case logo
         case homePage = "home_page"
+        case categories
     }
 }
 
@@ -40,3 +42,17 @@ struct ModelLatest: Codable {
     let title: String?
     let image: String?
 }
+
+//struct ModelCategory : Codable {
+//    
+//    let rost, lib, kil, cof: String?
+//    let rcb: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case rost = "ROST"
+//        case lib = "LIB"
+//        case kil = "KIL"
+//        case cof = "COF"
+//        case rcb = "RCB"
+//    }
+//}

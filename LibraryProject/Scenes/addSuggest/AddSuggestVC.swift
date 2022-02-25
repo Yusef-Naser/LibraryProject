@@ -20,11 +20,18 @@ class AddSuggestVC : BaseVC<AddSuggestView> {
         presenter?.getLibraries()
         mainView.pickerViewTopics.delegate = self
         mainView.pickerViewTopics.dataSource = self
-        mainView.completionActionDoneToolBar = { [weak self] in
+        mainView.completionActionDoneLibrary = { [weak self] in
             if self?.mainView.textFieldLibrary.text == "" {
                 let name = self?.presenter?.getLibrary(index: 0)?.name ?? ""
                 let id = self?.presenter?.getLibrary(index: 0)?.libraryID ?? ""
-                self?.mainView.textFieldLibrary.text = name + "(\(id))"
+                self?.mainView.textFieldLibrary.text = id
+            }
+            self?.mainView.endEditing(true)
+        }
+        
+        mainView.completionActionCopyRightDate = { [weak self] in
+            if self?.mainView.textFieldCopyRightDate.text == "" {
+                self?.mainView.textFieldCopyRightDate.text = Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 0)
             }
             self?.mainView.endEditing(true)
         }

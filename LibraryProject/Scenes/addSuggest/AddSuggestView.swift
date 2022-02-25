@@ -9,7 +9,8 @@ import UIKit
 
 class AddSuggestView : UIView {
     
-    var completionActionDoneToolBar : ( ()->Void )?
+    var completionActionDoneLibrary : ( ()->Void )?
+    var completionActionCopyRightDate : ( ()->Void )?
     
     let navigation : NavigationBar = {
         let l = NavigationBar()
@@ -43,6 +44,12 @@ class AddSuggestView : UIView {
         let l = LTextField()
         l.placeholder = SString.copyrightDate
         l.inputView = pickerDate
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
+        toolbar.barStyle = .default
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneCopyRightDate))]
+        toolbar.sizeToFit()
+        
+        l.inputAccessoryView = toolbar
         return l
     }()
     
@@ -94,7 +101,7 @@ class AddSuggestView : UIView {
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
         toolbar.barStyle = .default
-        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBar))]
+        toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneLibrary))]
         toolbar.sizeToFit()
         
         l.inputAccessoryView = toolbar
@@ -118,14 +125,14 @@ class AddSuggestView : UIView {
         
         l.addArrangedSubview(textFieldTitle)
         l.addArrangedSubview(textFieldAuthor)
-        l.addArrangedSubview(textFieldCopyRightDate)
-        l.addArrangedSubview(textFieldPublisher)
-        l.addArrangedSubview(textFieldCollectionTitle)
-        l.addArrangedSubview(textFieldPublicationPlace)
-        l.addArrangedSubview(textFieldQuantity)
-        l.addArrangedSubview(textFieldItemType)
+      //  l.addArrangedSubview(textFieldCopyRightDate)
+      //  l.addArrangedSubview(textFieldPublisher)
+       // l.addArrangedSubview(textFieldCollectionTitle)
+      //  l.addArrangedSubview(textFieldPublicationPlace)
+      //  l.addArrangedSubview(textFieldQuantity)
+      //  l.addArrangedSubview(textFieldItemType)
         l.addArrangedSubview(textFieldLibrary)
-        l.addArrangedSubview(textFieldNotes) 
+    //   l.addArrangedSubview(textFieldNotes)
         
         textFieldTitle.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
@@ -165,8 +172,12 @@ class AddSuggestView : UIView {
         
     }
     
-    @objc private func actionDoneToolBar () {
-        completionActionDoneToolBar?()
+    @objc private func actionDoneLibrary () {
+        completionActionDoneLibrary?()
+    }
+    
+    @objc private func actionDoneCopyRightDate () {
+        completionActionCopyRightDate?()
     }
     
 }
