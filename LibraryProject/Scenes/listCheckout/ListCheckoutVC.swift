@@ -65,9 +65,9 @@ extension ListCheckoutVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellCheckout.getIdentifier() , for: indexPath ) as! CellCheckout
         let book = presenter?.getCheckoutElement(index: indexPath.row)
         cell.labelTitle.text = book?.getTitle(type: .title)
-        cell.labelAuthor.text = book?.getTitle(type: .author)
-        cell.labelCallNumber.text = book?.getTitle(type: .callNumber , subfields: [.a , .b])
-        cell.labelItemType.text = book?.getTitle(type: .itemType , subfields: [.c])
+        cell.labelAuthorValue.text = book?.getTitle(type: .author)
+        cell.labelCallNumberValue.text = book?.getTitle(type: .callNumber , subfields: [.a , .b])
+        cell.labelItemTypeValue.text = book?.getTitle(type: .itemType , subfields: [.c])
         return cell
     }
     

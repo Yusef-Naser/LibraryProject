@@ -55,6 +55,8 @@ struct SString {
     static var close : String {return getText(key: "close")}
     static var home : String {return getText(key: "home")}
     static var favorite : String {return getText(key: "favorite")}
+    static var callNumber : String {return getText(key: "callNumber")}
+    
     
     private static func getText (key : String) -> String {
         dicEN[key] ?? key
@@ -109,6 +111,7 @@ struct SString {
         "close" : "Close" ,
         "home" : "Home" ,
         "favorite" : "Favorite" ,
+        "callNumber" : "Call number" ,
     ]
     
 }

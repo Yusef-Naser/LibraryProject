@@ -9,31 +9,124 @@ import UIKit
 
 class CellCheckout : UITableViewCell {
     
+    
+    private let containerView : UIView = {
+        let l = UIView()
+        l.backgroundColor = Colors.grayColors
+        l.layer.cornerRadius = 10
+        l.clipsToBounds = true
+        return l
+    }()
+    
     let labelTitle : UILabel = {
         let l = UILabel()
         l.text = SString.title
         l.numberOfLines = 0
-        l.text = "title"
+        l.textAlignment = .center
+        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
     let labelAuthor : UILabel = {
         let l = UILabel()
+        l.text = SString.author + ":"
+        l.numberOfLines = 0
+        l.font = UIFont.boldSystemFont(ofSize: 15)
+        return l
+    }()
+    
+    let labelAuthorValue : UILabel = {
+        let l = UILabel()
         l.text = SString.author
         l.numberOfLines = 0
-        l.text = "author"
+        l.font = UIFont.systemFont(ofSize: 15)
         return l
     }()
     
     let labelItemType : UILabel = {
         let l = UILabel()
-        l.text = "itemType"
+        l.text = SString.itemType + ":"
+        l.numberOfLines = 0
+        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
+    let labelItemTypeValue : UILabel = {
+        let l = UILabel()
+        l.text = "itemType"
+        l.numberOfLines = 0
+        l.font = UIFont.systemFont(ofSize: 15)
+        return l
+    }()
+    
+    
     let labelCallNumber : UILabel = {
         let l = UILabel()
+        l.text = SString.callNumber + ":"
+        l.numberOfLines = 0
+        l.font = UIFont.boldSystemFont(ofSize: 15)
+        return l
+    }()
+    
+    
+    let labelCallNumberValue : UILabel = {
+        let l = UILabel()
         l.text = "call number"
+        l.numberOfLines = 0
+        l.font = UIFont.systemFont(ofSize: 15)
+        return l
+    }()
+    
+    private lazy var stackAuthor : UIStackView = {
+        let l = UIStackView()
+        l.spacing = 5
+        l.axis = .horizontal
+        
+        l.addArrangedSubview(labelAuthor)
+        l.addArrangedSubview(labelAuthorValue)
+        
+        labelAuthor.widthAnchor.constraint(equalTo: labelAuthorValue.widthAnchor, multiplier: 0.5).isActive = true
+        
+        return l
+    }()
+    
+    private lazy var stackItemType : UIStackView = {
+        let l = UIStackView()
+        l.spacing = 5
+        l.axis = .horizontal
+        
+        l.addArrangedSubview(labelItemType)
+        l.addArrangedSubview(labelItemTypeValue)
+        
+        labelItemType.widthAnchor.constraint(equalTo: labelItemTypeValue.widthAnchor, multiplier: 0.5).isActive = true
+        
+        return l
+    }()
+    
+    private lazy var stackCallNumber : UIStackView = {
+        let l = UIStackView()
+        l.spacing = 5
+        l.axis = .horizontal
+        
+        l.addArrangedSubview(labelCallNumber)
+        l.addArrangedSubview(labelCallNumberValue)
+        
+        labelCallNumber.widthAnchor.constraint(equalTo: labelCallNumberValue.widthAnchor, multiplier: 0.5).isActive = true
+        
+        return l
+    }()
+    
+    
+    private lazy var stackAllViews : UIStackView = {
+        let l = UIStackView()
+        l.spacing = 15
+        l.axis = .vertical
+        l.distribution = .fillEqually
+        
+        l.addArrangedSubview(stackAuthor)
+        l.addArrangedSubview(stackItemType)
+        l.addArrangedSubview(stackCallNumber)
+        
         return l
     }()
     
@@ -54,17 +147,28 @@ class CellCheckout : UITableViewCell {
     
     private func addViews () {
         
-        contentView.addSubview(labelTitle)
-        contentView.addSubview(labelAuthor)
-        contentView.addSubview(labelItemType)
-        contentView.addSubview(labelCallNumber)
+        contentView.addSubview(containerView)
         
-        labelTitle.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
+        containerView.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 8 , paddingLeft: 16 , paddingBottom: 8, paddingRight: 16 )
+        
+        containerView.addSubview(labelTitle)
+//        contentView.addSubview(labelAuthor)
+//        contentView.addSubview(labelAuthorValue)
+//        contentView.addSubview(labelItemType)
+//        contentView.addSubview(labelItemTypeValue)
+//        contentView.addSubview(labelCallNumber)
+//        contentView.addSubview(labelCallNumberValue)
+        
+        containerView.addSubview(stackAllViews)
+        
+        labelTitle.anchor(top: containerView.topAnchor , leading: containerView.leadingAnchor , trailing: containerView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
 
-        labelAuthor.anchor(top: labelTitle.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8)
-        labelCallNumber.anchor(top: labelAuthor.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
+        stackAllViews.anchor(top: labelTitle.bottomAnchor , leading: containerView.leadingAnchor , bottom: containerView.bottomAnchor , trailing: containerView.trailingAnchor , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16 )
         
-        labelItemType.anchor(top: labelCallNumber.bottomAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft : 8, paddingBottom: 8 ,paddingRight: 8 )
+//        labelAuthor.anchor(top: labelTitle.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8)
+//        labelCallNumber.anchor(top: labelAuthor.bottomAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
+//
+//        labelItemType.anchor(top: labelCallNumber.bottomAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft : 8, paddingBottom: 8 ,paddingRight: 8 )
         
     }
     

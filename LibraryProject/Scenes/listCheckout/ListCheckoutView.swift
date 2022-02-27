@@ -20,6 +20,7 @@ class ListCheckoutView : UIView {
         let l = UITableView()
         l.register(CellCheckout.self , forCellReuseIdentifier: CellCheckout.getIdentifier())
         l.tableFooterView = UIView()
+        l.separatorStyle = .none
         return l
     }()
     
