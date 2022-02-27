@@ -7,6 +7,12 @@
 
 import Foundation
 
+public enum LanguageEnum : String {
+    case ar = "ar"
+    case en = "en"
+}
+
+
 class SharedData {
     
     private var userDefault = UserDefaults.standard
@@ -17,6 +23,20 @@ class SharedData {
     private let USER_NAME = "USER_NAME"
     private let CATEGORIES = "Categories"
     private let FAVORITE_KEY = "FavoriteKey"
+    
+    
+    public func getLangauge() -> String {
+        if let langs = userDefault.object(forKey: "AppleLanguages") as? [String], let currentLang = langs.first {
+            return currentLang
+        }
+        return LanguageEnum.en.rawValue
+    }
+            
+    public func setLangauge (lang : LanguageEnum ) {
+        userDefault.set([lang.rawValue], forKey: "AppleLanguages" )
+        userDefault.synchronize()
+    }
+    
     
     func setUserID (id : Int?) {
         userDefault.setValue(id , forKey: USER_ID)

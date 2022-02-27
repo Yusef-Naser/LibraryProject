@@ -20,7 +20,12 @@ class NavigationBar : UIView {
     lazy var backButton : UIButton = {
        let b = UIButton ()
         b.addTarget( delegateNavigation , action: #selector(NavigationBarDelegate.navigationDismissView), for: .touchUpInside )
-        b.setImage(#imageLiteral(resourceName: "left_arrow"), for: .normal)
+        if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
+            b.setImage(#imageLiteral(resourceName: "left_arrow"), for: .normal)
+        }else {
+            b.setImage(#imageLiteral(resourceName: "right_arrow"), for: .normal)
+        }
+        
         return b
     }()
     

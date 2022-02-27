@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         
+        if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+            SharedData.instance.setLangauge(lang: .en)
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }else {
+            SharedData.instance.setLangauge(lang: .ar)
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        }
+        
         if SharedData.instance.getUserID() != 0 {
             window = UIWindow(frame: UIScreen.main.bounds)
 

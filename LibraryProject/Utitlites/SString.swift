@@ -56,10 +56,15 @@ struct SString {
     static var home : String {return getText(key: "home")}
     static var favorite : String {return getText(key: "favorite")}
     static var callNumber : String {return getText(key: "callNumber")}
-    
+    static var changeLanguage : String {return getText(key: "changeLanguage")}
     
     private static func getText (key : String) -> String {
-        dicEN[key] ?? key
+        if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
+         return   dicEN[key] ?? key
+        }else {
+         return    dicAR[key] ?? key
+        }
+        
     }
   
     private static let dicEN : [String : String] = [
@@ -112,6 +117,62 @@ struct SString {
         "home" : "Home" ,
         "favorite" : "Favorite" ,
         "callNumber" : "Call number" ,
+        "changeLanguage" : "Change Language" ,
+        
+    ]
+    
+    private static let dicAR : [String : String] = [
+        "filter" : "فلتر" ,
+        "search" : "البحث" ,
+        "viewAll" : "مشاهده الكل" ,
+        "newBooks" : "الكتب الجديده" ,
+        "featureBooks" : "الكتب المميزه" ,
+        "login" : "تسجيل دخول" ,
+        "email" : "ايميل" ,
+        "password" : "كلمه المرور" ,
+        "bookDetails" : "تفاصيل الكتاب" ,
+        "publicationDetails" : "تفاصيل الناشر" ,
+        "subjects" : "الموضوعات" ,
+        "DDCClassification" : "DDC Classification" ,
+        "description" : "الوصف" ,
+        "changePassword" : "تغير كلمه المرور" ,
+        "profile" : "الملف الشخصي" ,
+        "update" : "تحديث" ,
+        "name" : "الاسم" ,
+        "cardNumber" : "رقم الكارت" ,
+        "address" : "العنوان" ,
+        "menu" : "القائمه" ,
+        "checkoutList" : "قائمه الاستعارات" ,
+        "suggestions" : "الاقتراحات" ,
+        "addSuggest" : "اضف اقتراح" ,
+        "title" : "العنوان" ,
+        "author" : "الكاتب" ,
+        "copyrightDate" : "تاريخ الاصدار" ,
+        "publisher" : "الناشر" ,
+        "collectionTitle" : "عنوان المجموعه" ,
+        "publicationPlace" : "مكان الناشر" ,
+        "quantity" : "الكميه" ,
+        "itemType" : "نوع الكتاب" ,
+        "library" : "مكتبه" ,
+        "notes" : "ملاحظات" ,
+        "submit" : "ارسال" ,
+        "holdList" : "قائمه الحجز" ,
+        "addCheckout" : "اضف الي الاستعارات" ,
+        "city" : "المدينه" ,
+        "categoryID" : "الفئه" ,
+        "libraryID" : "المكتبه" ,
+        "repeatedPassword" : "تكرار كلمه المرور" ,
+        "oldPassword" : "كلمه المرور القديمه" ,
+        "addHold" : "اضف الي الاستعاره" ,
+        "logout" : "تسجيل خروج" ,
+        "checkin" : "Checkin" ,
+        "checkout" : "استعاره",
+        "close" : "اغلاق" ,
+        "home" : "الرئيسيه" ,
+        "favorite" : "المفضله" ,
+        "callNumber" : "رقم الطلب" ,
+        "changeLanguage" : "تفير اللغه" ,
+        
     ]
     
 }

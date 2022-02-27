@@ -23,6 +23,7 @@ class MenuVC : BaseVC<MenuView> {
         "" ,
         SString.holdList ,
         SString.suggestions ,
+        SString.changeLanguage ,
         SString.logout
     ]
     
@@ -116,6 +117,27 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
             self.navigationController?.pushViewController(ListCheckoutVC(screenType: .hold ), animated: true )
         case SString.suggestions :
             self.navigationController?.pushViewController(SuggestionsVC() , animated: true)
+        case SString.changeLanguage :
+            
+            if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+                SharedData.instance.setLangauge(lang: .ar)
+                UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            }else {
+                SharedData.instance.setLangauge(lang: .en)
+                UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            }
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            parentNavigationController = UINavigationController()
+            parentNavigationController?.navigationBar.isHidden = true
+            parentNavigationController?.navigationBar.barTintColor = UIColor.orange
+            parentNavigationController?.navigationBar.tintColor = UIColor.white
+            parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+            let vc = MainLayoutTapsRouter.createModule()
+            parentNavigationController?.viewControllers = [vc]
+            appDelegate.window?.rootViewController = parentNavigationController
+            appDelegate.window?.makeKeyAndVisible()
+            
         case SString.logout :
             SharedData.instance.removeData()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
