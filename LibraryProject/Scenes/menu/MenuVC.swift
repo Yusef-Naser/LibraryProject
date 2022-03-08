@@ -23,7 +23,7 @@ class MenuVC : BaseVC<MenuView> {
         "" ,
         SString.holdList ,
         SString.suggestions ,
-        SString.changeLanguage ,
+        SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
         SString.logout
     ]
     
@@ -117,27 +117,10 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
             self.navigationController?.pushViewController(ListCheckoutVC(screenType: .hold ), animated: true )
         case SString.suggestions :
             self.navigationController?.pushViewController(SuggestionsVC() , animated: true)
-        case SString.changeLanguage :
-            
-            if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
-                SharedData.instance.setLangauge(lang: .ar)
-                UIView.appearance().semanticContentAttribute = .forceRightToLeft
-            }else {
-                SharedData.instance.setLangauge(lang: .en)
-                UIView.appearance().semanticContentAttribute = .forceLeftToRight
-            }
-            
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            parentNavigationController = UINavigationController()
-            parentNavigationController?.navigationBar.isHidden = true
-            parentNavigationController?.navigationBar.barTintColor = UIColor.orange
-            parentNavigationController?.navigationBar.tintColor = UIColor.white
-            parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-            let vc = MainLayoutTapsRouter.createModule()
-            parentNavigationController?.viewControllers = [vc]
-            appDelegate.window?.rootViewController = parentNavigationController
-            appDelegate.window?.makeKeyAndVisible()
-            
+        case "العربية" :
+            changeLanguage()
+        case "English":
+            changeLanguage()
         case SString.logout :
             SharedData.instance.removeData()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -154,6 +137,37 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
         scannerBarcode?.navigationController?.popViewController(animated: true )
     }
     
+    func changeLanguage() {
+//        var lang = "en"
+        if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+            SharedData.instance.setLangauge(lang: .ar)
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        }else {
+            SharedData.instance.setLangauge(lang: .en)
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
+
+        restartApp(vc: MainLayoutTapsRouter.createModule())
+        NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)
+    }
+    
+    func restartApp (vc: UIViewController) {
+        
+        let viewController = vc
+        let navCtrl = UINavigationController(rootViewController: viewController)
+        navCtrl.navigationBar.isHidden = true
+        guard
+                let window = UIApplication.shared.keyWindow,
+                let rootViewController = window.rootViewController
+                else {
+            return
+        }
+
+        navCtrl.view.frame = rootViewController.view.frame
+        navCtrl.view.layoutIfNeeded()
+
+        window.rootViewController = navCtrl
+    }
 }
 
 extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,

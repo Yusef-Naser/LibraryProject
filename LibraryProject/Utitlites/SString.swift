@@ -57,6 +57,7 @@ struct SString {
     static var favorite : String {return getText(key: "favorite")}
     static var callNumber : String {return getText(key: "callNumber")}
     static var changeLanguage : String {return getText(key: "changeLanguage")}
+    static var settings : String {return getText(key: "settings")}
     
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
@@ -118,6 +119,7 @@ struct SString {
         "favorite" : "Favorite" ,
         "callNumber" : "Call number" ,
         "changeLanguage" : "Change Language" ,
+        "settings" : "Settings" ,
         
     ]
     
@@ -172,6 +174,7 @@ struct SString {
         "favorite" : "المفضله" ,
         "callNumber" : "رقم الطلب" ,
         "changeLanguage" : "تفير اللغه" ,
+        "settings" : "الاعدادات" ,
         
     ]
     

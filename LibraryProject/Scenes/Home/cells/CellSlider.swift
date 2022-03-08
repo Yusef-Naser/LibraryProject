@@ -44,4 +44,8 @@ class CellSlider : UICollectionViewCell {
         imageSlider.image = image
     }
     
+    func setImage (image : String?) {
+        imageSlider.loadImage(url: image ?? "")
+    }
+    
 }

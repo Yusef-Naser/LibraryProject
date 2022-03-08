@@ -66,9 +66,9 @@ class MainLayoutTapsViewController: UITabBarController{
         self.tabBar.tintColor = #colorLiteral(red: 0.7921568627, green: 0.7215686275, blue: 0.06666666667, alpha: 1)
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -18)
         
-        home.tabBarItem = UITabBarItem(title: NSLocalizedString("home", comment: ""), image:#imageLiteral(resourceName: "Path 2"), selectedImage: nil)
-        setting.tabBarItem = UITabBarItem(title: "Setting", image: #imageLiteral(resourceName: "Path 4"), selectedImage: nil)
-        favourite.tabBarItem = UITabBarItem(title: "Favourite", image: #imageLiteral(resourceName: "Path 37"), selectedImage: nil)
+        home.tabBarItem = UITabBarItem(title: NSLocalizedString(SString.home, comment: ""), image:#imageLiteral(resourceName: "Path 2"), selectedImage: nil)
+        setting.tabBarItem = UITabBarItem(title: SString.settings, image: #imageLiteral(resourceName: "Path 4"), selectedImage: nil)
+        favourite.tabBarItem = UITabBarItem(title: SString.favorite, image: #imageLiteral(resourceName: "Path 37"), selectedImage: nil)
         self.viewControllers = [favourite,home, setting]
         self.selectedIndex = 1
         tabBar.items?[1].image = nil
@@ -101,13 +101,21 @@ extension MainLayoutTapsViewController: UITabBarControllerDelegate  {
     private func handleClickOnSettingIcon(){
         
         customizedTabBar.selectedIndex = 3
-        draw(selectedIndex: 3)
+        if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+            draw(selectedIndex: 3)
+        }else {
+            draw(selectedIndex: 1)
+        }
         selectSettingItem()
     }
     
     private func handleClickOnFavouriteIcon(){
         customizedTabBar.selectedIndex = 1
-        draw(selectedIndex: 1)
+        if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+            draw(selectedIndex: 1)
+        }else {
+            draw(selectedIndex: 3)
+        }
         selectFavouriteItem()
     }
     
