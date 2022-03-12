@@ -13,7 +13,8 @@ class LoginView : UIView {
     private let imageLogo : UIImageView = {
         let l = UIImageView()
         l.layer.cornerRadius = 50
-        l.image = #imageLiteral(resourceName: "nature")
+        l.image = #imageLiteral(resourceName: "logo")
+        l.contentMode = .scaleAspectFit
         l.clipsToBounds = true
         return l
     }()
