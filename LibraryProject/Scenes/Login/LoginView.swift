@@ -10,6 +10,12 @@ import UIKit
 
 class LoginView : UIView {
     
+    let navigation : NavigationBar = {
+        let l = NavigationBar()
+        l.labelTitle.text = SString.login
+        return l
+    }()
+    
     private let imageLogo : UIImageView = {
         let l = UIImageView()
         l.layer.cornerRadius = 50
@@ -65,12 +71,15 @@ class LoginView : UIView {
     }
     
     private func addViews () {
+        addSubview(navigation)
         addSubview(imageLogo)
         addSubview(textFieldEmail)
         addSubview(textFieldPassword)
         addSubview(buttonLogin)
         
-        imageLogo.anchor(top: safeAreaLayoutGuide.topAnchor , centerX: centerXAnchor , paddingTop: 30 , width: 100 , height: 100 )
+        navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
+        
+        imageLogo.anchor(top: navigation.bottomAnchor , centerX: centerXAnchor , paddingTop: 30 , width: 100 , height: 50 )
         
         textFieldEmail.anchor(top: imageLogo.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 , height: 50 )
         

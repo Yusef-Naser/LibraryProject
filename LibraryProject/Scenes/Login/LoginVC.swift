@@ -15,6 +15,7 @@ class LoginVC : BaseVC<LoginView> {
         super.viewDidLoad()
         
         presenter = LoginPresenter(view : self )
+        mainView.navigation.delegateNavigation = self
         mainView.buttonLogin.addTarget(self , action: #selector(actionLogin), for: .touchUpInside)
         
     }
@@ -26,7 +27,10 @@ class LoginVC : BaseVC<LoginView> {
     
 }
 
-extension LoginVC : ProLoginView {
+extension LoginVC : ProLoginView , NavigationBarDelegate {
+    func navigationDismissView() {
+        self.navigationController?.popViewController(animated: true )
+    }
     func loginSuccess() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         parentNavigationController = UINavigationController()

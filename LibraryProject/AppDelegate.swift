@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIView.appearance().semanticContentAttribute = .forceRightToLeft
         }
         
-        if SharedData.instance.getUserID() != 0 {
+       // if SharedData.instance.getUserID() != 0 {
             window = UIWindow(frame: UIScreen.main.bounds)
 
             parentNavigationController = UINavigationController()
@@ -40,11 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parentNavigationController?.viewControllers = [vc]
             window?.rootViewController = parentNavigationController
             window?.makeKeyAndVisible()
-        }else {
-            parentNavigationController = UINavigationController(rootViewController: LoginVC())
-
-            window?.rootViewController = parentNavigationController
-        }
+//        }else {
+//            parentNavigationController = UINavigationController(rootViewController: LoginVC())
+//
+//            window?.rootViewController = parentNavigationController
+//        }
         
 
 

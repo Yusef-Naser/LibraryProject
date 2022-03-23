@@ -66,4 +66,11 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICol
         return CGSize (width: collectionView.frame.width - (collectionView.frame.width / 3) , height: collectionView.frame.height - 10 )
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = presenter?.getSlider(index: indexPath.row)?.blink else {
+            return
+        }
+        openURL(url: url)
+    }
+    
 }

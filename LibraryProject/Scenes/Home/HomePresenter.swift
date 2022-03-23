@@ -15,7 +15,7 @@ protocol ProHomeView : StatusApi {
 protocol ProHomePresetner {
 
     func getHome ()
-    func getSlider(index : Int) -> ModelLatest?
+    func getSlider(index : Int) -> ModelSlider?
     func getSliderCount () -> Int
     
 }
@@ -28,7 +28,7 @@ class HomePresenter : ProHomePresetner {
     weak var view : ProHomeView?
     private let interactor = HomeInteractor()
     
-    private var sliderArray : [ModelLatest] = []
+    private var sliderArray : [ModelSlider] = []
     
     init(view : ProHomeView ) {
         self.view = view
@@ -54,7 +54,7 @@ class HomePresenter : ProHomePresetner {
         }
     }
     
-    func getSlider(index: Int) -> ModelLatest? {
+    func getSlider(index: Int) -> ModelSlider? {
         guard sliderArray.count > index else {
             return nil
         }

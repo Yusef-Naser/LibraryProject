@@ -15,6 +15,8 @@ protocol ProMenuPresetner {
     func addCheckout (barcode: String)
     func removeCheckout (barcode : String)
     
+    func getListMenu () -> [String]
+    
 }
 
 
@@ -49,6 +51,23 @@ class MenuPresenter : ProMenuPresetner {
             }else {
                 self.view?.showMessage("error")
             }
+        }
+    }
+    
+    func getListMenu() -> [String] {
+        if SharedData.instance.getUserID() == 0 {
+            return [
+                SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
+                SString.login]
+        }else {
+            return [SString.changePassword ,
+                    SString.profile ,
+                    SString.checkoutList ,
+                    "" ,
+                    SString.holdList ,
+                    SString.suggestions ,
+                    SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
+                    SString.logout]
         }
     }
     

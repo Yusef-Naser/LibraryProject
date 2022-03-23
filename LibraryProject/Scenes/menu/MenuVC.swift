@@ -16,16 +16,16 @@ class MenuVC : BaseVC<MenuView> {
     private let TAG_CHECKIN = 220
     private let TAG_CHECKOUT = 223
     
-    var listArrayMenu : [String] = [
-        SString.changePassword ,
-        SString.profile ,
-        SString.checkoutList ,
-        "" ,
-        SString.holdList ,
-        SString.suggestions ,
-        SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
-        SString.logout
-    ]
+//    var listArrayMenu : [String] = [
+//        SString.changePassword ,
+//        SString.profile ,
+//        SString.checkoutList ,
+//        "" ,
+//        SString.holdList ,
+//        SString.suggestions ,
+//        SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
+//        SString.logout
+//    ]
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -89,24 +89,24 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        listArrayMenu.count
+        presenter?.getListMenu().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellMenu.getIdentifier() , for: indexPath) as! CellMenu
-        guard listArrayMenu[indexPath.row] != "" else {
+        guard presenter?.getListMenu()[indexPath.row] != "" else {
             cell.showButtons()
             cell.delegateCell = self
             return cell
         }
-        cell.setTitle(title: listArrayMenu[indexPath.row] )
+        cell.setTitle(title: presenter?.getListMenu()[indexPath.row]  )
         
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch listArrayMenu[indexPath.row] {
+        switch presenter?.getListMenu()[indexPath.row] {
         case SString.changePassword:
             self.navigationController?.pushViewController(ChangePasswordVC() , animated: true)
         case SString.profile :
@@ -124,10 +124,17 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
         case SString.logout :
             SharedData.instance.removeData()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            parentNavigationController = nil
-            parentNavigationController = UINavigationController(rootViewController: LoginVC())
+            parentNavigationController = UINavigationController()
+            parentNavigationController?.navigationBar.isHidden = true
+            parentNavigationController?.navigationBar.barTintColor = UIColor.orange
+            parentNavigationController?.navigationBar.tintColor = UIColor.white
+            parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+            let vc = MainLayoutTapsRouter.createModule()
+            parentNavigationController?.viewControllers = [vc]
             appDelegate.window?.rootViewController = parentNavigationController
             appDelegate.window?.makeKeyAndVisible()
+        case SString.login :
+            self.navigationController?.pushViewController(LoginVC(), animated: true)
         default:
             break
         }

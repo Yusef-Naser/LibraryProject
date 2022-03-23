@@ -89,10 +89,15 @@ class DetailBookView : UIView {
         return l
     }()
     
+    
+    private let labelItem  : UILabel = {
+        let l = UILabel()
+        l.text = SString.items
+        return l
+    }()
     let fitTableView : FitTableView = {
         let l = FitTableView()
         l.register(CellItemBook.self , forCellReuseIdentifier: CellItemBook.getIdentifier())
-        l.separatorStyle = .none
         return l
     }()
     
@@ -125,6 +130,7 @@ class DetailBookView : UIView {
         parentView.addSubview(labelTitle)
         parentView.addSubview(labelPersonalName)
         parentView.addSubview(stackView)
+        parentView.addSubview(labelItem)
         parentView.addSubview(fitTableView)
         
         
@@ -141,7 +147,9 @@ class DetailBookView : UIView {
         
         stackView.anchor(top: imageBook.bottomAnchor , leading: parentView.leadingAnchor  , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16  )
         
-        fitTableView.anchor(top: stackView.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
+        labelItem.anchor(top: stackView.bottomAnchor , leading: parentView.leadingAnchor , paddingTop: 16, paddingLeft: 16 )
+        
+        fitTableView.anchor(top: labelItem.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
         
     }
     

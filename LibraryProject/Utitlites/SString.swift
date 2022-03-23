@@ -58,6 +58,7 @@ struct SString {
     static var callNumber : String {return getText(key: "callNumber")}
     static var changeLanguage : String {return getText(key: "changeLanguage")}
     static var settings : String {return getText(key: "settings")}
+    static var items : String {return getText(key: "items")}
     
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
@@ -120,6 +121,7 @@ struct SString {
         "callNumber" : "Call number" ,
         "changeLanguage" : "Change Language" ,
         "settings" : "Settings" ,
+        "items" : "Items" ,
         
     ]
     
@@ -159,23 +161,23 @@ struct SString {
         "notes" : "ملاحظات" ,
         "submit" : "ارسال" ,
         "holdList" : "قائمه الحجز" ,
-        "addCheckout" : "اضف الي الاستعارات" ,
+        "addCheckout" : "اضف الي الحجز" ,
         "city" : "المدينه" ,
         "categoryID" : "الفئه" ,
         "libraryID" : "المكتبه" ,
         "repeatedPassword" : "تكرار كلمه المرور" ,
         "oldPassword" : "كلمه المرور القديمه" ,
-        "addHold" : "اضف الي الاستعاره" ,
+        "addHold" : "اضف الي الحجز" ,
         "logout" : "تسجيل خروج" ,
         "checkin" : "Checkin" ,
-        "checkout" : "استعاره",
+        "checkout" : "حجز",
         "close" : "اغلاق" ,
         "home" : "الرئيسيه" ,
         "favorite" : "المفضله" ,
         "callNumber" : "رقم الطلب" ,
         "changeLanguage" : "تفير اللغه" ,
         "settings" : "الاعدادات" ,
-        
+        "items" : "العناصر" ,
     ]
     
 }

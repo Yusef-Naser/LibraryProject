@@ -31,6 +31,7 @@ class SectionBooksView : UIView {
         let l = UIButton()
         l.setTitle(SString.viewAll , for: .normal)
         l.setTitleColor( UIColor.gray , for: .normal)
+        l.isHidden = true 
         return l
     }()
     

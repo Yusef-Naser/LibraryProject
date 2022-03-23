@@ -29,6 +29,7 @@
 		2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */; };
 		2C7066A727BB5E1800825EAE /* ModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066A627BB5E1800825EAE /* ModelItem.swift */; };
 		2C7066AB27BB6CC100825EAE /* ModelListHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066AA27BB6CC100825EAE /* ModelListHold.swift */; };
+		2CAFEC4127E91A1F004A6450 /* Edits in Resources */ = {isa = PBXBuildFile; fileRef = 2CAFEC4027E91A1F004A6450 /* Edits */; };
 		2CB67005279ACC9F00A3C2DD /* SString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67004279ACC9F00A3C2DD /* SString.swift */; };
 		2CB67009279ACFFE00A3C2DD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB67008279ACFFE00A3C2DD /* Colors.swift */; };
 		2CB6700C279AD16600A3C2DD /* CellSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6700B279AD16600A3C2DD /* CellSlider.swift */; };
@@ -142,6 +143,7 @@
 		2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
 		2C7066A627BB5E1800825EAE /* ModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItem.swift; sourceTree = "<group>"; };
 		2C7066AA27BB6CC100825EAE /* ModelListHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListHold.swift; sourceTree = "<group>"; };
+		2CAFEC4027E91A1F004A6450 /* Edits */ = {isa = PBXFileReference; lastKnownFileType = text; path = Edits; sourceTree = "<group>"; };
 		2CB67004279ACC9F00A3C2DD /* SString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SString.swift; sourceTree = "<group>"; };
 		2CB67008279ACFFE00A3C2DD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2CB6700B279AD16600A3C2DD /* CellSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSlider.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		2CE5D6CE27989E0D00BBCA15 = {
 			isa = PBXGroup;
 			children = (
+				2CAFEC4027E91A1F004A6450 /* Edits */,
 				2CE5D6D927989E0D00BBCA15 /* LibraryProject */,
 				2CE5D6D827989E0D00BBCA15 /* Products */,
 				ED6CB5323A54B75ADBAA1EC3 /* Pods */,
@@ -659,6 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CAFEC4127E91A1F004A6450 /* Edits in Resources */,
 				2CE5D6E727989E0F00BBCA15 /* LaunchScreen.storyboard in Resources */,
 				2CE5D6E427989E0F00BBCA15 /* Assets.xcassets in Resources */,
 				2CE5D6E227989E0D00BBCA15 /* Main.storyboard in Resources */,
@@ -977,14 +981,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BA36LG6AN9;
+				DEVELOPMENT_TEAM = N95ZBLDBR6;
 				INFOPLIST_FILE = LibraryProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cd.LibraryProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.library.awr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -998,14 +1002,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BA36LG6AN9;
+				DEVELOPMENT_TEAM = N95ZBLDBR6;
 				INFOPLIST_FILE = LibraryProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cd.LibraryProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.library.awr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -39,11 +39,11 @@ class CellItemBook : UITableViewCell {
     
     private func addViews () {
         
-        contentView.addSubview(imageViewItem)
+      //  contentView.addSubview(imageViewItem)
         contentView.addSubview(labelName)
         
-        imageViewItem.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 , width: 100 , height: 150 )
-        labelName.anchor(top: imageViewItem.topAnchor , leading: imageViewItem.trailingAnchor , trailing: contentView.trailingAnchor , paddingTop: 16 , paddingLeft: 8 , paddingRight: 8 )
+      //  imageViewItem.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 , width: 100 , height: 150 )
+        labelName.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 )
         
     }
     

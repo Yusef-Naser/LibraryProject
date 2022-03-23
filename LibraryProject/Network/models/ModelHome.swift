@@ -28,7 +28,8 @@ struct ModelMenu : Codable {
 
 struct ModelHomePage : Codable {
     let wellcomeText: String?
-    let silder, latest, suggested: [ModelLatest]?
+    let silder : [ModelSlider]?
+    let latest, suggested: [ModelLatest]?
 
     enum CodingKeys: String, CodingKey {
         case wellcomeText = "wellcome_text"
@@ -36,6 +37,11 @@ struct ModelHomePage : Codable {
     }
 }
 
+struct ModelSlider: Codable {
+    let blink: String?
+    let title: String?
+    let image: String?
+}
 
 struct ModelLatest: Codable {
     let biblionumber: Int?

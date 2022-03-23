@@ -8,5 +8,5 @@
 // MARK: - ModelLogin
 struct ModelLogin: Codable {
     let borrowerid: Int?
-    let status: String
+    let status: String?
 }
