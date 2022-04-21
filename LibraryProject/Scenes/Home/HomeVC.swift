@@ -21,7 +21,7 @@ class HomeVC : BaseVC<HomeView> {
     }
     
     @objc private func actionSearch () {
-        parentNavigationController?.pushViewController(SearchVC() , animated: true )
+        parentNavigationController?.pushViewController(SearchVC(blink: nil ) , animated: true )
     }
     
 }
@@ -67,10 +67,12 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICol
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = presenter?.getSlider(index: indexPath.row)?.blink else {
+        guard let blink = presenter?.getSlider(index: indexPath.row)?.blink else {
             return
         }
-        openURL(url: url)
+        
+        self.navigationController?.pushViewController(SearchVC(blink: blink ), animated: true )
+        
     }
     
 }

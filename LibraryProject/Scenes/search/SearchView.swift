@@ -15,7 +15,7 @@ class SearchView : UIView {
         return l
     }()
     
-    private let searchItem : SearchItemView = {
+    let searchItem : SearchItemView = {
         let l = SearchItemView()
         return l
     }()
@@ -61,6 +61,14 @@ class SearchView : UIView {
         collectionView.dataSource = delegate
         navigation.delegateNavigation = delegate
         searchItem.textField.delegate = delegate
+    }
+    
+    func setSearchBlink (blink : String?) {
+        guard let blink = blink else {
+            return
+        }
+        searchItem.textField.text = blink
+        
     }
     
 }

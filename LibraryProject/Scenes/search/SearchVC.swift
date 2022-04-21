@@ -11,11 +11,27 @@ class SearchVC : BaseVC<SearchView> {
     
     private var presenter : ProSearchPresetner?
     
+    private var blink : String?
+    
+    init (blink : String?) {
+        super.init(nibName: nil , bundle: nil )
+        self.blink = blink
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
         presenter = SearchPresenter(view : self )
         mainView.setDelegates(delegate: self )
+        
+        if let blink = blink {
+            mainView.setSearchBlink(blink: blink)
+            textFieldShouldReturn(mainView.searchItem.textField)
+        }
         
     }
     
