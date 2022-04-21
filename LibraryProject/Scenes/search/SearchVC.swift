@@ -49,6 +49,11 @@ extension SearchVC : ProSearchView , NavigationBarDelegate {
 }
 
 extension SearchVC : UICollectionViewDelegate , UICollectionViewDataSource , CellBookDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        presenter?.callPagination(index: indexPath.row )
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter?.getDataCount() ?? 0
     }

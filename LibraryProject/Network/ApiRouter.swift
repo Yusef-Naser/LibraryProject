@@ -16,7 +16,7 @@ enum ApiRouter : URLRequestConvertible {
     
     case getHome
     case getBookDetails (id : Int)
-    case search (text : String)
+    case search (text : String , from : Int , to : Int )
     case itemsBook (id : Int)
     case login (data : [String : Any])
     case getCheckoutList
@@ -84,12 +84,12 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails(let id ) :
             return "https://library.awresidence.com/api/v1/biblios/\(id)"
         case .itemsBook(let id ) :
-            return "https://library.awresidence.com/api/v1/public/biblios/\(id)/items?fbclid=IwAR2abkzHyO_i7IRTjP9W-4hOLOauPiJlB4l2-5qXWuVtNx2QaOmpkUFxKjU"
-        case .search(let text) :
+            return "https://library.awresidence.com/api/v1/public/biblios/\(id)/items"
+        case let .search( text , from  , to ) :
             if text == "" {
                 return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"
             }
-            return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=1&maximumRecords=10"
+            return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=\(from)&maximumRecords=\(to)"
             
         case .getCheckoutList :
             return "https://library.awresidence.com/api/v1/checkouts?patron_id=\(userID)"

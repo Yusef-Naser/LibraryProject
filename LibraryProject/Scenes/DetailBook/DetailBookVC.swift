@@ -68,8 +68,15 @@ extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellItemBook.getIdentifier() , for: indexPath) as! CellItemBook
-        cell.setTitle(title: presenter?.modelItemsBook?[indexPath.row].message)
-        cell.setImage(image: presenter?.modelItemsBook?[indexPath.row].path )
+        
+        let item = presenter?.modelItemsBook?[indexPath.row]
+        let holdingLibraryID = item?.holdingLibraryID ?? ""
+        let callumber = item?.callnumber ?? ""
+        let itemType = item?.itemTypeID ?? ""
+        let text = holdingLibraryID + " - " + callumber + " - " + itemType
+        
+        cell.setTitle(title: text )
+        
         return cell
     }
     
