@@ -63,8 +63,14 @@ class HomePresenter : ProHomePresetner {
         self.view?.showLoading()
         interactor.getLatest { data , error , statusCode in
             self.view?.hideLoading()
-            guard let data = data else {
+            guard var data = data else {
                 return
+            }
+            for ( index , var item) in data.enumerated() {
+                
+                item.image = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber=\(item.biblionumber ?? 0)"
+                data.remove(at: index)
+                data.insert(item, at: index)
             }
             self.view?.getListNewBooks(list: data)
         }

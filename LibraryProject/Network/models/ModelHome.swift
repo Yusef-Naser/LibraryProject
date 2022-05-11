@@ -46,7 +46,7 @@ struct ModelSlider: Codable {
 struct ModelLatest: Codable {
     let biblionumber: Int?
     let title: String?
-    let image: String?
+    var image: String?
 }
 
 typealias ModelArrayLatest = [ModelLatest]
