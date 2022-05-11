@@ -15,6 +15,7 @@ protocol ProHomeView : StatusApi {
 protocol ProHomePresetner {
 
     func getHome ()
+    func getLatest ()
     func getSlider(index : Int) -> ModelSlider?
     func getSliderCount () -> Int
     
@@ -33,14 +34,18 @@ class HomePresenter : ProHomePresetner {
     init(view : ProHomeView ) {
         self.view = view
         getHome()
+        getLatest()
     }
     
     func getHome() {
+        self.view?.showLoading()
         interactor.getHome { data , error , statusCode in
+            self.view?.hideLoading()
+            
             guard let data = data else {
                 return
             }
-            self.view?.getListNewBooks(list: data.menu?.homePage?.latest ?? [])
+          //  self.view?.getListNewBooks(list: data.menu?.homePage?.latest ?? [])
             self.view?.getListFeatureBooks(list: data.menu?.homePage?.suggested ?? [])
             self.sliderArray = data.menu?.homePage?.silder ?? []
             if let c = data.menu?.categories , c.count > 0 {
@@ -51,6 +56,17 @@ class HomePresenter : ProHomePresetner {
                 SharedData.instance.setCategories(categories: variable)
             }
             self.view?.fetchData()
+        }
+    }
+    
+    func getLatest() {
+        self.view?.showLoading()
+        interactor.getLatest { data , error , statusCode in
+            self.view?.hideLoading()
+            guard let data = data else {
+                return
+            }
+            self.view?.getListNewBooks(list: data)
         }
     }
     

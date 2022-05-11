@@ -21,4 +21,17 @@ class HomeInteractor {
         }
     }
     
+    func getLatest (completion : @escaping CompletionHandler<ModelArrayLatest> ) {
+        ApiClient<ModelArrayLatest>.performRequest(route: .getLatest) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data , nil , statusCode)
+                return
+            case .failure(let error) :
+                completion(nil , error , statusCode)
+                return
+            }
+        }
+    }
+    
 }

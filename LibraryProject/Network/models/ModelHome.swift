@@ -49,6 +49,9 @@ struct ModelLatest: Codable {
     let image: String?
 }
 
+typealias ModelArrayLatest = [ModelLatest]
+
+
 //struct ModelCategory : Codable {
 //    
 //    let rost, lib, kil, cof: String?

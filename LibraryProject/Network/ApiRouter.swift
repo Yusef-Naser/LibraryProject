@@ -15,6 +15,7 @@ import Alamofire
 enum ApiRouter : URLRequestConvertible {
     
     case getHome
+    case getLatest
     case getBookDetails (id : Int)
     case search (text : String , from : Int , to : Int )
     case itemsBook (id : Int)
@@ -39,7 +40,8 @@ enum ApiRouter : URLRequestConvertible {
         case .getHome , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
-             .getHoldList , .login , .getLibraries , .getProfile :
+             .getHoldList , .login , .getLibraries , .getProfile ,
+             .getLatest :
             return .get
         case .addSuggest , .addCheckout , .removeCheckout ,
              .changePassword , .addHold :
@@ -51,7 +53,7 @@ enum ApiRouter : URLRequestConvertible {
     
     private var Headers : HTTPHeaders {
         switch self {
-        case .getHome , .search , .login  :
+        case .getHome , .getLatest  , .search , .login  :
             return [
                 "content-type" : "application/json;charset=utf-8",
             ]
@@ -81,6 +83,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/cgi-bin/koha/svc/authentication?userid=\(user)&password=\(pass)"
         case .getHome :
             return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
+        case .getLatest :
+            return "https://library.awresidence.com/cgi-bin/koha/latestbooks.pl"
         case .getBookDetails(let id ) :
             return "https://library.awresidence.com/api/v1/biblios/\(id)"
         case .itemsBook(let id ) :
@@ -129,7 +133,8 @@ enum ApiRouter : URLRequestConvertible {
         switch self {
         case .getBookDetails , .getHome , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
-                .getBibloItem , .getHoldList, .getLibraries , .getProfile :
+                .getBibloItem , .getHoldList, .getLibraries , .getProfile ,
+                .getLatest :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
                 .addCheckout(let data) , .changePassword(let data ) ,
