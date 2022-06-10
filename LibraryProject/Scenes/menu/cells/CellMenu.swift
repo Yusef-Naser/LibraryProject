@@ -42,7 +42,7 @@ class CellMenu : UITableViewCell {
         l.axis = .horizontal
         l.distribution = .fillEqually
         l.addArrangedSubview(checkoutButton)
-      //  l.addArrangedSubview(checkInButton)
+        l.addArrangedSubview(checkInButton)
         return l
     }()
     

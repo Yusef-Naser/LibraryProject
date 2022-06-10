@@ -28,13 +28,29 @@ class SearchVC : BaseVC<SearchView> {
         presenter = SearchPresenter(view : self )
         mainView.setDelegates(delegate: self )
         
+        mainView.searchItem.textField.addTarget(self , action: #selector(actionTextField), for: .editingDidBegin)
+        
         if let blink = blink {
             mainView.setSearchBlink(blink: blink)
             textFieldShouldReturn(mainView.searchItem.textField)
         }
+        mainView.filterView.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(actionFilter)))
+        
+        presenter?.selectedFilter = mainView.filterView.arrayFilter[0]
+        mainView.filterView.completionSelectPicker = { string in
+            self.presenter?.selectedFilter = string
+        }
         
     }
     
+    @objc private func actionFilter () {
+        mainView.endEditing(true )
+        mainView.addPickerView()
+    }
+    
+    @objc private func actionTextField () {
+        mainView.removePickerView()
+    }
     
 }
 

@@ -9,13 +9,13 @@ import Foundation
 
 class MenuInteractor {
     
-    func addCheckout (barcode : String , completion : @escaping CompletionHandler<ModelAddCheckout>) {
+    func addCheckout (barcode : String , date : String , completion : @escaping CompletionHandler<ModelAddCheckout>) {
         
         let data : [String : Any] = [
             
             "patron_id": "\(SharedData.instance.getUserID())",
             "barcode": barcode ,
-            "due_date": Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 6),
+            "due_date": date ,
             "issue_date":Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 0)
             
         ]
@@ -36,7 +36,7 @@ class MenuInteractor {
         
         let data : [String : Any] = [
             
-            "patron_id": "\(SharedData.instance.getUserID())",
+           // "patron_id": "\(SharedData.instance.getUserID())",
             "barcode": barcode
             
         ]

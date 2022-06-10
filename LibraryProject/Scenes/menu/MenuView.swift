@@ -10,6 +10,8 @@ import UIKit
 
 class MenuView : UIView {
     
+    var alertView : UIAlertController?
+    
     private let navigation : NavigationBar = {
         let l = NavigationBar()
         l.hideBackButton()
@@ -22,6 +24,16 @@ class MenuView : UIView {
         l.register(CellMenu.self , forCellReuseIdentifier: CellMenu.getIdentifier())
         l.tableFooterView = UIView()
         return l
+    }()
+    
+    lazy var datePicker: UIDatePicker = {
+      let datePicker = UIDatePicker(frame: .zero)
+      datePicker.datePickerMode = .date
+      datePicker.timeZone = TimeZone.current
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+      return datePicker
     }()
     
     override init(frame: CGRect) {

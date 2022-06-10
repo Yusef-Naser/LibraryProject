@@ -59,11 +59,12 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.getIdentifier() , for: indexPath ) as! CellSlider
         cell.setImage(image: presenter?.getSlider(index: indexPath.row)?.image)
+        cell.setTitle(title: presenter?.getSlider(index: indexPath.row)?.title)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize (width: collectionView.frame.width - (collectionView.frame.width / 3) , height: collectionView.frame.height - 10 )
+        return CGSize (width: collectionView.frame.width / 2  , height: collectionView.frame.height - 10 )
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

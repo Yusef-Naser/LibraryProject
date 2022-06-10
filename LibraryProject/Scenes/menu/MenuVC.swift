@@ -86,6 +86,7 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
         scannerBarcode.dismissalDelegate = self
 
         self.navigationController?.pushViewController(scannerBarcode, animated: true)
+//        self.createALetWithText(code: "342")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -185,7 +186,8 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
             self.presenter?.removeCheckout(barcode: code)
         }else if controller.view.tag == TAG_CHECKOUT {
             print(code)
-            self.presenter?.addCheckout(barcode: code)
+           // self.presenter?.addCheckout(barcode: code)
+            self.createALetWithText(code: code)
         }
         
         controller.reset()
@@ -198,4 +200,37 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
     func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
         controller.navigationController?.popViewController(animated: true)
     }
+    
+    private func createALetWithText (code : String) {
+        
+        mainView.alertView = UIAlertController(title: nil , message: SString.SelectDeliveryDate, preferredStyle: .alert)
+        mainView.alertView?.addTextField { (textField) in
+            textField.placeholder = SString.SelectDeliveryDate
+            textField.text = Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 0)
+            textField.inputView = self.mainView.datePicker
+            self.mainView.datePicker.addTarget(self, action: #selector(self.handleDatePicker), for: .valueChanged)
+        }
+        
+        mainView.alertView?.addAction(UIAlertAction(title: SString.submit , style: .default, handler: { [weak self] (_) in
+            guard let textField = self?.mainView.alertView?.textFields?[0], let userText = textField.text else { return }
+           // print("User text: \(userText)")
+            guard userText != "" else {
+                return
+            }
+            self?.presenter?.addCheckout(barcode: code , date: userText)
+        }))
+        
+        mainView.alertView?.addAction(UIAlertAction(title: SString.cancel , style: .default, handler: nil))
+        guard let alert = mainView.alertView else {
+            return
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func handleDatePicker () {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.mainView.alertView?.textFields?[0].text = dateFormatter.string(from: mainView.datePicker.date)
+    }
+    
 }

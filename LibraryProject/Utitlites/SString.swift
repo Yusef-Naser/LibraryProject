@@ -59,6 +59,10 @@ struct SString {
     static var changeLanguage : String {return getText(key: "changeLanguage")}
     static var settings : String {return getText(key: "settings")}
     static var items : String {return getText(key: "items")}
+    static var SelectDeliveryDate : String { return getText(key: "SelectDeliveryDate")}
+    static var cancel : String { return getText(key: "cancel")}
+    static var done : String { return getText(key: "done")}
+    
     
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
@@ -122,6 +126,9 @@ struct SString {
         "changeLanguage" : "Change Language" ,
         "settings" : "Settings" ,
         "items" : "Items" ,
+        "SelectDeliveryDate" : "Select Delivery Date" ,
+        "cancel" : "Cancel" ,
+        "done" : "Done" ,
         
     ]
     
@@ -178,6 +185,9 @@ struct SString {
         "changeLanguage" : "تفير اللغه" ,
         "settings" : "الاعدادات" ,
         "items" : "العناصر" ,
+        "SelectDeliveryDate" : "اختر تاريخ التسليم" ,
+        "cancel" : "الغاء" ,
+        "done" : "تم" ,
     ]
     
 }

@@ -15,8 +15,27 @@ class SearchView : UIView {
         return l
     }()
     
-    let searchItem : SearchItemView = {
+    lazy var searchItem : SearchItemView = {
         let l = SearchItemView()
+        return l
+    }()
+    
+    let filterView : FilterView = {
+        let l = FilterView()
+        l.isUserInteractionEnabled = true
+        return l
+    }()
+    
+    private lazy var stackViewSearch : UIStackView = {
+        let l = UIStackView()
+        l.axis = .horizontal
+        l.spacing = 10
+        
+        l.addArrangedSubview(searchItem)
+        l.addArrangedSubview(filterView)
+        
+        filterView.widthAnchor.constraint(equalTo: searchItem.widthAnchor , multiplier: 0.5).isActive = true
+        
         return l
     }()
     
@@ -46,12 +65,12 @@ class SearchView : UIView {
     
     private func addViews () {
         addSubview(navigation)
-        addSubview(searchItem)
+        addSubview(stackViewSearch)
         addSubview(collectionView)
         
         navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        searchItem.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
-        collectionView.anchor(top: searchItem.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
+        stackViewSearch.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
+        collectionView.anchor(top: stackViewSearch.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         
     }
     
@@ -69,6 +88,24 @@ class SearchView : UIView {
         }
         searchItem.textField.text = blink
         
+    }
+    
+    func addPickerView () {
+        
+        
+        addSubview(filterView.pickerViewFilter)
+        addSubview(filterView.toolbar)
+        
+        filterView.pickerViewFilter.anchor( leading: leadingAnchor , bottom: self.bottomAnchor , trailing: trailingAnchor , paddingLeft: 0, paddingBottom: 0, paddingRight: 0 )
+        
+        filterView.toolbar.anchor( leading: leadingAnchor , bottom: filterView.pickerViewFilter.topAnchor , trailing: trailingAnchor , height: 50 )
+        
+        
+    }
+    
+    func removePickerView () {
+        filterView.pickerViewFilter.removeFromSuperview()
+        filterView.toolbar.removeFromSuperview()
     }
     
 }

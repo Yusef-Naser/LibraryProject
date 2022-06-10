@@ -17,6 +17,12 @@ class CellSlider : UICollectionViewCell {
         return l
     }()
     
+    private let labelTitle : UILabel = {
+        let l = UILabel()
+        l.textAlignment = .center
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
@@ -36,7 +42,11 @@ class CellSlider : UICollectionViewCell {
         contentView.layer.cornerRadius = 10
         
         contentView.addSubview(imageSlider)
-        imageSlider.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4 )
+        contentView.addSubview(labelTitle)
+        
+        imageSlider.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: labelTitle.topAnchor , trailing: contentView.trailingAnchor , paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4 , height: 100)
+        
+        labelTitle.anchor( leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 , height: 20)
         
     }
     
@@ -46,6 +56,10 @@ class CellSlider : UICollectionViewCell {
     
     func setImage (image : String?) {
         imageSlider.loadImage(url: image ?? "")
+    }
+    
+    func setTitle (title : String?) {
+        labelTitle.text = title
     }
     
 }

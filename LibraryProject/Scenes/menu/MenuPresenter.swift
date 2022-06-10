@@ -12,7 +12,7 @@ protocol ProMenuView : StatusApi {
 
 protocol ProMenuPresetner {
 
-    func addCheckout (barcode: String)
+    func addCheckout (barcode: String , date : String)
     func removeCheckout (barcode : String)
     
     func getListMenu () -> [String]
@@ -30,9 +30,9 @@ class MenuPresenter : ProMenuPresetner {
         self.view = view
     }
     
-    func addCheckout(barcode: String) {
+    func addCheckout(barcode: String , date : String) {
         self.view?.showLoading()
-        interactor.addCheckout(barcode: barcode) { data , error , statusCode in
+        interactor.addCheckout(barcode: barcode , date :date ) { data , error , statusCode in
             self.view?.hideLoading()
             if data?.status == 201 {
                 self.view?.showMessage("success")
