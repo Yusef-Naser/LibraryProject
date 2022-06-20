@@ -130,7 +130,7 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
             parentNavigationController?.navigationBar.barTintColor = UIColor.orange
             parentNavigationController?.navigationBar.tintColor = UIColor.white
             parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-            let vc = MainLayoutTapsRouter.createModule()
+            let vc = LoginVC()
             parentNavigationController?.viewControllers = [vc]
             appDelegate.window?.rootViewController = parentNavigationController
             appDelegate.window?.makeKeyAndVisible()

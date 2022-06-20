@@ -36,8 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parentNavigationController?.navigationBar.barTintColor = UIColor.orange
             parentNavigationController?.navigationBar.tintColor = UIColor.white
             parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
+        if SharedData.instance.getUserID() == 0 {
+            let vc = LoginVC()
+            parentNavigationController?.viewControllers = [vc]
+        }else {
             let vc = MainLayoutTapsRouter.createModule()
             parentNavigationController?.viewControllers = [vc]
+        }
+            
             window?.rootViewController = parentNavigationController
             window?.makeKeyAndVisible()
 //        }else {
