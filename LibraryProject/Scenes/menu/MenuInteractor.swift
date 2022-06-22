@@ -37,7 +37,8 @@ class MenuInteractor {
         let data : [String : Any] = [
             
            // "patron_id": "\(SharedData.instance.getUserID())",
-            "barcode": barcode
+            "barcode": barcode ,
+            "due_date" : Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 0)
             
         ]
         
