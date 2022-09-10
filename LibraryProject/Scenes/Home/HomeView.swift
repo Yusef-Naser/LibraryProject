@@ -137,7 +137,7 @@ class HomeView : UIView {
         
         scrollView.anchor(top: stackViewSearch.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor )
         
-        collectioViewSlider.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 0, paddingBottom: 0, paddingRight: 0 , height: 130 )
+        collectioViewSlider.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 0, paddingBottom: 0, paddingRight: 0 , height: (UIScreen.main.bounds.width / 2) + 30 )
         
         stackSectionBooks.anchor(top: collectioViewSlider.bottomAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16  )
         

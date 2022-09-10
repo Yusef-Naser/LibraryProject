@@ -30,15 +30,16 @@ class SearchVC : BaseVC<SearchView> {
         
         mainView.searchItem.textField.addTarget(self , action: #selector(actionTextField), for: .editingDidBegin)
         
+        
+        mainView.filterView.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(actionFilter)))
+        
+        presenter?.selectedFilter = ""
+        mainView.filterView.completionSelectPicker = { string in
+            self.presenter?.setSelectedFilter(filter: string )
+        }
         if let blink = blink {
             mainView.setSearchBlink(blink: blink)
             textFieldShouldReturn(mainView.searchItem.textField)
-        }
-        mainView.filterView.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(actionFilter)))
-        
-        presenter?.selectedFilter = mainView.filterView.arrayFilter[0]
-        mainView.filterView.completionSelectPicker = { string in
-            self.presenter?.selectedFilter = string
         }
         
     }

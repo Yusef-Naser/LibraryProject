@@ -44,9 +44,11 @@ class CellSlider : UICollectionViewCell {
         contentView.addSubview(imageSlider)
         contentView.addSubview(labelTitle)
         
-        imageSlider.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: labelTitle.topAnchor , trailing: contentView.trailingAnchor , paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4 , height: 100)
+        imageSlider.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , trailing: contentView.trailingAnchor , paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4 )
         
-        labelTitle.anchor( leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 , height: 20)
+//        imageSlider.heightAnchor.constraint(equalTo: imageSlider.widthAnchor , constant: 0).isActive = true
+        
+        labelTitle.anchor( top:  imageSlider.bottomAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 , height: 20)
         
     }
     

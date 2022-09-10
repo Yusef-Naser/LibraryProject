@@ -19,7 +19,8 @@ class FilterView : UIView {
     
     private var selectedString = ""
     
-    let arrayFilter = [
+    private let arrayFilter = [
+        "ALL" ,
         "Title" ,
         "Author" ,
         "Subject" ,
@@ -112,7 +113,7 @@ extension FilterView : UIPickerViewDelegate , UIPickerViewDataSource {
     @objc private func actionDoneToolBar () {
         pickerViewFilter.removeFromSuperview()
         toolbar.removeFromSuperview()
-        completionSelectPicker?(selectedString)
+        completionSelectPicker?( ( selectedString == arrayFilter[0]) ? "" : selectedString )
     }
     
 }
