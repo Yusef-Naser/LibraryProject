@@ -10,6 +10,7 @@ protocol ProDetailBookView : StatusApi {
     func fetchData ()
     func fetchItemBooks ()
     func addHoldSuccess ()
+    func fetchLibraryName (index : Int , name : String?)
 }
 
 protocol ProDetailBookPresetner {
@@ -19,6 +20,7 @@ protocol ProDetailBookPresetner {
     func getItemsBook (id : Int )
     var modelItemsBook : ModelItemsBookArray? {get set}
     func addHold ( id : Int )
+    func getLibraryName (index : Int ) 
 }
 
 
@@ -30,6 +32,7 @@ class DetailBookPresenter : ProDetailBookPresetner {
     private var modelBook : ModelBook? = nil
     var modelItemsBook : ModelItemsBookArray? = nil
     
+    private var getLibraryNameIndexs : [Int] = []
     
     init(view : ProDetailBookView ) {
         self.view = view
@@ -87,6 +90,19 @@ class DetailBookPresenter : ProDetailBookPresetner {
                 
             }
             
+        }
+    }
+    
+    func getLibraryName(index: Int) {
+        if (getLibraryNameIndexs.contains(index)) {
+            return
+        }
+        getLibraryNameIndexs.append(index)
+        interactor.getLibraryName(code: self.modelItemsBook?[index].holdingLibraryID ?? "") { data , error , statusCode in
+            
+            if let data = data  {
+                self.view?.fetchLibraryName(index: index , name: data.name )
+            }
         }
     }
     

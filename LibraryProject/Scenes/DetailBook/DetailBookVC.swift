@@ -13,6 +13,7 @@ class DetailBookVC : BaseVC<DetailBookView> {
     
     private var bookItem : ModelLatest? = nil
     
+    
     init(bookItem : ModelLatest?) {
         super.init(nibName: nil , bundle: nil)
         self.bookItem = bookItem
@@ -58,6 +59,17 @@ extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
     func fetchData() {
         presenter?.setConfigurationView(view: mainView)
     }
+    
+    func fetchLibraryName(index: Int, name: String?) {
+        guard let cell = mainView.fitTableView.cellForRow(at: IndexPath(row: index , section: 0)) as? CellItemBook else {
+            return
+        }
+        let item = presenter?.modelItemsBook?[index]
+        let callumber = item?.callnumber ?? ""
+        let itemType = item?.itemTypeID ?? ""
+        let text = (name ?? "" ) + " - " + callumber + " - " + itemType
+        cell.setTitle(title: text )
+    }
 }
 
 extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
@@ -70,14 +82,20 @@ extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellItemBook.getIdentifier() , for: indexPath) as! CellItemBook
         
         let item = presenter?.modelItemsBook?[indexPath.row]
-        let holdingLibraryID = item?.holdingLibraryID ?? ""
+      //  let holdingLibraryID = item?.holdingLibraryID ?? ""
         let callumber = item?.callnumber ?? ""
         let itemType = item?.itemTypeID ?? ""
-        let text = holdingLibraryID + " - " + callumber + " - " + itemType
+        let text = callumber + " - " + itemType
         
         cell.setTitle(title: text )
+        getLibraryNameByIndex(index: indexPath.row)
         
         return cell
+    }
+    
+    func getLibraryNameByIndex (index : Int ) {
+        presenter?.getLibraryName(index: index)
+        
     }
     
 }

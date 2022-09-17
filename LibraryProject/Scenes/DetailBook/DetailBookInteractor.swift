@@ -55,4 +55,17 @@ class DetailBookInteractor {
         
     }
     
+    func getLibraryName (code : String , completion : @escaping CompletionHandler <ModelLibrary>) {
+        ApiClient<ModelLibrary>.performRequest(route: .getLibrary(code: code )) { result , statusCode in
+            switch result {
+            case .success(let data) :
+                completion(data ,nil , statusCode)
+                return
+            case .failure(let error) :
+                completion(nil, error, statusCode)
+                return
+            }
+        }
+    }
+    
 }

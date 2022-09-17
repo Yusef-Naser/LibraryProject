@@ -31,6 +31,7 @@ enum ApiRouter : URLRequestConvertible {
     case removeCheckout (data : [String : Any])
     case changePassword (data : [String : Any])
     case addHold (data : [String : Any])
+    case getLibrary(code : String)
     case getLibraries
     case getProfile
     
@@ -40,7 +41,7 @@ enum ApiRouter : URLRequestConvertible {
         case .getHome , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
-             .getHoldList , .login , .getLibraries , .getProfile ,
+             .getHoldList , .login , .getLibrary ,.getLibraries , .getProfile ,
              .getLatest :
             return .get
         case .addSuggest , .addCheckout , .removeCheckout ,
@@ -61,7 +62,7 @@ enum ApiRouter : URLRequestConvertible {
                 .updateProfile , .addSuggest ,
                 .getItemByItemID , .getBibloItem , .getHoldList ,
                 .addCheckout , .removeCheckout , .changePassword ,
-                .addHold , .getLibraries , .getProfile :
+                .addHold , .getLibrary  , .getLibraries , .getProfile :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization" : "Basic \(SharedData.instance.getBase64())"
@@ -121,6 +122,8 @@ enum ApiRouter : URLRequestConvertible {
             return "https://library.awresidence.com/api/v1/public/patrons/\(userID)/password"
         case .addHold :
             return "https://library.awresidence.com/api/v1/holds"
+        case .getLibrary(let code) :
+            return "https://library.awresidence.com/api/v1/public/libraries/\(code)"
         case .getLibraries :
             return "https://library.awresidence.com/api/v1/libraries"
         case .getProfile :
@@ -133,7 +136,7 @@ enum ApiRouter : URLRequestConvertible {
         switch self {
         case .getBookDetails , .getHome , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
-                .getBibloItem , .getHoldList, .getLibraries , .getProfile ,
+                .getBibloItem , .getHoldList ,.getLibrary , .getLibraries , .getProfile ,
                 .getLatest :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
