@@ -73,7 +73,6 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource , UICol
         guard let blink = presenter?.getSlider(index: indexPath.row)?.blink else {
             return
         }
-        
         self.navigationController?.pushViewController(SearchVC(blink: blink ), animated: true )
         
     }

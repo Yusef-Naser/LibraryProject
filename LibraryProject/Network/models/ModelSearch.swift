@@ -55,11 +55,10 @@ struct ModelSearch: Codable {
     
     private func getBookNumber (record : ZsRecord?) -> String {
         let data = record?.zsRecordData?.record?.datafield?.filter({$0.tag == "999"}).first
-        
+
         let c = data?.subfield?.getArray().filter({$0.code == "c"}).first
-        
+
         return c?.t ?? ""
-        
         
     }
     
@@ -136,14 +135,14 @@ struct ZsRecordData: Codable {
 
 // MARK: - Record
 struct Record: Codable {
-    let controlfield: Controlfield?
+  //  let controlfield: Controlfield?
     let xsiSchemaLocation: String?
     let xmlns, xmlnsXsi: String?
     let leader: ZsNumberOfRecords?
     let datafield: [Datafield]?
 
     enum CodingKeys: String, CodingKey {
-        case controlfield
+    //    case controlfield
         case xsiSchemaLocation = "@xsi:schemaLocation"
         case xmlns = "@xmlns"
         case xmlnsXsi = "@xmlns:xsi"

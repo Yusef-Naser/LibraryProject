@@ -65,7 +65,7 @@ class LoginView : UIView {
         
         #if DEBUG
             textFieldEmail.text = "app"
-            textFieldPassword.text = "AppUser2022"
+            textFieldPassword.text = "App#er!34User2"
         #endif
         
     }
