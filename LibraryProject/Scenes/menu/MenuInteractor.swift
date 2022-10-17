@@ -30,6 +30,7 @@ class MenuInteractor {
                 return
             }
         }
+        
     }
     
     func removeCheckout (barcode : String , completion : @escaping CompletionHandler<String>) {

@@ -16,7 +16,7 @@ struct ModelSearch: Codable {
     }
     
     func getTitleArray () -> [(String , String)] {
-        let s = zsSearchRetrieveResponse?.zsRecords?.zsRecord
+        let s = zsSearchRetrieveResponse?.zsRecords?.zsRecord?.getValue()
         var arrayStrings : [(String , String)] = []
         for item in s ?? [] {
             let str = getSingleTitle(record: item)
@@ -107,10 +107,49 @@ struct ZsNumberOfRecords: Codable {
 
 // MARK: - ZsRecords
 struct ZsRecords: Codable {
-    let zsRecord: [ZsRecord]?
+    let zsRecord: CustomZsRecords?
 
     enum CodingKeys: String, CodingKey {
         case zsRecord = "zs$record"
+    }
+}
+
+enum CustomZsRecords : Codable {
+    case arrayRecords([ZsRecord]?)
+    case record(ZsRecord?)
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode([ZsRecord].self) {
+            self = .arrayRecords(x)
+            return
+        }
+        if let x = try? container.decode(ZsRecord.self) {
+            self = .record(x)
+            return
+        }
+        throw DecodingError.typeMismatch(CustomZsRecords.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for IDElement"))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .arrayRecords(let x):
+            try container.encode(x)
+        case .record(let x):
+            try container.encode(x)
+        }
+    }
+    func getValue () -> [ZsRecord]? {
+        switch self {
+        case .arrayRecords(let val) :
+            return val
+        case .record(let value) :
+            if let v = value {
+                return [v]
+            }
+            return []
+        }
     }
 }
 

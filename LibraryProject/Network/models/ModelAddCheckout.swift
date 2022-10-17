@@ -50,9 +50,14 @@ import Foundation
 struct ModelAddCheckout: Codable {
     let errors: [ModelError]?
     let status: Int?
+    let error : String? // "{"confirm":{"RENEW_ISSUE":1}}"
 }
 
 // MARK: - Error
 struct ModelError: Codable {
     let message, path: String?
+}
+
+struct ModelConfirm : Codable {
+    let RENEW_ISSUE : Int?
 }

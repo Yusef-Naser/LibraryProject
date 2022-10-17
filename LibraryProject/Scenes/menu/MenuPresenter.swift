@@ -34,7 +34,7 @@ class MenuPresenter : ProMenuPresetner {
         self.view?.showLoading()
         interactor.addCheckout(barcode: barcode , date :date ) { data , error , statusCode in
             self.view?.hideLoading()
-            if data?.status == 201 {
+            if data?.status == 201 || data?.status == 200 || data?.error == "{\"confirm\":{\"RENEW_ISSUE\":1}}" {
                 self.view?.showMessage("success")
             }else {
                 self.view?.showMessage("error")
