@@ -67,8 +67,11 @@ extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
         let item = presenter?.modelItemsBook?[index]
         let callumber = item?.callnumber ?? ""
         let itemType = item?.itemTypeID ?? ""
-        let text = (name ?? "" ) + " - " + callumber + " - " + itemType
-        cell.setTitle(title: text )
+        let externalID = item?.externalID ?? ""
+  
+        let text = (name ?? "" ) + " - " + externalID + " - " + callumber + " - " + itemType
+        cell.setTitle(title: text)
+
     }
 }
 
@@ -84,9 +87,11 @@ extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
         let item = presenter?.modelItemsBook?[indexPath.row]
       //  let holdingLibraryID = item?.holdingLibraryID ?? ""
         let callumber = item?.callnumber ?? ""
+        let externalID = item?.externalID ?? ""
+
         let itemType = item?.itemTypeID ?? ""
-        let text = callumber + " - " + itemType
-        
+        let text = externalID + " - " + callumber + " - " + itemType
+
         cell.setTitle(title: text )
         getLibraryNameByIndex(index: indexPath.row)
         

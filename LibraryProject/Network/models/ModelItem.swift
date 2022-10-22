@@ -13,6 +13,7 @@ struct ModelItem: Codable {
     let checkoutsCount: Int?
     let codedLocationQualifier, collectionCode, copyNumber : StringIntValue?
     let damagedDate: String?
+    
     let damagedStatus: Int?
     let excludeFromLocalHoldsPriority: Bool?
     let extendedSubfields: String?
