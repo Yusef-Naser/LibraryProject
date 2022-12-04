@@ -59,7 +59,7 @@ enum ApiRouter : URLRequestConvertible {
                 "content-type" : "application/json;charset=utf-8",
             ]
         case .getBookDetails , .getCheckoutList , .getSuggestions ,
-                .updateProfile , .addSuggest ,
+                .updateProfile , .addSuggest , .itemsBook ,
                 .getItemByItemID , .getBibloItem , .getHoldList ,
                 .addCheckout , .removeCheckout , .changePassword ,
                 .addHold , .getLibrary  , .getLibraries , .getProfile :
@@ -69,8 +69,8 @@ enum ApiRouter : URLRequestConvertible {
               //  "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
                // "Authorization": "Basic YXBwOkFwcFVzZXIyMDIx" //app:AppUser2021
             ]
-        case .itemsBook :
-            return [:]
+      //  case .itemsBook :
+       //     return [:]
         }
     }
     private var Paths : String {
@@ -89,7 +89,7 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails(let id ) :
             return "https://library.awresidence.com/api/v1/biblios/\(id)"
         case .itemsBook(let id ) :
-            return "https://library.awresidence.com/api/v1/public/biblios/\(id)/items"
+            return "https://library.awresidence.com/api/v1/biblios/\(id)/items"
         case let .search( text , from  , to ) :
             if text == "" {
                 return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"

@@ -87,10 +87,10 @@ struct ModelBook: Codable {
         var f : FieldClass? = nil
         
         for item in fields ?? [] {
-            if item["653"] != nil {
+            if item["650"] != nil {
                 if f == nil {
-                    f = item["653"]?.getValue() as? FieldClass
-                }else if let fff = item["653"]?.getValue() as? FieldClass {
+                    f = item["650"]?.getValue() as? FieldClass
+                }else if let fff = item["650"]?.getValue() as? FieldClass {
                     for i in fff.subfields ?? [] {
                         f?.subfields?.append(i)
                     }

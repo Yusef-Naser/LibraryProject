@@ -18,6 +18,7 @@ struct ModelItem: Codable {
     let excludeFromLocalHoldsPriority: Bool?
     let extendedSubfields: String?
     let externalID, holdingLibraryID: String?
+    let stack: String?
     let holdsCount: Int?
     let homeLibraryID: String?
     let internalNotes : String?
@@ -56,6 +57,7 @@ struct ModelItem: Codable {
         case excludeFromLocalHoldsPriority = "exclude_from_local_holds_priority"
         case extendedSubfields = "extended_subfields"
         case externalID = "external_id"
+        case stack = "stack"
         case holdingLibraryID = "holding_library_id"
         case holdsCount = "holds_count"
         case homeLibraryID = "home_library_id"
