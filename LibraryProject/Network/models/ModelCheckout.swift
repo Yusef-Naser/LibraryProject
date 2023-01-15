@@ -15,6 +15,7 @@ struct ModelCheckoutElement: Codable {
     let itemID: Int?
     let lastRenewedDate: String?
     let libraryID: String
+    let cardnumber: String?
     let note, noteDate: String?
     let noteSeen, onsiteCheckout: Bool?
     let patronID, renewals: Int?
@@ -37,6 +38,7 @@ struct ModelCheckoutElement: Codable {
         case noteSeen = "note_seen"
         case onsiteCheckout = "onsite_checkout"
         case patronID = "patron_id"
+        case cardnumber = "cardnumber"
         case renewals, timestamp
         case unseenRenewals = "unseen_renewals"
     }

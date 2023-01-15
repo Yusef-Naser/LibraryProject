@@ -71,6 +71,8 @@ class DetailBookPresenter : ProDetailBookPresetner {
         view.setPersonalName(name: model.getTitle(type: .personalName))
         view.setPublicationDetails(details: model.getTitle(type: .publicationDetails))
         view.setSubjects(subjects: model.getTitle(type: .subjects))
+        view.setAbstract(abstract: model.getTitle(type: .abstract))
+
         view.DDCClassification(classification: model.getTitle(type: .classificationNumber))
         view.getDescription(des: model.getTitle(type: .description))
     }

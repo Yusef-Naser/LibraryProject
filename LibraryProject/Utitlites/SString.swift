@@ -31,6 +31,9 @@ struct SString {
     static var suggestions : String {return getText(key: "suggestions")}
     static var addSuggest : String {return getText(key: "addSuggest")}
     static var title : String { return getText(key: "title")}
+    
+    static var abstract : String { return getText(key: "abstract")}
+
     static var author : String { return getText(key: "author")}
     static var copyrightDate : String { return getText(key: "copyrightDate")}
     static var publisher : String { return getText(key: "publisher")}
@@ -101,6 +104,7 @@ struct SString {
         "author" : "Author" ,
         "copyrightDate" : "Copyright Date" ,
         "publisher" : "Publisher" ,
+        "abstract" : "Abstract" ,
         "collectionTitle" : "Collection title" ,
         "publicationPlace" : "Publication Place" ,
         "quantity" : "Quantity" ,
@@ -160,6 +164,7 @@ struct SString {
         "author" : "الكاتب" ,
         "copyrightDate" : "تاريخ الاصدار" ,
         "publisher" : "الناشر" ,
+        "abstract" : "الملخص" ,
         "collectionTitle" : "عنوان المجموعه" ,
         "publicationPlace" : "مكان الناشر" ,
         "quantity" : "الكميه" ,
@@ -176,8 +181,8 @@ struct SString {
         "oldPassword" : "كلمه المرور القديمه" ,
         "addHold" : "اضف الي الحجز" ,
         "logout" : "تسجيل خروج" ,
-        "checkin" : "Checkin" ,
-        "checkout" : "حجز",
+        "checkin" : "ارجاع" ,
+        "checkout" : "استعاره",
         "close" : "اغلاق" ,
         "home" : "الرئيسيه" ,
         "favorite" : "المفضله" ,

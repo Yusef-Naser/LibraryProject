@@ -12,6 +12,8 @@ protocol DetailBookViewConfiguration {
     func setPersonalName (name : String?)
     func setPublicationDetails (details : String?)
     func setSubjects (subjects : String?)
+    func subjectsView (abstract : String?)
+    func setAbstract (abstract : String?)
     func DDCClassification (classification : String?)
     func getDescription (des : String?)
     
@@ -65,7 +67,10 @@ class DetailBookView : UIView {
         let l = ViewBookDetail(title: SString.subjects)
         return l
     }()
-    
+    private let abstractView : ViewBookDetail = {
+        let l = ViewBookDetail(title: SString.abstract)
+        return l
+    }()
     private let DDCClassificationView : ViewBookDetail = {
         let l = ViewBookDetail(title: SString.DDCClassification)
         return l
@@ -82,6 +87,7 @@ class DetailBookView : UIView {
         l.axis = .vertical
         
         l.addArrangedSubview(publicationDetails)
+        l.addArrangedSubview(abstractView)
         l.addArrangedSubview(subjectsView)
         l.addArrangedSubview(DDCClassificationView)
         l.addArrangedSubview(getDesciptionView)
@@ -159,6 +165,10 @@ class DetailBookView : UIView {
 }
 
 extension DetailBookView : DetailBookViewConfiguration {
+    func subjectsView(abstract: String?) {
+
+    }
+    
     func setTitle (title : String?) {
         labelTitle.text = title
     }
@@ -174,6 +184,11 @@ extension DetailBookView : DetailBookViewConfiguration {
         subjectsView.setDetails(details: subjects)
     }
     
+    func setAbstract (abstract : String?) {
+        abstractView.setDetails(details: abstract)
+
+    }
+
     func DDCClassification(classification: String?) {
         DDCClassificationView.setDetails(details: classification)
     }

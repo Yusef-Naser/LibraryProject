@@ -11,6 +11,7 @@
 
 enum EnumStringType {
     case title
+    case abstract
     case classificationNumber
     case personalName
     case publicationDetails
@@ -54,6 +55,14 @@ struct ModelBook: Codable {
         return nil
     }
     
+    private func getAbstractObject () -> FieldClass? {
+        for item in fields ?? [] {
+            if item["520"] != nil {
+                return item["520"]?.getValue() as? FieldClass
+            }
+        }
+        return nil
+    }
     private func getPersonalNameObject () -> FieldClass? {
         for item in fields ?? [] {
             if item["100"] != nil {
@@ -182,6 +191,8 @@ struct ModelBook: Codable {
             item = getPersonalNameObject()
         case .title :
             item = getTitleObject()
+        case .abstract :
+            item = getAbstractObject()
         case .publicationDetails :
             item = getPublicationDetailsObject()
         case .subjects :
