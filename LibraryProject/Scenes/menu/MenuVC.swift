@@ -187,7 +187,14 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
         }else if controller.view.tag == TAG_CHECKOUT {
             print(code)
            // self.presenter?.addCheckout(barcode: code)
-            self.createALetWithText(code: code)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.actionCloseScanner()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.createALetWithText(code: code)
+            }
+            
         }
         
         controller.reset()
@@ -203,21 +210,30 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
     
     private func createALetWithText (code : String) {
         
-        mainView.alertView = UIAlertController(title: nil , message: SString.SelectDeliveryDate, preferredStyle: .alert)
+        mainView.alertView = UIAlertController(title: nil , message: "\(SString.SelectDeliveryDate)\n(\(code))", preferredStyle: .alert)
         mainView.alertView?.addTextField { (textField) in
+            textField.tag = 1
             textField.placeholder = SString.SelectDeliveryDate
             textField.text = Date().getDateString(formate: "yyyy-MM-dd", afterPeriodOfMonths: 0)
             textField.inputView = self.mainView.datePicker
             self.mainView.datePicker.addTarget(self, action: #selector(self.handleDatePicker), for: .valueChanged)
         }
         
+        mainView.alertView?.addTextField { (textField) in
+            textField.tag = 2
+            textField.placeholder = SString.cardNumber
+            
+        }
+        
         mainView.alertView?.addAction(UIAlertAction(title: SString.submit , style: .default, handler: { [weak self] (_) in
-            guard let textField = self?.mainView.alertView?.textFields?[0], let userText = textField.text else { return }
+            guard let textField = self?.mainView.alertView?.textFields?.filter({$0.tag == 1}).first, let date = textField.text else { return }
+            guard let textField = self?.mainView.alertView?.textFields?.filter({$0.tag == 2}).first, let cardNumber = textField.text else { return }
            // print("User text: \(userText)")
-            guard userText != "" else {
+            guard date != "" && cardNumber != "" else {
+                self?.showMessage(SString.pleaseAddDateAndCardNumber)
                 return
             }
-            self?.presenter?.addCheckout(barcode: code , date: userText)
+            self?.presenter?.addCheckout(barcode: code , date: date, cardNumber: cardNumber)
         }))
         
         mainView.alertView?.addAction(UIAlertAction(title: SString.cancel , style: .default, handler: nil))
@@ -230,7 +246,7 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
     @objc private func handleDatePicker () {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        self.mainView.alertView?.textFields?[0].text = dateFormatter.string(from: mainView.datePicker.date)
+        self.mainView.alertView?.textFields?.filter({$0.tag == 1}).first?.text = dateFormatter.string(from: mainView.datePicker.date)
     }
     
 }

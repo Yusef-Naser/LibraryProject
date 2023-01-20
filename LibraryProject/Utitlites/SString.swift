@@ -65,7 +65,7 @@ struct SString {
     static var SelectDeliveryDate : String { return getText(key: "SelectDeliveryDate")}
     static var cancel : String { return getText(key: "cancel")}
     static var done : String { return getText(key: "done")}
-    
+    static var pleaseAddDateAndCardNumber : String { return getText(key: "pleaseAddDateAndCardNumber")}
     
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
@@ -133,6 +133,7 @@ struct SString {
         "SelectDeliveryDate" : "Select Delivery Date" ,
         "cancel" : "Cancel" ,
         "done" : "Done" ,
+        "pleaseAddDateAndCardNumber" : "Please add date and card number" ,
         
     ]
     
@@ -193,6 +194,7 @@ struct SString {
         "SelectDeliveryDate" : "اختر تاريخ التسليم" ,
         "cancel" : "الغاء" ,
         "done" : "تم" ,
+        "pleaseAddDateAndCardNumber" : "من فضلك اضف التاريخ و رقم الكارت" ,
     ]
     
 }
