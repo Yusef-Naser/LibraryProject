@@ -45,6 +45,13 @@ class SharedData {
         userDefault.integer(forKey: USER_ID)
     }
     
+    func setUserName (name : String?) {
+        userDefault.setValue(name , forKey: USER_NAME)
+    }
+    func getUserName () -> String? {
+        userDefault.string(forKey: USER_NAME)
+    }
+    
     func removeData() {
         userDefault.removeObject(forKey: USER_ID)
         userDefault.removeObject(forKey: GETAUTH)
