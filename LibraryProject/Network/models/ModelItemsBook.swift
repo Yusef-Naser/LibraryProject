@@ -13,6 +13,7 @@ struct ModelItemsBook: Codable {
 //    let damagedStatus: Int?
 //    let externalID , homeLibraryID: String?
 //    let itemID: Int?
+    var libraryName : String?
     let callnumber: String?
     let holdingLibraryID : String?
     let itemTypeID: String?
@@ -37,6 +38,7 @@ struct ModelItemsBook: Codable {
         case itemTypeID = "item_type_id"
         case externalID = "external_id"
         case stack = "stack"
+        case libraryName = "libraryName"
      //   case location
 //        case lostStatus = "lost_status"
 //        case notForLoanStatus = "not_for_loan_status"

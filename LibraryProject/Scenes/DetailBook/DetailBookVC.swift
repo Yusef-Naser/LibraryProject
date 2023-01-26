@@ -64,6 +64,7 @@ extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
         guard let cell = mainView.fitTableView.cellForRow(at: IndexPath(row: index , section: 0)) as? CellItemBook else {
             return
         }
+        presenter?.modelItemsBook?[index].libraryName = name
         let item = presenter?.modelItemsBook?[index]
         let callumber = item?.callnumber ?? ""
         let itemType = item?.itemTypeID ?? ""
@@ -72,6 +73,7 @@ extension DetailBookVC : ProDetailBookView , NavigationBarDelegate {
 
         let text = (name ?? "" ) + " - " + stack + "- " + externalID + "-" + callumber + " - " + itemType
         cell.setTitle(title: text)
+        mainView.fitTableView.reloadData()
 
     }
 }
@@ -86,14 +88,13 @@ extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellItemBook.getIdentifier() , for: indexPath) as! CellItemBook
         
         let item = presenter?.modelItemsBook?[indexPath.row]
-      //  let holdingLibraryID = item?.holdingLibraryID ?? ""
+        let libraryName = item?.libraryName ?? ""
         let callumber = item?.callnumber ?? ""
         let externalID = item?.externalID ?? ""
         let stack = item?.stack ?? ""
 
         let itemType = item?.itemTypeID ?? ""
-        let text = externalID + " - " + stack + "- " + callumber + " - " + itemType
-
+        let text = libraryName + " - " + stack + "- " + externalID + "-" + callumber + " - " + itemType
         cell.setTitle(title: text )
         getLibraryNameByIndex(index: indexPath.row)
         

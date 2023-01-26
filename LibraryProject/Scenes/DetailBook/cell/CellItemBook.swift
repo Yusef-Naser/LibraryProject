@@ -26,6 +26,7 @@ class CellItemBook : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style , reuseIdentifier: reuseIdentifier)
         initViews()
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +44,7 @@ class CellItemBook : UITableViewCell {
         contentView.addSubview(labelName)
         
       //  imageViewItem.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 , width: 100 , height: 150 )
-        labelName.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 8 , paddingRight: 8 )
+        labelName.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor  , paddingTop: 8 , paddingLeft: 8 , paddingBottom: 16 , paddingRight: 8 )
         
     }
     
