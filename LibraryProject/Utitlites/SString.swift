@@ -130,7 +130,7 @@ struct SString {
         "changeLanguage" : "Change Language" ,
         "settings" : "Settings" ,
         "items" : "Items" ,
-        "SelectDeliveryDate" : "Select Delivery Date" ,
+        "SelectDeliveryDate" : "Select Date of return" ,
         "cancel" : "Cancel" ,
         "done" : "Done" ,
         "pleaseAddDateAndCardNumber" : "Please add date and card number" ,

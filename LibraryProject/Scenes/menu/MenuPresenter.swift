@@ -46,7 +46,7 @@ class MenuPresenter : ProMenuPresetner {
         self.view?.showLoading()
         interactor.removeCheckout(barcode: barcode) { data , error , statusCode in
             self.view?.hideLoading()
-            if data == "" {
+            if data == "" || statusCode == 200 || statusCode == 201 {
                 self.view?.showMessage("success")
             }else {
                 self.view?.showMessage( "error")

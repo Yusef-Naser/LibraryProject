@@ -222,7 +222,7 @@ extension MenuVC : BarcodeScannerCodeDelegate , BarcodeScannerErrorDelegate ,
         mainView.alertView?.addTextField { (textField) in
             textField.tag = 2
             textField.placeholder = SString.cardNumber
-            
+            textField.text = "\(SharedData.instance.getUserID())"
         }
         
         mainView.alertView?.addAction(UIAlertAction(title: SString.submit , style: .default, handler: { [weak self] (_) in
