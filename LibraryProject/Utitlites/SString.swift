@@ -66,7 +66,9 @@ struct SString {
     static var cancel : String { return getText(key: "cancel")}
     static var done : String { return getText(key: "done")}
     static var pleaseAddDateAndCardNumber : String { return getText(key: "pleaseAddDateAndCardNumber")}
-    
+    static var ShelvingControlNumber : String { return getText(key: "ShelvingControlNumber")}
+    static var barcode : String { return getText(key: "barcode")}
+
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
          return   dicEN[key] ?? key
@@ -126,13 +128,15 @@ struct SString {
         "close" : "Close" ,
         "home" : "Home" ,
         "favorite" : "Favorite" ,
-        "callNumber" : "Call number" ,
+        "callNumber" : "Call Number" ,
+        "ShelvingControlNumber" :  "Shelving Control Number" ,
         "changeLanguage" : "Change Language" ,
         "settings" : "Settings" ,
         "items" : "Items" ,
         "SelectDeliveryDate" : "Select Date of return" ,
         "cancel" : "Cancel" ,
         "done" : "Done" ,
+        "barcode" : "Bar Code" ,
         "pleaseAddDateAndCardNumber" : "Please add date and card number" ,
         
     ]
@@ -188,12 +192,14 @@ struct SString {
         "home" : "الرئيسيه" ,
         "favorite" : "المفضله" ,
         "callNumber" : "رقم الطلب" ,
+        "ShelvingControlNumber" : "رقم الرف" ,
         "changeLanguage" : "تفير اللغه" ,
         "settings" : "الاعدادات" ,
         "items" : "العناصر" ,
         "SelectDeliveryDate" : "اختر تاريخ التسليم" ,
         "cancel" : "الغاء" ,
         "done" : "تم" ,
+        "barcode" : "البار كود" ,
         "pleaseAddDateAndCardNumber" : "من فضلك اضف التاريخ و رقم الكارت" ,
     ]
     
