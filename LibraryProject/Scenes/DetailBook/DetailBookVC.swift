@@ -94,7 +94,7 @@ extension DetailBookVC : UITableViewDelegate , UITableViewDataSource {
         let stack = item?.stack ?? ""
 
         let itemType = item?.itemTypeID ?? ""
-        let text = SString.library + " : " + libraryName + "\n" +  SString.barcode + " : " + externalID + "\n" + SString.callNumber + " : " + callumber + "\n" + SString.ShelvingControlNumber + " : " + stack + "\n" + SString.itemType + " : " + itemType + "\n--------------------\n";
+        let text = SString.library + " : " + libraryName + "\n" +  SString.barcode + " : " + externalID + "\n" + SString.callNumber + " : " + callumber + "\n" + SString.ShelvingControlNumber + " : " + stack + "\n" + SString.itemType + " : " + itemType ;
         
         cell.setTitle(title: text )
         getLibraryNameByIndex(index: indexPath.row)
