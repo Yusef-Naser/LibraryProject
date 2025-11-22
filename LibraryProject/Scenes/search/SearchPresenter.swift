@@ -18,6 +18,7 @@ protocol ProSearchPresetner {
     func callPagination (index : Int )
     var selectedFilter : String {get set}
     func setSelectedFilter (filter : String)
+    func deleteSelectedFilter ()
 }
 
 
@@ -103,4 +104,9 @@ class SearchPresenter : ProSearchPresetner {
         getSearch(text: textSearch)
     }
     
+    func deleteSelectedFilter() {
+        self.dataArray = []
+        selectedFilter = ""
+        getSearch(text: textSearch)
+    }
 }

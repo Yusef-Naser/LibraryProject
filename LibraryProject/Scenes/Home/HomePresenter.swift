@@ -18,6 +18,7 @@ protocol ProHomePresetner {
     func getLatest ()
     func getSlider(index : Int) -> ModelSlider?
     func getSliderCount () -> Int
+    func viewWillAppear()
     
 }
 
@@ -30,6 +31,8 @@ class HomePresenter : ProHomePresetner {
     private let interactor = HomeInteractor()
     
     private var sliderArray : [ModelSlider] = []
+    private var modelHome : ModelHome? = nil
+    private var latest : ModelArrayLatest = []
     
     init(view : ProHomeView ) {
         self.view = view
@@ -45,6 +48,7 @@ class HomePresenter : ProHomePresetner {
             guard let data = data else {
                 return
             }
+            self.modelHome = data
           //  self.view?.getListNewBooks(list: data.menu?.homePage?.latest ?? [])
             self.view?.getListFeatureBooks(list: data.menu?.homePage?.suggested ?? [])
             self.sliderArray = data.menu?.homePage?.silder ?? []
@@ -72,6 +76,7 @@ class HomePresenter : ProHomePresetner {
                 data.remove(at: index)
                 data.insert(item, at: index)
             }
+            self.latest = data
             self.view?.getListNewBooks(list: data)
         }
     }
@@ -85,6 +90,11 @@ class HomePresenter : ProHomePresetner {
     
     func getSliderCount() -> Int {
         sliderArray.count
+    }
+
+    func viewWillAppear() {
+        self.view?.getListFeatureBooks(list: modelHome?.menu?.homePage?.suggested ?? [])
+        self.view?.getListNewBooks(list: latest)
     }
     
 }

@@ -18,12 +18,12 @@ class SectionBooksView : UIView {
     var arrayItems : [ModelLatest] = [] {
         didSet {
             collectionView.reloadData()
+            
         }
     }
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
-        l.font = UIFont.boldSystemFont(ofSize: 20)
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_20)
         return l
     }()
     
@@ -39,7 +39,7 @@ class SectionBooksView : UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let l = UICollectionView(frame: .zero , collectionViewLayout: layout)
-        l.backgroundColor = .white
+        l.backgroundColor = .clear
         l.register(CellBook.self , forCellWithReuseIdentifier: CellBook.getIdentifier())
         
         return l
@@ -66,6 +66,7 @@ class SectionBooksView : UIView {
         addViews()
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.backgroundColor = .clear
     }
     
     private func addViews () {
@@ -107,7 +108,7 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         }) {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
         }else {
-            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "Path 37"), for: .normal)
+            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
         }
         
         return cell
@@ -123,11 +124,11 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         guard let index = collectionView.indexPath(for: cell ) else {
             return
         }
-        if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "Path 37") {
+        if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
             SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: arrayItems[index.row]))
         }else {
-            cell.buttonFavorite.setImage( #imageLiteral(resourceName: "Path 37") , for: .normal)
+            cell.buttonFavorite.setImage( #imageLiteral(resourceName: "unfavorite") , for: .normal)
             SharedData.instance.removeFavorite(id: arrayItems[index.row].biblionumber ?? 0)
         }
     }

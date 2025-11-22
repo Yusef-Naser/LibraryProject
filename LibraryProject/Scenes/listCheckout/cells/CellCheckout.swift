@@ -18,62 +18,55 @@ class CellCheckout : UITableViewCell {
         return l
     }()
     
-    let labelTitle : UILabel = {
-        let l = UILabel()
+    let labelTitle : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_16)
         l.text = SString.title
         l.numberOfLines = 0
         l.textAlignment = .center
-        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
-    let labelAuthor : UILabel = {
-        let l = UILabel()
+    let labelAuthor : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_16)
         l.text = SString.author + ":"
         l.numberOfLines = 0
-        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
-    let labelAuthorValue : UILabel = {
-        let l = UILabel()
+    let labelAuthorValue : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_16)
         l.text = SString.author
         l.numberOfLines = 0
-        l.font = UIFont.systemFont(ofSize: 15)
         return l
     }()
     
-    let labelItemType : UILabel = {
-        let l = UILabel()
+    let labelItemType : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_16)
         l.text = SString.itemType + ":"
         l.numberOfLines = 0
-        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
-    let labelItemTypeValue : UILabel = {
-        let l = UILabel()
+    let labelItemTypeValue : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_16)
         l.text = "itemType"
         l.numberOfLines = 0
-        l.font = UIFont.systemFont(ofSize: 15)
         return l
     }()
     
     
-    let labelCallNumber : UILabel = {
-        let l = UILabel()
+    let labelCallNumber : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_16)
         l.text = SString.callNumber + ":"
         l.numberOfLines = 0
-        l.font = UIFont.boldSystemFont(ofSize: 15)
         return l
     }()
     
     
-    let labelCallNumberValue : UILabel = {
-        let l = UILabel()
+    let labelCallNumberValue : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_16)
         l.text = "call number"
         l.numberOfLines = 0
-        l.font = UIFont.systemFont(ofSize: 15)
         return l
     }()
     

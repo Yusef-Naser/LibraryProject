@@ -21,12 +21,12 @@ class LButton : UIButton {
     
     private func initViews () {
         addViews()
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        self.titleLabel?.font = UIFont.regular(size: .size_20)
         self.layer.cornerRadius = 10
         self.backgroundColor = Colors.colorPrimary
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.setTitleColor(.black , for: .normal)
+        self.setTitleColor(.white , for: .normal)
         
     }
     

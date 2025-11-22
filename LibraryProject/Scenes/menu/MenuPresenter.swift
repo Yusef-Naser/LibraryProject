@@ -15,7 +15,7 @@ protocol ProMenuPresetner {
     func addCheckout (barcode: String , date : String , cardNumber : String)
     func removeCheckout (barcode : String)
     
-    func getListMenu () -> [String]
+    func getListMenu () -> [(String ,  String)]
     
 }
 
@@ -54,20 +54,22 @@ class MenuPresenter : ProMenuPresetner {
         }
     }
     
-    func getListMenu() -> [String] {
+    func getListMenu() -> [( String , String)] {
         if SharedData.instance.getUserID() == 0 {
             return [
-                SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
-                SString.login]
+                ( SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" , "menu_lang" ),
+                (SString.login , "menu_logout")
+                ]
         }else {
-            return [SString.changePassword ,
-                    SString.profile ,
-                    SString.checkoutList ,
-                    "" ,
-                    SString.holdList ,
-                    SString.suggestions ,
-                    SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" ,
-                    SString.logout]
+            return [ (SString.changePassword , "menu_password") ,
+                    (SString.profile , "menu_user"),
+                    (SString.checkoutList , "menu_checkoutList" ),
+                    ("" , "") ,
+                    (SString.holdList , "menu_hold"),
+                    ( SString.suggestions , "menu_book" ),
+                    (SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" , "menu_lang"),
+                    (SString.logout, "menu_logout")
+            ]
         }
     }
     

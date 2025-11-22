@@ -8,13 +8,14 @@
 struct SString {
     
     static var filter : String { return getText(key: "filter") }
-    static var search : String {return getText(key: "search")}
+    static var searchByBookName : String {return getText(key: "SearchByBookName")}
     static var viewAll : String {return getText(key: "viewAll")}
     static var newBooks : String {return getText(key: "newBooks")}
     static var featureBooks : String {return getText(key: "featureBooks")}
     static var login : String {return getText(key: "login")}
     static var email : String {return getText(key: "email")}
     static var password : String {return getText(key: "password")}
+    static var newPassword : String {return getText(key: "newPassword")}
     static var bookDetails : String {return getText(key: "bookDetails")}
     static var publicationDetails : String {return getText(key: "publicationDetails")}
     static var subjects : String {return getText(key: "subjects")}
@@ -31,6 +32,7 @@ struct SString {
     static var suggestions : String {return getText(key: "suggestions")}
     static var addSuggest : String {return getText(key: "addSuggest")}
     static var title : String { return getText(key: "title")}
+    static var titleBook : String { return getText(key: "titleBook")}
     
     static var abstract : String { return getText(key: "abstract")}
 
@@ -61,6 +63,7 @@ struct SString {
     static var callNumber : String {return getText(key: "callNumber")}
     static var changeLanguage : String {return getText(key: "changeLanguage")}
     static var settings : String {return getText(key: "settings")}
+    static var more : String {return getText(key: "more")}
     static var items : String {return getText(key: "items")}
     static var SelectDeliveryDate : String { return getText(key: "SelectDeliveryDate")}
     static var cancel : String { return getText(key: "cancel")}
@@ -68,6 +71,18 @@ struct SString {
     static var pleaseAddDateAndCardNumber : String { return getText(key: "pleaseAddDateAndCardNumber")}
     static var ShelvingControlNumber : String { return getText(key: "ShelvingControlNumber")}
     static var barcode : String { return getText(key: "barcode")}
+    static var enterYourUsernameAndPassword : String { return getText(key: "enterYourUsernameAndPassword")}
+    static var goodMorning : String { return getText(key: "goodMorning")}
+    static var welcomeTawazun : String { return getText(key: "welcomeTawazun")}
+    static var by : String { return getText(key: "by")}
+    static var aboutTheBook : String { return getText(key: "aboutTheBook")}
+    static var youHavenotMarkedAnyBookYet : String { return getText(key: "youHavenotMarkedAnyBookYet")}
+    static var noResultsFoundTryAnotherKeyboards : String { return getText(key: "noResultsFoundTryAnotherKeyboards")}
+    static var type : String { return getText(key: "type")}
+    static var select : String { return getText(key: "select")}
+    
+    
+    
 
     private static func getText (key : String) -> String {
         if SharedData.instance.getLangauge().contains(LanguageEnum.en.rawValue) {
@@ -80,13 +95,14 @@ struct SString {
   
     private static let dicEN : [String : String] = [
         "filter" : "Filter" ,
-        "search" : "Search" ,
+        "SearchByBookName" : "Search by book name, author..." ,
         "viewAll" : "View all" ,
         "newBooks" : "New books" ,
         "featureBooks" : "Feature books" ,
         "login" : "Login" ,
         "email" : "Email" ,
         "password" : "Password" ,
+        "newPassword" : "New Password" ,
         "bookDetails" : "Book details" ,
         "publicationDetails" : "publication Details" ,
         "subjects" : "Subjects" ,
@@ -103,6 +119,7 @@ struct SString {
         "suggestions" : "Suggestions" ,
         "addSuggest" : "Add Suggest" ,
         "title" : "Title" ,
+        "titleBook" : "Title Book" ,
         "author" : "Author" ,
         "copyrightDate" : "Copyright Date" ,
         "publisher" : "Publisher" ,
@@ -119,8 +136,8 @@ struct SString {
         "city" : "City" ,
         "categoryID" : "Category ID" ,
         "libraryID" : "Library ID" ,
-        "repeatedPassword" : "Repeated Password" ,
-        "oldPassword" : "Old Password" ,
+        "repeatedPassword" : "Confirm New Password" ,
+        "oldPassword" : "Current Password" ,
         "addHold" : "Add hold" ,
         "logout" : "Logout" ,
         "checkin" : "Checkin" ,
@@ -132,24 +149,35 @@ struct SString {
         "ShelvingControlNumber" :  "Shelving Control Number" ,
         "changeLanguage" : "Change Language" ,
         "settings" : "Settings" ,
+        "more" : "More" ,
         "items" : "Items" ,
         "SelectDeliveryDate" : "Select Date of return" ,
         "cancel" : "Cancel" ,
         "done" : "Done" ,
         "barcode" : "Bar Code" ,
         "pleaseAddDateAndCardNumber" : "Please add date and card number" ,
+        "enterYourUsernameAndPassword" : "Enter your username and password." ,
+        "goodMorning" : "Good Morning." ,
+        "welcomeTawazun" : "Welcome to TAWAZUN!." ,
+        "by" : "By" ,
+        "aboutTheBook" : "About The Book",
+        "youHavenotMarkedAnyBookYet" : "You Haven't marked any book yet",
+        "noResultsFoundTryAnotherKeyboards" : "No Results Found\nTry Another Keyboards",
+        "type" : "Type",
+        "select" : "Select",
         
     ]
     
     private static let dicAR : [String : String] = [
         "filter" : "فلتر" ,
-        "search" : "البحث" ,
+        "SearchByBookName" : "البحث حسب اسم الكتاب أو المؤلف..." ,
         "viewAll" : "مشاهده الكل" ,
         "newBooks" : "الكتب الجديده" ,
         "featureBooks" : "الكتب المميزه" ,
         "login" : "تسجيل دخول" ,
         "email" : "ايميل" ,
         "password" : "كلمه المرور" ,
+        "newPassword" : "كلمه المرور الجديدة" ,
         "bookDetails" : "تفاصيل الكتاب" ,
         "publicationDetails" : "تفاصيل الناشر" ,
         "subjects" : "الموضوعات" ,
@@ -166,6 +194,7 @@ struct SString {
         "suggestions" : "الاقتراحات" ,
         "addSuggest" : "اضف اقتراح" ,
         "title" : "العنوان" ,
+        "titleBook" : "عنوان الكتاب" ,
         "author" : "الكاتب" ,
         "copyrightDate" : "تاريخ الاصدار" ,
         "publisher" : "الناشر" ,
@@ -182,8 +211,8 @@ struct SString {
         "city" : "المدينه" ,
         "categoryID" : "الفئه" ,
         "libraryID" : "المكتبه" ,
-        "repeatedPassword" : "تكرار كلمه المرور" ,
-        "oldPassword" : "كلمه المرور القديمه" ,
+        "repeatedPassword" : "تأكيد كلمة المرور الجديدة" ,
+        "oldPassword" : "كلمه المرور الحالية" ,
         "addHold" : "اضف الي الحجز" ,
         "logout" : "تسجيل خروج" ,
         "checkin" : "ارجاع" ,
@@ -195,12 +224,23 @@ struct SString {
         "ShelvingControlNumber" : "رقم الرف" ,
         "changeLanguage" : "تفير اللغه" ,
         "settings" : "الاعدادات" ,
+        "more" : "اكثر" ,
         "items" : "العناصر" ,
         "SelectDeliveryDate" : "اختر تاريخ التسليم" ,
         "cancel" : "الغاء" ,
         "done" : "تم" ,
         "barcode" : "البار كود" ,
         "pleaseAddDateAndCardNumber" : "من فضلك اضف التاريخ و رقم الكارت" ,
+        "enterYourUsernameAndPassword" : "أدخل اسم المستخدم وكلمة المرور." ,
+        "goodMorning" : "صباح الخير" ,
+        "welcomeTawazun" : "مرحبا بك في TAWAZUN!." ,
+        "by" : "بواسطة" ,
+        "aboutTheBook" : "عن الكتاب" ,
+        "youHavenotMarkedAnyBookYet" : "لم تقم بإضافة أي كتاب إلى المفضلة بعد",
+        "noResultsFoundTryAnotherKeyboards" : "لم يتم العثور على نتائج\nجرب لوحة مفاتيح أخرى",
+        "type" : "اكتب",
+        "select" : "اختر",
+
     ]
     
 }

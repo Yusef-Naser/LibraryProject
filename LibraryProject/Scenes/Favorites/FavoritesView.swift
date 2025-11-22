@@ -10,19 +10,29 @@ import UIKit
 
 class FavoritesView : UIView {
     
-    private let navigation : NavigationBar = {
-        let l = NavigationBar()
-        l.labelTitle.text = SString.favorite
+    let topSafeArea = UIApplication.shared.keyWindow?.safeAreaInsets.top
+    
+    private let titleFavorite : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_20)
+        l.text = SString.favorite
         return l
     }()
     
-    let collectionView : UICollectionView = {
-        let layout = ResizingFlowLayout(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
-        layout.height = 250
-        
-        let l = UICollectionView(frame: .zero , collectionViewLayout: layout)
-        l.backgroundColor = .white
-        l.register(CellBook.self , forCellWithReuseIdentifier: CellBook.getIdentifier())
+//    let collectionView : UICollectionView = {
+//        let layout = ResizingFlowLayout(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
+//        layout.height = 250
+//        
+//        let l = UICollectionView(frame: .zero , collectionViewLayout: layout)
+//        l.backgroundColor = .white
+//        l.register(FavoriteCell.self , forCellWithReuseIdentifier: FavoriteCell.getIdentifier())
+//        return l
+//    }()
+    
+    let tableView : UITableView = {
+        let l = UITableView()
+        l.tableFooterView = UIView()
+        l.register(FavoriteCell.self , forCellReuseIdentifier: FavoriteCell.getIdentifier() )
+        l.separatorStyle = .none
         return l
     }()
 
@@ -41,19 +51,18 @@ class FavoritesView : UIView {
     }
     
     private func addViews () {
-        addSubview(navigation)
-        addSubview(collectionView)
+        addSubview(titleFavorite)
+        addSubview(tableView)
         
-        navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        collectionView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
+        titleFavorite.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: (topSafeArea ?? 0) + 16 , paddingLeft: 16 )
+        tableView.anchor(top: titleFavorite.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         
     }
     
     
     func setDelegates (delegate : FavoritesVC?) {
-        collectionView.delegate = delegate
-        collectionView.dataSource = delegate
-        navigation.delegateNavigation = delegate
+        tableView.delegate = delegate
+        tableView.dataSource = delegate
     }
     
     

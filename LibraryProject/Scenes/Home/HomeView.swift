@@ -22,12 +22,25 @@ class HomeView : UIView {
     
     var imageBackground : UIImageView = {
         let v = UIImageView()
-        v.image = #imageLiteral(resourceName: "flower")
+        v.image = UIImage(named: "background")
         v.contentMode = .scaleAspectFill
         v.layer.cornerRadius = 10
         v.clipsToBounds = true 
         return v
     }()
+    
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_20)
+        l.text = SString.goodMorning
+        return l
+    }()
+    
+    private let labelSubTitle : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_14)
+        l.text = SString.welcomeTawazun
+        return l
+    }()
+    
     
     private let filterView : FilterView = {
         let l = FilterView()
@@ -62,7 +75,11 @@ class HomeView : UIView {
         return s
     }()
     
-    private let parentView = UIView ()
+    lazy private var parentView : UIView = {
+        let l = UIView ()
+        l.backgroundColor = UIColor.clear
+        return l
+    }()
     
     let collectioViewSlider : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -71,7 +88,7 @@ class HomeView : UIView {
         layout.minimumLineSpacing = 5
         let l = UICollectionView(frame: .zero , collectionViewLayout: layout)
         l.showsHorizontalScrollIndicator = false
-        l.backgroundColor = .white
+        l.backgroundColor = .clear
         l.register( CellSlider.self , forCellWithReuseIdentifier: CellSlider.getIdentifier())
         
         return l
@@ -124,16 +141,23 @@ class HomeView : UIView {
     
     private func addViews () {
         addSubview(imageBackground)
-        addSubview(stackViewSearch)
+        addSubview(labelTitle)
+        addSubview(labelSubTitle)
         
+        addSubview(stackViewSearch)
         addSubview(scrollView)
         
         parentView.addSubview(collectioViewSlider)
         parentView.addSubview(stackSectionBooks)
         parentView.addSubview(imageViewFooter)
         
-        imageBackground.anchor(top: topAnchor , leading: leadingAnchor, trailing: trailingAnchor , height: 100 )
-        stackViewSearch.anchor(top: imageBackground.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: -20 , paddingLeft: 16 , paddingRight: 16, height: 40 )
+        imageBackground.anchor(top: topAnchor , leading: leadingAnchor, bottom: self.bottomAnchor, trailing: trailingAnchor )
+        
+        labelTitle.anchor(top: self.safeAreaLayoutGuide.topAnchor , leading: self.leadingAnchor , trailing: self.trailingAnchor , paddingTop: 8 , paddingLeft: 16 , paddingRight: 16)
+        
+        labelSubTitle.anchor(top: labelTitle.bottomAnchor , leading: self.leadingAnchor , trailing: self.trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 )
+        
+        stackViewSearch.anchor(top: labelSubTitle.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 20 , paddingLeft: 16 , paddingRight: 16 )
         
         scrollView.anchor(top: stackViewSearch.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor )
         

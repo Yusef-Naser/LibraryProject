@@ -11,7 +11,8 @@ class SearchItemView : UIView {
     
     let textField : UITextField = {
         let l = UITextField()
-        l.placeholder = SString.search
+        l.placeholder = SString.searchByBookName
+        l.font = UIFont.regular(size: .size_16)
         return l
     }()
     
@@ -20,6 +21,8 @@ class SearchItemView : UIView {
         l.image = #imageLiteral(resourceName: "search")
         return l
     }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,10 +36,15 @@ class SearchItemView : UIView {
     
     private func initViews () {
         addViews()
-        self.backgroundColor = Colors.grayColors
+        self.backgroundColor = .white
         self.layer.cornerRadius = 10
         self.isUserInteractionEnabled = true
         textField.returnKeyType = .search
+        
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 5
+        self.layer.borderColor = Colors.colorBorder.cgColor
+        self.layer.masksToBounds = true
     }
     
     private func addViews () {
@@ -44,13 +52,21 @@ class SearchItemView : UIView {
         addSubview(textField)
         addSubview(iconSearch)
         
-        textField.anchor(top: topAnchor , leading: leadingAnchor , bottom: bottomAnchor , paddingTop: 8, paddingLeft: 8 , paddingBottom: 8 , height: 50 )
-        iconSearch.anchor( leading: textField.trailingAnchor , trailing: trailingAnchor, centerY: textField.centerYAnchor , paddingLeft: 8 , paddingRight: 8 , width: 25 , height: 25 )
+        textField.anchor(top: topAnchor  , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8 , paddingBottom: 8, paddingRight: 8 , height: 40 )
+        iconSearch.anchor( leading: leadingAnchor , trailing: textField.leadingAnchor, centerY: textField.centerYAnchor , paddingLeft: 8 , paddingRight: 8 , width: 25 , height: 25 )
         
     }
     
     func disableSearchText () {
         textField.isEnabled = false
+        disableBorder()
     }
     
+    func enableBorder() {
+        self.layer.borderColor = Colors.colorPrimary.cgColor
+    }
+    
+    func disableBorder() {
+        self.layer.borderColor = Colors.colorBorder.cgColor
+    }
 }

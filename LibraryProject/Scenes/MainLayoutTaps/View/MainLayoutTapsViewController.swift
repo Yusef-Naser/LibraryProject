@@ -68,7 +68,7 @@ class MainLayoutTapsViewController: UITabBarController{
         
         home.tabBarItem = UITabBarItem(title: NSLocalizedString(SString.home, comment: ""), image:#imageLiteral(resourceName: "Path 2"), selectedImage: nil)
         setting.tabBarItem = UITabBarItem(title: SString.settings, image: #imageLiteral(resourceName: "Path 4"), selectedImage: nil)
-        favourite.tabBarItem = UITabBarItem(title: SString.favorite, image: #imageLiteral(resourceName: "Path 37"), selectedImage: nil)
+        favourite.tabBarItem = UITabBarItem(title: SString.favorite, image: #imageLiteral(resourceName: "unfavorite"), selectedImage: nil)
         self.viewControllers = [favourite,home, setting]
         self.selectedIndex = 1
         tabBar.items?[1].image = nil

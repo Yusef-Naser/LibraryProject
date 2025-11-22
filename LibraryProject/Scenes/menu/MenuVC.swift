@@ -34,6 +34,9 @@ class MenuVC : BaseVC<MenuView> {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
+        mainView.setUserID(id: "UserID: \(SharedData.instance.getUserID())")
+        mainView.setUserName(name: SharedData.instance.getUserName())
+        
     }
     
     
@@ -95,19 +98,19 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellMenu.getIdentifier() , for: indexPath) as! CellMenu
-        guard presenter?.getListMenu()[indexPath.row] != "" else {
+        guard presenter?.getListMenu()[indexPath.row].0 != "" else {
             cell.showButtons()
             cell.delegateCell = self
             return cell
         }
-        cell.setTitle(title: presenter?.getListMenu()[indexPath.row]  )
+        cell.setTitle(title: presenter?.getListMenu()[indexPath.row].0 , icon: presenter?.getListMenu()[indexPath.row].1  )
         
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch presenter?.getListMenu()[indexPath.row] {
+        switch presenter?.getListMenu()[indexPath.row].0 {
         case SString.changePassword:
             self.navigationController?.pushViewController(ChangePasswordVC() , animated: true)
         case SString.profile :

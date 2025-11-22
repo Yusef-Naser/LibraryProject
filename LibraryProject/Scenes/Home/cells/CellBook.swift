@@ -23,15 +23,15 @@ class CellBook : UICollectionViewCell {
         return l
     }()
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_16)
         
         return l
     }()
     
     let buttonFavorite : UIButton = {
         let l = UIButton()
-        l.setImage(#imageLiteral(resourceName: "Path 37"), for: .normal )
+        l.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal )
         return l
     }()
     
@@ -61,7 +61,7 @@ class CellBook : UICollectionViewCell {
         labelTitle.anchor( leading: contentView.leadingAnchor , bottom: contentView.bottomAnchor , trailing: contentView.trailingAnchor , paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         labelTitle.heightAnchor.constraint(equalToConstant: 30).isActive = true 
         
-        buttonFavorite.anchor(top: contentView.topAnchor , leading: contentView.leadingAnchor , paddingTop: 8, paddingLeft: 8 , width: 40 , height: 40 )
+        buttonFavorite.anchor(top: contentView.topAnchor , trailing: contentView.trailingAnchor , paddingTop: 8, paddingRight: 8 , width: 40 , height: 40 )
         
     }
     

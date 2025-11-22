@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,11 @@
 		2C51F83E27C0D699007E40AF /* ModelHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F83D27C0D699007E40AF /* ModelHold.swift */; };
 		2C51F84227C0E244007E40AF /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F84127C0E244007E40AF /* SharedData.swift */; };
 		2C51F84427C1136D007E40AF /* ModelBookV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F84327C1136D007E40AF /* ModelBookV2.swift */; };
+		2C5264A42EBEB31600177437 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264A32EBEB31600177437 /* BackButton.swift */; };
+		2C5264A82EBF736300177437 /* LLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264A72EBF736300177437 /* LLabel.swift */; };
+		2C5264AA2EBF87FA00177437 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264A92EBF87FA00177437 /* MainViewController.swift */; };
+		2C5264AC2EBF881A00177437 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264AB2EBF881A00177437 /* MainView.swift */; };
+		2C5264AE2EBF885C00177437 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264AD2EBF885C00177437 /* TabBar.swift */; };
 		2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */; };
 		2C7066A727BB5E1800825EAE /* ModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066A627BB5E1800825EAE /* ModelItem.swift */; };
 		2C7066AB27BB6CC100825EAE /* ModelListHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066AA27BB6CC100825EAE /* ModelListHold.swift */; };
@@ -92,6 +97,8 @@
 		2CC1AE6A27B44CFE0067A3B3 /* CellCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6927B44CFE0067A3B3 /* CellCheckout.swift */; };
 		2CC1AE6C27B459410067A3B3 /* ModelCheckout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6B27B459410067A3B3 /* ModelCheckout.swift */; };
 		2CC1AE6E27B4599C0067A3B3 /* StringIntValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1AE6D27B4599C0067A3B3 /* StringIntValue.swift */; };
+		2CCAD9D32EC77052007EE6C2 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCAD9D22EC77052007EE6C2 /* ExpandableView.swift */; };
+		2CCAD9DE2EC9E731007EE6C2 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCAD9DD2EC9E731007EE6C2 /* EmptyView.swift */; };
 		2CCE762527B848E20084134D /* LTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE762427B848E20084134D /* LTextField.swift */; };
 		2CE5D6DB27989E0D00BBCA15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */; };
 		2CE5D6DF27989E0D00BBCA15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE5D6DE27989E0D00BBCA15 /* ViewController.swift */; };
@@ -140,6 +147,11 @@
 		2C51F83D27C0D699007E40AF /* ModelHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHold.swift; sourceTree = SOURCE_ROOT; };
 		2C51F84127C0E244007E40AF /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		2C51F84327C1136D007E40AF /* ModelBookV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBookV2.swift; sourceTree = "<group>"; };
+		2C5264A32EBEB31600177437 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		2C5264A72EBF736300177437 /* LLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLabel.swift; sourceTree = "<group>"; };
+		2C5264A92EBF87FA00177437 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2C5264AB2EBF881A00177437 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2C5264AD2EBF885C00177437 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
 		2C7066A627BB5E1800825EAE /* ModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItem.swift; sourceTree = "<group>"; };
 		2C7066AA27BB6CC100825EAE /* ModelListHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListHold.swift; sourceTree = "<group>"; };
@@ -206,6 +218,8 @@
 		2CC1AE6927B44CFE0067A3B3 /* CellCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCheckout.swift; sourceTree = "<group>"; };
 		2CC1AE6B27B459410067A3B3 /* ModelCheckout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCheckout.swift; sourceTree = "<group>"; };
 		2CC1AE6D27B4599C0067A3B3 /* StringIntValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIntValue.swift; sourceTree = "<group>"; };
+		2CCAD9D22EC77052007EE6C2 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
+		2CCAD9DD2EC9E731007EE6C2 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		2CCE762427B848E20084134D /* LTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTextField.swift; sourceTree = "<group>"; };
 		2CE5D6D727989E0D00BBCA15 /* LibraryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE5D6DA27989E0D00BBCA15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +247,12 @@
 		E5D2EF749A950304DAFD1DF8 /* Pods_LibraryProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LibraryProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2C8473412EC36E010006FAB1 /* fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fonts; sourceTree = "<group>"; };
+		2CCAD9D42EC78D2F007EE6C2 /* cells */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = cells; sourceTree = "<group>"; };
+		2CCAD9E42ECB3E60007EE6C2 /* viewFilter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = viewFilter; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		2CE5D6D427989E0D00BBCA15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -248,6 +268,7 @@
 		05B3D247279C3593007AB73C /* MainLayoutTaps */ = {
 			isa = PBXGroup;
 			children = (
+				2C5264AD2EBF885C00177437 /* TabBar.swift */,
 				05B3D248279C3593007AB73C /* TabBarCircleView.swift */,
 				05B3D249279C3593007AB73C /* CustomizedTabBar.swift */,
 				05B3D24A279C3593007AB73C /* View */,
@@ -261,6 +282,8 @@
 			children = (
 				05B3D24B279C3593007AB73C /* MainLayoutTaps.storyboard */,
 				05B3D24C279C3593007AB73C /* MainLayoutTapsViewController.swift */,
+				2C5264A92EBF87FA00177437 /* MainViewController.swift */,
+				2C5264AB2EBF881A00177437 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +306,10 @@
 				2CBFDA36279E0BDF00561CC2 /* FitTableView.swift */,
 				2CC1AAB727AD6167006A6021 /* LButton.swift */,
 				2CCE762427B848E20084134D /* LTextField.swift */,
+				2C5264A32EBEB31600177437 /* BackButton.swift */,
+				2C5264A72EBF736300177437 /* LLabel.swift */,
+				2CCAD9D22EC77052007EE6C2 /* ExpandableView.swift */,
+				2CCAD9DD2EC9E731007EE6C2 /* EmptyView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -323,6 +350,7 @@
 		2CBC67E3279C00750041E39A /* search */ = {
 			isa = PBXGroup;
 			children = (
+				2CCAD9E42ECB3E60007EE6C2 /* viewFilter */,
 				2CBC67E4279C00930041E39A /* SearchPresenter.swift */,
 				2CBC67E5279C00930041E39A /* SearchInteractor.swift */,
 				2CBC67E6279C00930041E39A /* SearchView.swift */,
@@ -515,6 +543,7 @@
 		2CE5D6EE27989E6B00BBCA15 /* Utitlites */ = {
 			isa = PBXGroup;
 			children = (
+				2C8473412EC36E010006FAB1 /* fonts */,
 				2C51F83A27C0CFD1007E40AF /* Loading.swift */,
 				2C51F83927C0CFD1007E40AF /* SnackBar.swift */,
 				05B3D267279C369A007AB73C /* Storyboard.swift */,
@@ -577,6 +606,7 @@
 		2CF4A36B27C90AA1002E34EC /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				2CCAD9D42EC78D2F007EE6C2 /* cells */,
 				2CF4A36C27C90AAE002E34EC /* FavoritesPresenter.swift */,
 				2CF4A36D27C90AAE002E34EC /* FavoritesInteractor.swift */,
 				2CF4A36E27C90AAE002E34EC /* FavoritesView.swift */,
@@ -618,6 +648,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2C8473412EC36E010006FAB1 /* fonts */,
+				2CCAD9D42EC78D2F007EE6C2 /* cells */,
+				2CCAD9E42ECB3E60007EE6C2 /* viewFilter */,
 			);
 			name = LibraryProject;
 			productName = LibraryProject;
@@ -721,6 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBC67E8279C00930041E39A /* SearchPresenter.swift in Sources */,
+				2C5264AC2EBF881A00177437 /* MainView.swift in Sources */,
 				05B3D252279C3593007AB73C /* MainLayoutTapsViewController.swift in Sources */,
 				2CBC67FB279C37E40041E39A /* StatusApi.swift in Sources */,
 				2CC1AAB827AD6167006A6021 /* LButton.swift in Sources */,
@@ -733,6 +769,8 @@
 				2CE5D70327989E6B00BBCA15 /* HomeView.swift in Sources */,
 				2CB67022279AF9F600A3C2DD /* LoginVC.swift in Sources */,
 				2CC1AE6627B44C4B0067A3B3 /* ListCheckoutView.swift in Sources */,
+				2C5264A82EBF736300177437 /* LLabel.swift in Sources */,
+				2C5264AA2EBF87FA00177437 /* MainViewController.swift in Sources */,
 				2CE5D70127989E6B00BBCA15 /* HomePresenter.swift in Sources */,
 				2C51F83B27C0CFD1007E40AF /* SnackBar.swift in Sources */,
 				2CBC67ED279C00DF0041E39A /* NavigationBar.swift in Sources */,
@@ -747,6 +785,7 @@
 				2CE5D70227989E6B00BBCA15 /* HomeVC.swift in Sources */,
 				2CB6701F279AF9F600A3C2DD /* LoginPresenter.swift in Sources */,
 				2CC1AAAD27AD52D5006A6021 /* CellMenu.swift in Sources */,
+				2C5264A42EBEB31600177437 /* BackButton.swift in Sources */,
 				2CB67009279ACFFE00A3C2DD /* Colors.swift in Sources */,
 				2CE5D70427989E6B00BBCA15 /* MainTabBarInteractor.swift in Sources */,
 				2CB67005279ACC9F00A3C2DD /* SString.swift in Sources */,
@@ -770,6 +809,7 @@
 				2CC1AAB427AD54B5006A6021 /* ChangePasswordInteractor.swift in Sources */,
 				2CBE05FB27B77BE900CBC02F /* AddSuggestPresenter.swift in Sources */,
 				2CC1AAA827AD50B2006A6021 /* MenuInteractor.swift in Sources */,
+				2CCAD9D32EC77052007EE6C2 /* ExpandableView.swift in Sources */,
 				2CC1AABF27AD63F8006A6021 /* ProfileInteractor.swift in Sources */,
 				2CB6701A279AE9E900A3C2DD /* DetailBookVC.swift in Sources */,
 				2CC1AE6C27B459410067A3B3 /* ModelCheckout.swift in Sources */,
@@ -778,6 +818,7 @@
 				2C51F83C27C0CFD1007E40AF /* Loading.swift in Sources */,
 				2CBC67FD279C3CCD0041E39A /* ModelBook.swift in Sources */,
 				2CE5D6FD27989E6B00BBCA15 /* BaseVC.swift in Sources */,
+				2CCAD9DE2EC9E731007EE6C2 /* EmptyView.swift in Sources */,
 				2CB6700C279AD16600A3C2DD /* CellSlider.swift in Sources */,
 				2CE5D70627989E6B00BBCA15 /* MainTabBarVC.swift in Sources */,
 				2CB67019279AE9E900A3C2DD /* DetailBookView.swift in Sources */,
@@ -785,6 +826,7 @@
 				2CE5D70027989E6B00BBCA15 /* HomeInteractor.swift in Sources */,
 				2CF4A37027C90AAE002E34EC /* FavoritesPresenter.swift in Sources */,
 				2CBC67EB279C00930041E39A /* SearchVC.swift in Sources */,
+				2C5264AE2EBF885C00177437 /* TabBar.swift in Sources */,
 				2CC1AAAA27AD50B2006A6021 /* MenuVC.swift in Sources */,
 				2CC13C1027BE155D00C1E51C /* ModelUser.swift in Sources */,
 				2CBE05ED27B7760C00CBC02F /* SuggestionsPresenter.swift in Sources */,

@@ -19,18 +19,21 @@ class ChangePasswordView : UIView {
     let textfieldPassword : LTextField = {
         let l = LTextField()
         l.placeholder = SString.password
+        l.title = SString.newPassword
         return l
     }()
     
     let textfieldRePassword : LTextField = {
         let l = LTextField()
         l.placeholder = SString.repeatedPassword
+        l.title = SString.repeatedPassword
         return l
     }()
     
     let textfieldOldPassword : LTextField = {
         let l = LTextField()
         l.placeholder = SString.oldPassword
+        l.title = SString.oldPassword
         return l
     }()
     
@@ -46,9 +49,10 @@ class ChangePasswordView : UIView {
         l.distribution = .fillEqually
         l.spacing = 10
         
+        l.addArrangedSubview(textfieldOldPassword)
         l.addArrangedSubview(textfieldPassword)
         l.addArrangedSubview(textfieldRePassword)
-        l.addArrangedSubview(textfieldOldPassword)
+       
         
         return l
     }()
@@ -73,7 +77,7 @@ class ChangePasswordView : UIView {
         addSubview(buttonChange)
     
         navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        stackViews.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 16 , paddingRight: 16 , height: 120 )
+        stackViews.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16  )
         buttonChange.anchor(top: stackViews.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 )
         
     }

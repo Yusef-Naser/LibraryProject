@@ -17,8 +17,8 @@ class CellSlider : UICollectionViewCell {
         return l
     }()
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
+    private let labelTitle : LLabel = {
+        let l = LLabel()
         l.textAlignment = .center
         return l
     }()

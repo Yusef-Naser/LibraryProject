@@ -9,20 +9,20 @@ import UIKit
 
 class CellSuggest : UITableViewCell {
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_18)
         l.numberOfLines = 0
         return l
     }()
     
-    private let labelAuthor : UILabel = {
-        let l = UILabel()
+    private let labelAuthor : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_18)
         l.numberOfLines = 0
         return l
     }()
     
-    private let labelLibrary : UILabel = {
-        let l = UILabel()
+    private let labelLibrary : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_18)
         l.numberOfLines = 0
         return l
     }()
@@ -57,14 +57,14 @@ class CellSuggest : UITableViewCell {
     }
     
     func setTitle (title : String?) {
-        labelTitle.text = title
+        labelTitle.text = SString.titleBook + ": " + (title ?? "")
     }
     
     func setAuthor (author : String?) {
-        labelAuthor.text = author
+        labelAuthor.text = SString.author + ": " +  (author ?? "")
     }
     
     func setLibrary (library : String?) {
-        labelLibrary.text = library
+        labelLibrary.text = SString.library + ": " + (library ?? "")
     }
 }

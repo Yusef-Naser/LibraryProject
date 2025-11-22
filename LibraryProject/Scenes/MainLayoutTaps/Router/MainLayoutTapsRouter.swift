@@ -9,8 +9,8 @@ import Foundation
 
 
 class MainLayoutTapsRouter {
-    static func createModule()-> MainLayoutTapsViewController {
-        let view = MainLayoutTapsViewController.instantiate(storyboardName: .MainLayoutTaps)
+    static func createModule()-> MainViewController {
+        let view = MainViewController()
         return view
     }
 

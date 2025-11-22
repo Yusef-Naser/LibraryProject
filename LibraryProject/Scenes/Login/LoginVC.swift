@@ -15,20 +15,20 @@ class LoginVC : BaseVC<LoginView> {
         super.viewDidLoad()
         
         presenter = LoginPresenter(view : self )
-        mainView.navigation.delegateNavigation = self
+        mainView.backButton.addTarget(self , action: #selector(dismissView), for: .touchUpInside)
         mainView.buttonLogin.addTarget(self , action: #selector(actionLogin), for: .touchUpInside)
         
     }
     
     @objc private func actionLogin () {
-        presenter?.login(userName: mainView.textFieldEmail.text ?? "" , password: mainView.textFieldPassword.text ?? "")
+        presenter?.login(userName: mainView.textFieldEmail.textField.text ?? "" , password: mainView.textFieldPassword.textField.text ?? "")
     }
     
     
 }
 
-extension LoginVC : ProLoginView , NavigationBarDelegate {
-    func navigationDismissView() {
+extension LoginVC : ProLoginView  {
+    @objc func dismissView() {
         self.navigationController?.popViewController(animated: true )
     }
     func loginSuccess() {

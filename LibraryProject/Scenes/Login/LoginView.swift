@@ -10,43 +10,66 @@ import UIKit
 
 class LoginView : UIView {
     
-    let navigation : NavigationBar = {
-        let l = NavigationBar()
-        l.labelTitle.text = SString.login
+//    let navigation : NavigationBar = {
+//        let l = NavigationBar()
+////        l.labelTitle.text = SString.login
+//        return l
+//    }()
+    private let heightStatusBar = UIApplication.shared.statusBarFrame.height
+    
+    let backButton : BackButton = {
+        let l = BackButton()
         return l
     }()
     
     private let imageLogo : UIImageView = {
         let l = UIImageView()
-        l.layer.cornerRadius = 50
-        l.image = #imageLiteral(resourceName: "logo")
-        l.contentMode = .scaleAspectFit
+        l.image = UIImage(named: "logo")
         l.clipsToBounds = true
+        l.contentMode = .scaleAspectFit
         return l
     }()
     
-    let textFieldEmail : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .roundedRect
+    private let backgroundImage  : UIImageView = {
+        let l = UIImageView()
+        l.contentMode = .scaleAspectFill
+        l.clipsToBounds = true
+        l.image = UIImage(named: "background")
+        return l
+    }()
+    
+    private let labelTitle : LLabel = {
+        let l = LLabel()
+        //l.textColor = Colors.colorText
+        l.text = SString.login
+        return l
+    }()
+    
+    private let labelSubTitle : LLabel = {
+        let l = LLabel()
+        //l.textColor = Colors.colorText
+        l.text = SString.enterYourUsernameAndPassword
+        return l
+    }()
+    
+    let textFieldEmail : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.email
+        l.title = SString.email
         return l
     }()
     
-    let textFieldPassword : UITextField = {
-        let l = UITextField()
-        l.isSecureTextEntry = true
-        l.borderStyle = .roundedRect
+    let textFieldPassword : LTextField = {
+        let l = LTextField()
+        l.textField.isSecureTextEntry = true
         l.placeholder = SString.password
+        l.title = SString.password
         return l
     }()
     
-    let buttonLogin : UIButton = {
-        let l = UIButton()
+    let buttonLogin : LButton = {
+        let l = LButton()
         l.setTitle(SString.login, for: .normal)
-        l.setTitleColor(.black , for: .normal)
-        l.backgroundColor = Colors.colorPrimary
-        l.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        l.layer.cornerRadius = 10
         return l
     }()
     
@@ -64,26 +87,35 @@ class LoginView : UIView {
         addViews()
         
         #if DEBUG
-            textFieldEmail.text = "app"
-            textFieldPassword.text = "App#er!34User2"
+            textFieldEmail.textField.text = "app"
+            textFieldPassword.textField.text = "App#er!34User2"
         #endif
         
     }
     
     private func addViews () {
-        addSubview(navigation)
+        //addSubview(backButton)
+        addSubview(backgroundImage)
         addSubview(imageLogo)
+        addSubview(labelTitle)
+        addSubview(labelSubTitle)
         addSubview(textFieldEmail)
         addSubview(textFieldPassword)
         addSubview(buttonLogin)
         
-        navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
+//        backButton.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: heightStatusBar + 8 , paddingLeft: 8 )
         
-        imageLogo.anchor(top: navigation.bottomAnchor , centerX: centerXAnchor , paddingTop: 30 , width: 100 , height: 50 )
+        backgroundImage.anchor(top: self.topAnchor , leading: self.leadingAnchor , bottom: self.bottomAnchor, trailing: self.trailingAnchor)
         
-        textFieldEmail.anchor(top: imageLogo.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 , height: 50 )
+        imageLogo.anchor(top : self.topAnchor  , centerX: self.centerXAnchor , paddingTop: heightStatusBar + 8 , width: 220 , height: 74)
         
-        textFieldPassword.anchor(top: textFieldEmail.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
+        labelTitle.anchor(top: self.imageLogo.bottomAnchor , leading: self.leadingAnchor , paddingTop: 16 , paddingLeft: 16)
+        
+        labelSubTitle.anchor(top: self.labelTitle.bottomAnchor , leading: self.leadingAnchor , trailing: self.trailingAnchor, paddingTop: 8 , paddingLeft: 16 , paddingRight: 16)
+        
+        textFieldEmail.anchor(top: labelSubTitle.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 )
+        
+        textFieldPassword.anchor(top: textFieldEmail.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 )
         
         buttonLogin.anchor(top: textFieldPassword.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 , height: 50 )
         

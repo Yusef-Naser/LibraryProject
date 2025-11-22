@@ -20,7 +20,7 @@ class ChangePasswordVC : BaseVC<ChangePasswordView> {
     }
     
     @objc private func actionChangePassword () {
-        presenter?.changePassword(password: mainView.textfieldPassword.text ?? "" , repeatedPassword: mainView.textfieldRePassword.text ?? "" , oldPassword: mainView.textfieldOldPassword.text ?? "")
+        presenter?.changePassword(password: mainView.textfieldPassword.textField.text ?? "" , repeatedPassword: mainView.textfieldRePassword.textField.text ?? "" , oldPassword: mainView.textfieldOldPassword.textField.text ?? "")
     }
     
     

@@ -17,8 +17,8 @@ class CellItemBook : UITableViewCell {
         return l
     }()
     
-    private let labelName : UILabel = {
-        let l = UILabel()
+    private let labelName : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_16)
         l.numberOfLines = 0
         return l
     }()

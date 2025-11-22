@@ -20,6 +20,11 @@ class HomeVC : BaseVC<HomeView> {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter?.viewWillAppear()
+    }
+    
     @objc private func actionSearch () {
         parentNavigationController?.pushViewController(SearchVC(blink: nil ) , animated: true )
     }

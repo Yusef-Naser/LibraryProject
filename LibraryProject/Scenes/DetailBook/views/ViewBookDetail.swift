@@ -9,22 +9,22 @@ import UIKit
 
 class ViewBookDetail : UIView {
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
-     //   l.font = UIFont.boldSystemFont(ofSize: 20)
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_12)
+        l.textColor = Colors.colorTextTextField
         return l
     }()
     
-    private let labelDetails : UILabel = {
-        let l = UILabel()
-        l.textColor = .gray
+    private let labelDetails : LLabel = {
+        let l = LLabel(fontSize: .size_14)
+        l.textColor = Colors.colorGrayText
         l.numberOfLines = 0
         return l
     }()
     
     private let viewLine : UIView = {
         let l = UIView()
-        l.backgroundColor = .gray
+        l.backgroundColor = Colors.colorBorder
         return l
     }()
     
@@ -46,6 +46,7 @@ class ViewBookDetail : UIView {
     
     private func initViews () {
         addViews()
+        self.isHidden = true
     }
     
     private func addViews () {
@@ -60,6 +61,10 @@ class ViewBookDetail : UIView {
     }
     
     func setDetails (details : String?) {
+        guard let details = details else {
+            return
+        }
+        self.isHidden = false
         labelDetails.text = details
     }
 }

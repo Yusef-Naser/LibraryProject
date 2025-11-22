@@ -105,3 +105,33 @@ func openURL (url : String) {
         UIApplication.shared.open(url)
     }
 }
+
+extension UIFont {
+    
+    enum FontSize: CGFloat {
+            case size_10 = 10
+            case size_12 = 12
+            case size_14 = 14
+            case size_16 = 16
+            case size_18 = 18
+            case size_20 = 20
+            case size_24 = 24
+            case size_28 = 28
+            case size_32 = 32
+        }
+    
+    static func regular(size : FontSize) -> UIFont {
+        guard let font = UIFont(name: "Alexandria-Regular", size: size.rawValue) else {
+            return UIFont.systemFont(ofSize: size.rawValue)
+        }
+        return font
+    }
+    
+    static func bold(size : FontSize)-> UIFont {
+        guard let font = UIFont(name: "Alexandria-Bold", size: size.rawValue) else {
+            return UIFont.boldSystemFont(ofSize: size.rawValue )
+        }
+        return font
+    }
+    
+}

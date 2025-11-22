@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "211754_heart_icon.png",
+      "filename" : "Group 1410127230.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Group 1410127230@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Group 1410127230@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

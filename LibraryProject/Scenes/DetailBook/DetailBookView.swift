@@ -19,11 +19,31 @@ protocol DetailBookViewConfiguration {
     
 }
 
+@objc protocol DetailBookViewDelegate : AnyObject {
+    func dismiss()
+    func favorite()
+}
+
 class DetailBookView : UIView {
     
-    let navigation : NavigationBar = {
-        let l = NavigationBar()
-        l.labelTitle.text = SString.bookDetails
+    weak var delegate : DetailBookViewDelegate?
+    
+    let topSafeArea = UIApplication.shared.keyWindow?.safeAreaInsets.top
+    
+    private let backgroundView : UIView = {
+        let l = UIView()
+        l.backgroundColor = Colors.colorbackgroundDetails
+        return l
+    }()
+    
+    lazy var backButton : BackButton = {
+        let l = BackButton()
+        return l
+    }()
+    
+    lazy var buttonFavorite : UIButton = {
+        let l = UIButton()
+        l.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal )
         return l
     }()
     
@@ -46,15 +66,39 @@ class DetailBookView : UIView {
         return l
     }()
     
-    private let labelTitle : UILabel = {
-        let l = UILabel()
-        l.numberOfLines = 0
+    let imageBookBackground : UIImageView = {
+        let l = UIImageView()
+        l.contentMode = .scaleAspectFill
+        l.clipsToBounds = true
+       
+        let view = UIView()
+        view.backgroundColor = Colors.colorbackgroundDetailsAlph
+        
+        
+        let gradient = UIImageView(image: UIImage(named: "image_gradient"))
+        gradient.contentMode = .scaleAspectFill
+        gradient.clipsToBounds = true
+        
+        l.addSubview(view)
+        l.addSubview(gradient)
+        
+        view.anchor(top: l.topAnchor , leading: l.leadingAnchor , bottom: l.bottomAnchor , trailing: l.trailingAnchor)
+        gradient.anchor(top: l.topAnchor , leading: l.leadingAnchor , bottom: l.bottomAnchor , trailing: l.trailingAnchor)
         return l
     }()
     
-    private let labelPersonalName : UILabel = {
-        let l = UILabel()
+    private let labelTitle : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_18)
         l.numberOfLines = 0
+        l.adjustsFontForContentSizeCategory = true
+        return l
+    }()
+    
+    private let labelPersonalName : LLabel = {
+        let l = LLabel(isBold: false , fontSize: .size_14)
+        l.numberOfLines = 0
+        l.textColor = Colors.colorPrimary
+        l.adjustsFontForContentSizeCategory = true
         return l
     }()
     
@@ -86,24 +130,29 @@ class DetailBookView : UIView {
         l.spacing = 10
         l.axis = .vertical
         
-        l.addArrangedSubview(publicationDetails)
         l.addArrangedSubview(abstractView)
+        l.addArrangedSubview(getDesciptionView)
+        l.addArrangedSubview(publicationDetails)
         l.addArrangedSubview(subjectsView)
         l.addArrangedSubview(DDCClassificationView)
-        l.addArrangedSubview(getDesciptionView)
         
         return l
     }()
     
     
-    private let labelItem  : UILabel = {
-        let l = UILabel()
-        l.text = SString.items
+    private lazy var expandableView : ExpandableView = {
+        let l = ExpandableView(title: SString.aboutTheBook, contentView: stackView)
         return l
     }()
+
     let fitTableView : FitTableView = {
         let l = FitTableView()
         l.register(CellItemBook.self , forCellReuseIdentifier: CellItemBook.getIdentifier())
+        return l
+    }()
+    
+    private lazy var expandableViewItems : ExpandableView = {
+        let l = ExpandableView(title: SString.items, contentView: fitTableView)
         return l
     }()
     
@@ -125,37 +174,50 @@ class DetailBookView : UIView {
     
     private func initViews () {
         addViews()
+        backButton.addTarget(delegate , action: #selector(DetailBookViewDelegate.dismiss), for: .touchUpInside)
+        buttonFavorite.addTarget(delegate , action: #selector(DetailBookViewDelegate.favorite), for: .touchUpInside)
     }
     
     private func addViews () {
-        addSubview(navigation)
+        addSubview(backgroundView)
+        
         addSubview(scrollView)
+        addSubview(backButton)
+        addSubview(buttonFavorite)
         addSubview(buttonAddHold)
         
+        parentView.addSubview(imageBookBackground)
         parentView.addSubview(imageBook)
         parentView.addSubview(labelTitle)
         parentView.addSubview(labelPersonalName)
-        parentView.addSubview(stackView)
-        parentView.addSubview(labelItem)
-        parentView.addSubview(fitTableView)
+        parentView.addSubview(expandableView)
+        parentView.addSubview(expandableViewItems)
+       // parentView.addSubview(fitTableView)
+        
+        backgroundView.anchor(top: topAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor)
         
         
-        navigation.anchor(top: topAnchor , leading: leadingAnchor , trailing: trailingAnchor )
-        scrollView.anchor(top: navigation.bottomAnchor , leading: leadingAnchor , bottom: buttonAddHold.topAnchor , trailing: trailingAnchor )
+        backButton.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: (topSafeArea ?? 0) + 8 , paddingLeft: 16 )
+        
+        buttonFavorite.anchor(top: topAnchor , trailing: trailingAnchor , paddingTop: (topSafeArea ?? 0) + 8 , paddingRight: 16 )
+        
+        scrollView.anchor(top: self.topAnchor , leading: leadingAnchor , bottom: buttonAddHold.topAnchor , trailing: trailingAnchor  )
         
         buttonAddHold.anchor( leading: leadingAnchor , bottom: safeAreaLayoutGuide.bottomAnchor , trailing: trailingAnchor , paddingLeft: 8, paddingBottom: 8, paddingRight: 8 )
         
-        imageBook.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor  , paddingTop: 16 , paddingLeft: 16 , paddingBottom: 16 , width: 110 , height: 160 )
+        imageBook.anchor(top: parentView.topAnchor , centerX: parentView.centerXAnchor , paddingTop: 16  , width: 150 , height: 250 )
         
-        labelTitle.anchor(top: imageBook.topAnchor , leading: imageBook.trailingAnchor , trailing: parentView.trailingAnchor , paddingTop: 8, paddingLeft: 8 , paddingRight: 8 )
+        imageBookBackground.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: -( ( topSafeArea ?? 0 ) + 32) , height: 500 )
         
-        labelPersonalName.anchor(top: labelTitle.bottomAnchor , leading: imageBook.trailingAnchor , trailing: parentView.trailingAnchor , paddingTop: 8, paddingLeft: 8, paddingRight: 8 )
+        labelTitle.anchor(top: imageBook.bottomAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingRight: 16 )
         
-        stackView.anchor(top: imageBook.bottomAnchor , leading: parentView.leadingAnchor  , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16  )
+        labelPersonalName.anchor(top: labelTitle.bottomAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 8, paddingLeft: 16, paddingRight: 16 )
         
-        labelItem.anchor(top: stackView.bottomAnchor , leading: parentView.leadingAnchor , paddingTop: 16, paddingLeft: 16 )
+        expandableView.anchor(top: labelPersonalName.bottomAnchor , leading: parentView.leadingAnchor  , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16  )
         
-        fitTableView.anchor(top: labelItem.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
+        expandableViewItems.anchor(top: expandableView.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16 , paddingBottom: 16 , paddingRight: 16 )
+        
+//        fitTableView.anchor(top: labelItem.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 )
         
     }
     
@@ -174,7 +236,7 @@ extension DetailBookView : DetailBookViewConfiguration {
     }
     
     func setPersonalName (name : String?) {
-        labelPersonalName.text = "by: \(name ?? "" )"
+        labelPersonalName.text = "\(SString.by): \(name ?? "" )"
     }
     
     func setPublicationDetails(details: String?) {

@@ -33,7 +33,7 @@ class ProfileView : UIView {
         let l = UIStackView()
         l.spacing = 10
         l.axis = .vertical
-        l.distribution = .fillEqually
+        //l.distribution = .fillEqually
         
         l.addArrangedSubview(textfieldName)
         l.addArrangedSubview(textfieldCity)
@@ -44,67 +44,57 @@ class ProfileView : UIView {
         return l
     }()
     
-    let textfieldName : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    let textfieldName : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.name
+        l.title = SString.name
         return l
     }()
     
-    let textfieldCity : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    let textfieldCity : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.city
+        l.title = SString.city
         return l
     }()
     
-    let textfieldAddress : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    let textfieldAddress : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.address
+        l.title = SString.address
         return l
     }()
     
-    lazy var textfieldCategoryID : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    lazy var textfieldCategoryID : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.categoryID
+        l.title = SString.categoryID
         
-        l.inputView = pickerViewCategory
+        l.textField.inputView = pickerViewCategory
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
         toolbar.barStyle = .default
         toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBarCategory))]
         toolbar.sizeToFit()
         
-        l.inputAccessoryView = toolbar
+        l.textField.inputAccessoryView = toolbar
         
         return l
     }()
     
-    lazy var textfieldLibraryID : UITextField = {
-        let l = UITextField()
-        l.borderStyle = .line
-        l.layer.borderColor = Colors.grayColors.cgColor
-        l.layer.borderWidth = 0.5
+    lazy var textfieldLibraryID : LTextField = {
+        let l = LTextField()
         l.placeholder = SString.libraryID
+        l.title = SString.libraryID
         
-        l.inputView = pickerViewLibrary
+        l.textField.inputView = pickerViewLibrary
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 50 ))
         toolbar.barStyle = .default
         toolbar.items = [UIBarButtonItem(title: "Done" , style: .done , target: self , action: #selector(actionDoneToolBarLibrary))]
         toolbar.sizeToFit()
         
-        l.inputAccessoryView = toolbar
+        l.textField.inputAccessoryView = toolbar
         
         return l
     }()
