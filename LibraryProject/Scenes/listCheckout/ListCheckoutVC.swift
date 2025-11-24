@@ -58,7 +58,13 @@ extension ListCheckoutVC : ProListCheckoutView , NavigationBarDelegate {
 
 extension ListCheckoutVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.getCount() ?? 0
+        let count = presenter?.getCount() ?? 0
+        if count == 0 {
+            tableView.backgroundView = EmptyView(text: (screenType == .checkout) ? SString.theresNoCheckoutList : SString.theresNoHold )
+        }else {
+            tableView.backgroundView = nil
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

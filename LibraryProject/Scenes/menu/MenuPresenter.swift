@@ -61,10 +61,12 @@ class MenuPresenter : ProMenuPresetner {
                 (SString.login , "menu_logout")
                 ]
         }else {
-            return [ (SString.changePassword , "menu_password") ,
+            return [
+                (SString.branches , "menu_location") ,
+                (SString.changePassword , "menu_password") ,
                     (SString.profile , "menu_user"),
                     (SString.checkoutList , "menu_checkoutList" ),
-                    ("" , "") ,
+                  //  ("" , "") ,
                     (SString.holdList , "menu_hold"),
                     ( SString.suggestions , "menu_book" ),
                     (SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" , "menu_lang"),

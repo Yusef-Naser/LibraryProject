@@ -87,8 +87,8 @@ class LoginView : UIView {
         addViews()
         
         #if DEBUG
-            textFieldEmail.textField.text = "app"
-            textFieldPassword.textField.text = "App#er!34User2"
+            textFieldEmail.textField.text = "alzad"
+            textFieldPassword.textField.text = "Alzad@123"
         #endif
         
     }

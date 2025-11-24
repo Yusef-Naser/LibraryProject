@@ -11,11 +11,15 @@ import Alamofire
 //public protocol URLRequestConvertible {
 //    func asURLRequest() -> URLRequest
 //}
-
+var BASEURL = "https://tawazun.alzad.ae"
+var BASEIMAGEURL : ((String) -> String) = { str in
+    return "https://tawazun.alzad.ae/cgi-bin/koha/opac-image.pl?biblionumber=\(str)"
+}
 enum ApiRouter : URLRequestConvertible {
     
-    case getHome
+    case getfeatured
     case getLatest
+    case getSuggestedBooks
     case getBookDetails (id : Int)
     case search (text : String , from : Int , to : Int )
     case itemsBook (id : Int)
@@ -34,15 +38,16 @@ enum ApiRouter : URLRequestConvertible {
     case getLibrary(code : String)
     case getLibraries
     case getProfile
+    case getBranches
     
     
     private var Methods : HTTPMethod {
         switch self {
-        case .getHome , .getBookDetails , .search ,
+        case .getfeatured , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
              .getHoldList , .login , .getLibrary ,.getLibraries , .getProfile ,
-             .getLatest :
+             .getLatest , .getSuggestedBooks , .getBranches :
             return .get
         case .addSuggest , .addCheckout , .removeCheckout ,
              .changePassword , .addHold :
@@ -54,23 +59,28 @@ enum ApiRouter : URLRequestConvertible {
     
     private var Headers : HTTPHeaders {
         switch self {
-        case .getHome , .getLatest  , .search , .login  :
+        case .getfeatured , .getLatest , .getSuggestedBooks , .search , .login ,
+                .getBranches :
             return [
                 "content-type" : "application/json;charset=utf-8",
             ]
-        case .getBookDetails , .getCheckoutList , .getSuggestions ,
-                .updateProfile , .addSuggest , .itemsBook ,
-                .getItemByItemID , .getBibloItem , .getHoldList ,
-                .addCheckout , .removeCheckout , .changePassword ,
-                .addHold , .getLibrary  , .getLibraries , .getProfile :
+        case .getBookDetails ,
+                .getItemByItemID , .getBibloItem  ,
+                .addCheckout , .removeCheckout , .changePassword , .getLibrary  :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization" : "Basic \(SharedData.instance.getBase64())"
               //  "Authorization": "Basic YXBwOkFwcFVzZXIyMDIy" , //app:AppUser2022
                // "Authorization": "Basic YXBwOkFwcFVzZXIyMDIx" //app:AppUser2021
             ]
-      //  case .itemsBook :
-       //     return [:]
+        case .itemsBook , .getProfile , .addHold , .getLibraries ,
+                .getCheckoutList , .getHoldList , .getSuggestions , .updateProfile ,
+                .addSuggest :
+            return [
+                "Content-Type" : "application/json" ,
+                "Accept" : "application/json" ,
+                "Authorization" : "Basic \(SharedData.instance.getBase64())"
+            ]
         }
     }
     private var Paths : String {
@@ -81,63 +91,67 @@ enum ApiRouter : URLRequestConvertible {
         case  .login(let data )  :
             let user = data ["userid"] ?? ""
             let pass = data ["password"] ?? ""
-            return "https://library.awresidence.com/cgi-bin/koha/svc/authentication?userid=\(user)&password=\(pass)"
-        case .getHome :
-            return "https://library.awresidence.com/opac-tmpl/app.json?fbclid=IwAR3QYhQjJYoSpmAq3dyTIQPoHeRAKuFxFtkMsr0YmJGOEN-yTKC7n8rITAY"
+            return "\(BASEURL)/cgi-bin/koha/svc/authentication?userid=\(user)&password=\(pass)"
+        case .getfeatured :
+            return "\(BASEURL):82/api/categories/best-sellers"
         case .getLatest :
-            return "https://library.awresidence.com/cgi-bin/koha/latestbooks.pl"
+            return "\(BASEURL)/cgi-bin/koha/latestbooks.pl"
+        case .getSuggestedBooks:
+            return "\(BASEURL):82/api/suggested-books"
         case .getBookDetails(let id ) :
-            return "https://library.awresidence.com/api/v1/biblios/\(id)"
+            return "\(BASEURL)/api/v1/public/biblios/\(id)"
         case .itemsBook(let id ) :
-            return "https://library.awresidence.com/api/v1/biblios/\(id)/items"
+            return "\(BASEURL)/api/v1/public/biblios/\(id)/items"
         case let .search( text , from  , to ) :
             if text == "" {
-                return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"
+                return "\(BASEURL)/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"
             }
-            return "https://library.awresidence.com/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=\(from)&maximumRecords=\(to)"
+            return "\(BASEURL)/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=\(from)&maximumRecords=\(to)"
             
         case .getCheckoutList :
-            return "https://library.awresidence.com/api/v1/checkouts?patron_id=\(userID)"
+            return "\(BASEURL)/api/v1/checkouts?patron_id=\(userID)"
             
         case .getSuggestions :
-            return "https://library.awresidence.com/api/v1/suggestions"
+            return "\(BASEURL)/api/v1/suggestions"
             
         case .updateProfile :
-            return "https://library.awresidence.com/api/v1/patrons/\(userID)"
+            return "\(BASEURL)/api/v1/patrons/\(userID)"
             
         case .addSuggest :
-            return "https://library.awresidence.com/api/v1/suggestions"
+            return "\(BASEURL)/api/v1/suggestions"
         case .getItemByItemID(let itemID) :
-            return "https://library.awresidence.com/api/v1/items/\(itemID)"
+            return "\(BASEURL)/api/v1/items/\(itemID)"
         case .getBibloItem(let bibloID ) :
-          //  return "https://library.awresidence.com/api/v1/public/biblios/\(bibloID)"  // return ModelBook
-        return "https://library.awresidence.com/api/v1/biblios/\(bibloID)"// return ModelBookV2
+          //  return "\(BASEURL)/api/v1/public/biblios/\(bibloID)"  // return ModelBook
+        return "\(BASEURL)/api/v1/biblios/\(bibloID)"// return ModelBookV2
         case .getHoldList :
-            return "https://library.awresidence.com/api/v1/holds?patron_id=\(userID)"
+            return "\(BASEURL)/api/v1/holds?patron_id=\(userID)"
         case .addCheckout :
-            return "https://library.awresidence.com/api/v1/checkouts"
+            return "\(BASEURL)/api/v1/checkouts"
         case .removeCheckout :
-            return "https://library.awresidence.com/api/v1/checkin"
+            return "\(BASEURL)/api/v1/checkin"
         case .changePassword :
-            return "https://library.awresidence.com/api/v1/public/patrons/\(userID)/password"
+            return "\(BASEURL)/api/v1/public/patrons/\(userID)/password"
         case .addHold :
-            return "https://library.awresidence.com/api/v1/holds"
+            return "\(BASEURL)/api/v1/holds"
         case .getLibrary(let code) :
-            return "https://library.awresidence.com/api/v1/public/libraries/\(code)"
+            return "\(BASEURL)/api/v1/public/libraries/\(code)"
         case .getLibraries :
-            return "https://library.awresidence.com/api/v1/libraries"
+            return "\(BASEURL)/api/v1/libraries"
         case .getProfile :
-            return "https://library.awresidence.com/api/v1/patrons/\(SharedData.instance.getUserID())"
+            return "\(BASEURL)/api/v1/patrons/\(SharedData.instance.getUserID())"
+        case .getBranches:
+            return "\(BASEURL)/api/v1/public/libraries"
         }
         
     }
     
     private var parameters : [String : Any] {
         switch self {
-        case .getBookDetails , .getHome , .itemsBook , .search ,
+        case .getBookDetails , .getfeatured , .getSuggestedBooks , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
                 .getBibloItem , .getHoldList ,.getLibrary , .getLibraries , .getProfile ,
-                .getLatest :
+                .getLatest , .getBranches :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
                 .addCheckout(let data) , .changePassword(let data ) ,

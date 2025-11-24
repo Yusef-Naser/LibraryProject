@@ -74,8 +74,12 @@ public extension UICollectionViewCell {
 public extension UIImageView {
 
     func loadImage (url : String , placeHolder : UIImage = #imageLiteral(resourceName: "placeholder") ) {
+        var newURL = url
         self.pin_updateWithProgress = true
-        self.pin_setImage(from: URL(string: url ) , placeholderImage: placeHolder )
+        if !url.contains("https") {
+            newURL = url.replacingOccurrences(of: "http", with: "https")
+        }
+        self.pin_setImage(from: URL(string: newURL ) , placeholderImage: placeHolder )
     }
 
     

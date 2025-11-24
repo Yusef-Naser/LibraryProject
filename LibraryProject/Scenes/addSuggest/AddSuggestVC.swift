@@ -94,7 +94,7 @@ extension AddSuggestVC : UIPickerViewDataSource , UIPickerViewDelegate {
         
         let name = presenter?.getLibrary(index: row)?.name ?? ""
         let id = presenter?.getLibrary(index: row)?.libraryID ?? ""
-        mainView.textFieldLibrary.text = name + "(\(id))"
+        mainView.textFieldLibrary.text = id
     }
     
     

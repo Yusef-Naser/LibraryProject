@@ -47,7 +47,14 @@ extension SuggestionsVC : ProSuggestionsView , NavigationBarDelegate {
 
 extension SuggestionsVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.presenter?.suggestionCount() ?? 0
+        let count = self.presenter?.suggestionCount() ?? 0
+        
+        if count == 0 {
+            tableView.backgroundView = EmptyView(text: SString.youHaveNoSuggestion)
+        }else {
+            tableView.backgroundView = nil
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -5,6 +5,7 @@
 //  Created by Yusef Naser on 12/02/2022.
 //VC
 
+import Foundation
 
 class AddSuggestInteractor {
     
@@ -12,16 +13,25 @@ class AddSuggestInteractor {
                      publisher : String , collectionTitle : String ,
                      publicationPlace : String , quantity : String , itemType : String ,
                      library : String , notes : String , completion : @escaping CompletionHandler<ModelSuggestion>) {
+        
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.formatOptions = [.withInternetDateTime]
+
+        let now = Date()
+        let isoString = formatter.string(from: now)
+
+        
         let data : [String : Any] = [
             "title" : title ,
-          //  "note" : notes ,
+            "suggested_by" : SharedData.instance.getUserID() ,
             "author" : author ,
-//            "copyright_date" : copyRightDate ,
+            "timestamp" : isoString ,
 //            "publication_place" : publicationPlace ,
 //            "item_type" : itemType ,
 //            "quantity" : quantity ,
 //            "collection_title" : collectionTitle ,
-            "library_id" : library 
+            "library_id" : library
            // "publisher_code" : publisher
             
         ]

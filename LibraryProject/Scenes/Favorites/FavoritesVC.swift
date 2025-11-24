@@ -108,11 +108,12 @@ extension FavoritesVC : UITableViewDelegate , UITableViewDataSource , FavoriteCe
         guard let index = mainView.tableView.indexPath(for: cell ) else {
             return
         }
-        let id = presenter?.getItem(index: index.row)?.id
-        let title = presenter?.getItem(index: index.row)?.title
+        let item = presenter?.getItem(index: index.row)
+        let id = item?.id
+        let title = item?.title
         if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
-            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? 0), title: title , image: "")))
+            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? 0), title: title , image: item?.image ?? "" )))
         }else {
             cell.buttonFavorite.setImage( #imageLiteral(resourceName: "unfavorite") , for: .normal)
             SharedData.instance.removeFavorite(id: Int(id ?? 0 ))

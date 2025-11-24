@@ -12,6 +12,7 @@ struct SString {
     static var viewAll : String {return getText(key: "viewAll")}
     static var newBooks : String {return getText(key: "newBooks")}
     static var featureBooks : String {return getText(key: "featureBooks")}
+    static var suggestedBooks : String {return getText(key: "suggestedBooks")}
     static var login : String {return getText(key: "login")}
     static var email : String {return getText(key: "email")}
     static var password : String {return getText(key: "password")}
@@ -80,6 +81,15 @@ struct SString {
     static var noResultsFoundTryAnotherKeyboards : String { return getText(key: "noResultsFoundTryAnotherKeyboards")}
     static var type : String { return getText(key: "type")}
     static var select : String { return getText(key: "select")}
+    static var branches : String { return getText(key: "branches")}
+    static var fax : String { return getText(key: "fax")}
+    static var postalCode : String { return getText(key: "postalCode")}
+    static var ok : String { return getText(key: "ok")}
+    static var changingLangugeRequiredRestartApp : String { return getText(key: "changingLangugeRequiredRestartApp")}
+    static var theresNoCheckoutList : String { return getText(key: "theresNoCheckoutList")}
+    static var theresNoHold : String { return getText(key: "theresNoHold")}
+    static var youHaveNoSuggestion : String { return getText(key: "youHaveNoSuggestion")}
+    static var thereIsNoBranches : String { return getText(key: "thereIsNoBranches")}
     
     
     
@@ -99,6 +109,7 @@ struct SString {
         "viewAll" : "View all" ,
         "newBooks" : "New books" ,
         "featureBooks" : "Feature books" ,
+        "suggestedBooks" : "Suggested books" ,
         "login" : "Login" ,
         "email" : "Email" ,
         "password" : "Password" ,
@@ -165,6 +176,15 @@ struct SString {
         "noResultsFoundTryAnotherKeyboards" : "No Results Found\nTry Another Keyboards",
         "type" : "Type",
         "select" : "Select",
+        "branches" : "Branches",
+        "fax" : "Fax",
+        "postalCode" : "Postal Code",
+        "changingLangugeRequiredRestartApp" : "Changing Language Required Restart app",
+        "ok" : "OK",
+        "theresNoCheckoutList" : "There is no checkout list",
+        "theresNoHold" : "There is no Hold list",
+        "youHaveNoSuggestion" : "You have no suggestion",
+        "thereIsNoBranches" : "There is no branches",
         
     ]
     
@@ -174,6 +194,7 @@ struct SString {
         "viewAll" : "مشاهده الكل" ,
         "newBooks" : "الكتب الجديده" ,
         "featureBooks" : "الكتب المميزه" ,
+        "suggestedBooks" : "الكتب المقترحة" ,
         "login" : "تسجيل دخول" ,
         "email" : "ايميل" ,
         "password" : "كلمه المرور" ,
@@ -240,6 +261,15 @@ struct SString {
         "noResultsFoundTryAnotherKeyboards" : "لم يتم العثور على نتائج\nجرب لوحة مفاتيح أخرى",
         "type" : "اكتب",
         "select" : "اختر",
+        "branches" : "الفروع",
+        "fax" : "فاكس",
+        "postalCode" : "الرمز البريدي",
+        "changingLangugeRequiredRestartApp" : "تغير اللغة يتطلب اعادة تشغيل التطبيق",
+        "ok" : "موافق",
+        "theresNoCheckoutList" : "لا يوجد قائمة استعارات",
+        "theresNoHold" : "لا يوجد قائمة للحجز",
+        "youHaveNoSuggestion" : "لايوجد اقتراحات",
+        "thereIsNoBranches" : "لا يوجد فروع",
 
     ]
     

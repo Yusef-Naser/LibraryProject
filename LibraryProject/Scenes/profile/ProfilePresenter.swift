@@ -14,7 +14,7 @@ protocol ProProfileView : StatusApi {
 
 protocol ProProfilePresetner {
 
-    func updateProfile (name : String , city : String , address : String, categoryID : String ,   libraryID : String)
+    func updateProfile (name : String , city : String , address : String ,   libraryID : String)
     func getUserObject () -> ModelProfile?
     
     func getLibraries ()
@@ -44,9 +44,9 @@ class ProfilePresenter : ProProfilePresetner {
         self.view = view
     }
     
-    func updateProfile (name : String , city : String , address : String, categoryID : String , libraryID : String) {
+    func updateProfile (name : String , city : String , address : String , libraryID : String) {
         self.view?.showLoading()
-        interactor.updateProfile(name: name , city: city , address: address , categoryID: categoryID, libraryID: libraryID) { data , error, statusCode in
+        interactor.updateProfile(name: name , city: city , address: address , categoryID: userObject?.categoryID ?? "" , libraryID: libraryID) { data , error, statusCode in
             self.view?.hideLoading()
             guard let data = data else {
                 return

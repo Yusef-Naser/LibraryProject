@@ -103,8 +103,9 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellD
         let id = presenter?.getItem(index: indexPath.row)?.1
         
         cell.setTitle(title: presenter?.getItem(index: indexPath.row)?.0)
-        let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
-        cell.setImage(image: icon + "\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
+        //let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
+        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
+        cell.setImage(image: icon )
         cell.delegateCell = self
         
         let favorites = SharedData.instance.getFavorites()
@@ -121,8 +122,8 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = presenter?.getItem(index: indexPath.row)
-        let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
-        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: Int(item?.1 ?? "0") ?? 0, title: item?.0, image: icon + "\(presenter?.getItem(index: indexPath.row)?.1 ?? "")" )), animated: true )
+        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
+        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: Int(item?.1 ?? "0") ?? 0, title: item?.0, image: icon )), animated: true )
     }
     
     func actionFavorite(cell: FavoriteCell) {
@@ -133,7 +134,7 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellD
         let title = presenter?.getItem(index: index.row)?.0
         if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
-            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? "0"), title: title , image: "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber=\(id ?? "0")")))
+            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? "0"), title: title , image: BASEIMAGEURL(id ?? ""))))
         }else {
             cell.buttonFavorite.setImage( #imageLiteral(resourceName: "unfavorite") , for: .normal)
             SharedData.instance.removeFavorite(id: Int(id ?? "0" ) ?? 0)

@@ -8,16 +8,17 @@
 
 protocol ProHomeView : StatusApi {
     func getListNewBooks (list :  [ModelLatest])
-    func getListFeatureBooks (list :  [ModelLatest])
-    func fetchData ()
+    func getListFeatureBooks (list :  [ModelFeaturedBook])
+    func getSuggestedBooks (list :  [ModelSuggestedBook])
 }
 
 protocol ProHomePresetner {
 
-    func getHome ()
+    var modelfeatured : ModelFeatured? {get set}
     func getLatest ()
-    func getSlider(index : Int) -> ModelSlider?
-    func getSliderCount () -> Int
+    func getFeatured ()
+    func getFeaturedItem(index : Int) -> ModelFeaturedBook?
+    func getSuggestedBooks()
     func viewWillAppear()
     
 }
@@ -30,36 +31,28 @@ class HomePresenter : ProHomePresetner {
     weak var view : ProHomeView?
     private let interactor = HomeInteractor()
     
-    private var sliderArray : [ModelSlider] = []
-    private var modelHome : ModelHome? = nil
+    var modelfeatured : ModelFeatured? = nil
     private var latest : ModelArrayLatest = []
+    private var suggestedBooks : [ModelSuggestedBook] = []
     
     init(view : ProHomeView ) {
         self.view = view
-        getHome()
         getLatest()
+        getFeatured()
+        getSuggestedBooks()
     }
     
-    func getHome() {
+    func getFeatured() {
         self.view?.showLoading()
-        interactor.getHome { data , error , statusCode in
+        interactor.getFeatured { data , error , statusCode in
             self.view?.hideLoading()
             
             guard let data = data else {
                 return
             }
-            self.modelHome = data
-          //  self.view?.getListNewBooks(list: data.menu?.homePage?.latest ?? [])
-            self.view?.getListFeatureBooks(list: data.menu?.homePage?.suggested ?? [])
-            self.sliderArray = data.menu?.homePage?.silder ?? []
-            if let c = data.menu?.categories , c.count > 0 {
-                var variable : [String:String] = [:]
-                c.forEach { item in
-                    variable[item.keys.first ?? ""] = item.values.first ?? ""
-                }
-                SharedData.instance.setCategories(categories: variable)
-            }
-            self.view?.fetchData()
+            self.modelfeatured = data
+            
+            self.view?.getListFeatureBooks(list: data.data?.books ?? [] )
         }
     }
     
@@ -72,7 +65,7 @@ class HomePresenter : ProHomePresetner {
             }
             for ( index , var item) in data.enumerated() {
                 
-                item.image = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber=\(item.biblionumber ?? 0)"
+                item.image = BASEIMAGEURL("\(item.biblionumber ?? 0)")
                 data.remove(at: index)
                 data.insert(item, at: index)
             }
@@ -81,20 +74,43 @@ class HomePresenter : ProHomePresetner {
         }
     }
     
-    func getSlider(index: Int) -> ModelSlider? {
-        guard sliderArray.count > index else {
-            return nil
+    func getSuggestedBooks() {
+        self.view?.showLoading()
+        interactor.getSuggestedBooks { data , error , statusCode in
+            self.view?.hideLoading()
+            guard let data = data?.data else {
+                self.view?.getSuggestedBooks(list: [])
+                return
+            }
+            
+            self.suggestedBooks = data
+            self.view?.getSuggestedBooks(list: data)
         }
-        return sliderArray[index]
     }
     
-    func getSliderCount() -> Int {
-        sliderArray.count
-    }
+    
+    
+//    func getSlider(index: Int) -> ModelSlider? {
+//        guard sliderArray.count > index else {
+//            return nil
+//        }
+//        return sliderArray[index]
+//    }
+//    
+//    func getSliderCount() -> Int {
+//        sliderArray.count
+//    }
 
     func viewWillAppear() {
-        self.view?.getListFeatureBooks(list: modelHome?.menu?.homePage?.suggested ?? [])
+        self.view?.getListFeatureBooks(list: self.modelfeatured?.data?.books ?? [])
         self.view?.getListNewBooks(list: latest)
+        self.view?.getSuggestedBooks(list: self.suggestedBooks)
     }
     
+    func getFeaturedItem(index: Int) -> ModelFeaturedBook? {
+        guard (self.modelfeatured?.data?.books?.count ?? 0) > index ,  let item = self.modelfeatured?.data?.books?[index] else {
+            return nil
+        }
+        return item
+    }
 }

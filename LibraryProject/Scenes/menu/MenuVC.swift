@@ -111,6 +111,8 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch presenter?.getListMenu()[indexPath.row].0 {
+        case SString.branches :
+            self.navigationController?.pushViewController(BranchesVC(), animated: true)
         case SString.changePassword:
             self.navigationController?.pushViewController(ChangePasswordVC() , animated: true)
         case SString.profile :
@@ -149,17 +151,34 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
     }
     
     func changeLanguage() {
-//        var lang = "en"
-        if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
-            SharedData.instance.setLangauge(lang: .ar)
-            UIView.appearance().semanticContentAttribute = .forceRightToLeft
-        }else {
-            SharedData.instance.setLangauge(lang: .en)
-            UIView.appearance().semanticContentAttribute = .forceLeftToRight
-        }
 
-        restartApp(vc: MainLayoutTapsRouter.createModule())
-        NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)
+        mainView.alertView = UIAlertController(title: nil , message: SString.changingLangugeRequiredRestartApp, preferredStyle: .alert)
+        
+        let actionOK = UIAlertAction(title: SString.ok , style: .default) { action in
+            if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
+                SharedData.instance.setLangauge(lang: .ar)
+                UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            }else {
+                SharedData.instance.setLangauge(lang: .en)
+                UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                exit(0)
+            }
+        }
+        
+        let actionCancel = UIAlertAction(title: SString.cancel , style: .cancel) { action in
+            
+        }
+        
+        mainView.alertView?.addAction(actionOK)
+        mainView.alertView?.addAction(actionCancel)
+        guard let alert = mainView.alertView else {
+            return
+        }
+        self.present(alert, animated: true, completion: nil)
+//        restartApp(vc: MainLayoutTapsRouter.createModule())
+//        NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)
     }
     
     func restartApp (vc: UIViewController) {

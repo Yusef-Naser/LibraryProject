@@ -12,11 +12,17 @@ class DetailBookVC : BaseVC<DetailBookView> {
     private var presenter : ProDetailBookPresetner?
     
     private var bookItem : ModelLatest? = nil
+    private var bookSuggested : ModelSuggestedBook? = nil
     
     
     init(bookItem : ModelLatest?) {
         super.init(nibName: nil , bundle: nil)
         self.bookItem = bookItem
+    }
+    
+    init(bookItem : ModelSuggestedBook?) {
+        super.init(nibName: nil , bundle: nil)
+        self.bookSuggested = bookItem
     }
     
     required init?(coder: NSCoder) {
@@ -30,26 +36,26 @@ class DetailBookVC : BaseVC<DetailBookView> {
         mainView.delegate = self
         mainView.fitTableView.delegate = self
         mainView.fitTableView.dataSource = self
-        mainView.imageBook.loadImage(url: bookItem?.image ?? "" )
-        mainView.imageBookBackground.loadImage(url: bookItem?.image ?? "" )
-        presenter?.getBookDetails(id: bookItem?.biblionumber ?? 0)
-        presenter?.getItemsBook(id: bookItem?.biblionumber ?? 0)
+        mainView.imageBook.loadImage(url: bookItem?.image ?? bookSuggested?.imageURL ?? "" )
+        mainView.imageBookBackground.loadImage(url: bookItem?.image ?? bookSuggested?.imageURL ?? "" )
+        presenter?.getBookDetails(id: bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0") ?? 0 )
+        presenter?.getItemsBook(id: bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0")
+                                ?? 0)
         mainView.buttonAddHold.addTarget(self , action: #selector(actionAddHold), for: .touchUpInside)
         
         let favorites = SharedData.instance.getFavorites()
         if favorites.contains(where: { itemFavorite in
-            itemFavorite.id == bookItem?.biblionumber
+            itemFavorite.id == bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0")
         }) {
             mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
         }else {
             mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
         }
         
-        
     }
     
     @objc private func actionAddHold () {
-        presenter?.addHold(id: bookItem?.biblionumber ?? 0)
+        presenter?.addHold(id: (bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0")) ?? 0)
     }
     
 }
@@ -68,16 +74,24 @@ extension DetailBookVC : ProDetailBookView , DetailBookViewDelegate {
     }
     
     func favorite() {
-        guard let bookItem = bookItem else {
-            return
+        if let bookItem = bookItem  {
+            if mainView.buttonFavorite.imageView?.image == UIImage(named: "unfavorite") {
+                mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+                SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: bookItem ))
+            }else {
+                mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
+                SharedData.instance.removeFavorite(id: bookItem.biblionumber ?? 0)
+            }
+        }else if let bookSuggested = bookSuggested {
+            if mainView.buttonFavorite.imageView?.image == UIImage(named: "unfavorite") {
+                mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+                SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: bookSuggested ))
+            }else {
+                mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
+                SharedData.instance.removeFavorite(id: Int(bookSuggested.biblionumber ?? "0") ?? 0 )
+            }
         }
-        if mainView.buttonFavorite.imageView?.image == UIImage(named: "unfavorite") {
-            mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
-            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: bookItem ))
-        }else {
-            mainView.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
-            SharedData.instance.removeFavorite(id: bookItem.biblionumber ?? 0)
-        }
+        
     }
     
     func fetchData() {

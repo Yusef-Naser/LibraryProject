@@ -38,7 +38,7 @@ class ProfileView : UIView {
         l.addArrangedSubview(textfieldName)
         l.addArrangedSubview(textfieldCity)
         l.addArrangedSubview(textfieldAddress)
-        l.addArrangedSubview(textfieldCategoryID)
+        //l.addArrangedSubview(textfieldCategoryID)
         l.addArrangedSubview(textfieldLibraryID)
         l.addArrangedSubview(buttonUpdate)
         return l

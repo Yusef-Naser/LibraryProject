@@ -9,6 +9,7 @@ import UIKit
 
 protocol SectionBooksViewDelegate : AnyObject {
     func clickOnBook (item : ModelLatest?)
+    func clickOnBook (item : ModelSuggestedBook?)
 }
 
 class SectionBooksView : UIView {
@@ -18,7 +19,12 @@ class SectionBooksView : UIView {
     var arrayItems : [ModelLatest] = [] {
         didSet {
             collectionView.reloadData()
-            
+        }
+    }
+    
+    var arraySuggested : [ModelSuggestedBook] = [] {
+        didSet {
+            collectionView.reloadData()
         }
     }
     
@@ -31,7 +37,8 @@ class SectionBooksView : UIView {
         let l = UIButton()
         l.setTitle(SString.viewAll , for: .normal)
         l.setTitleColor( UIColor.gray , for: .normal)
-        l.isHidden = true 
+        l.isHidden = true
+        l.titleLabel?.font = UIFont.regular(size: .size_16)
         return l
     }()
     
@@ -75,9 +82,9 @@ class SectionBooksView : UIView {
         addSubview(buttonViewAll)
         addSubview(collectionView)
         
-        labelTitle.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: 16 , paddingLeft: 16 )
+        labelTitle.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: 16  )
         buttonViewAll.anchor( trailing: trailingAnchor , centerY: labelTitle.centerYAnchor , paddingRight: 16 )
-        collectionView.anchor(top: buttonViewAll.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 16 , height: 250 )
+        collectionView.anchor(top: buttonViewAll.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 8, paddingBottom: 8, height: 250 )
         
         
     }
@@ -91,24 +98,41 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        arrayItems.count
+        return  (arrayItems.count != 0) ? arrayItems.count : arraySuggested.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellBook.getIdentifier() , for: indexPath ) as! CellBook
-        let item = arrayItems[indexPath.row]
-        cell.setTitle(title: item.title)
-        cell.setImage(image: item.image)
-        cell.delegateCell = self
-        
-        let favorites = SharedData.instance.getFavorites()
-        if favorites.contains(where: { itemFavorite in
-            itemFavorite.id == item.biblionumber
-        }) {
-            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+        if arrayItems.count > 0 {
+            let item = arrayItems[indexPath.row]
+            cell.setTitle(title: item.title)
+            cell.setImage(image: item.image)
+            cell.delegateCell = self
+            
+            let favorites = SharedData.instance.getFavorites()
+            if favorites.contains(where: { itemFavorite in
+                itemFavorite.id == item.biblionumber
+            }) {
+                cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+            }else {
+                cell.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
+            }
+            
         }else {
-            cell.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
+            let item = arraySuggested[indexPath.row]
+            cell.setTitle(title: item.title)
+            cell.setImage(image: item.imageURL)
+            cell.delegateCell = self
+            
+            let favorites = SharedData.instance.getFavorites()
+            if favorites.contains(where: { itemFavorite in
+                itemFavorite.id == Int(item.biblionumber ?? "0")
+            }) {
+                cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+            }else {
+                cell.buttonFavorite.setImage(#imageLiteral(resourceName: "unfavorite"), for: .normal)
+            }
         }
         
         return cell
@@ -116,7 +140,12 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegateView?.clickOnBook(item: arrayItems[indexPath.row])
+        if arrayItems.count > 0 {
+            delegateView?.clickOnBook(item: arrayItems[indexPath.row])
+        }else if arraySuggested.count > 0 {
+            delegateView?.clickOnBook(item: arraySuggested[indexPath.row])
+        }
+        
     }
     
     
@@ -126,10 +155,21 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         }
         if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
-            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: arrayItems[index.row]))
+            
+            if arrayItems.count > 0 {
+                SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: arrayItems[index.row]))
+            }else if arraySuggested.count > 0 {
+                SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: arraySuggested[index.row]))
+            }
+            
         }else {
             cell.buttonFavorite.setImage( #imageLiteral(resourceName: "unfavorite") , for: .normal)
-            SharedData.instance.removeFavorite(id: arrayItems[index.row].biblionumber ?? 0)
+            if arrayItems.count > 0 {
+                SharedData.instance.removeFavorite(id: arrayItems[index.row].biblionumber ?? 0)
+            }else if arraySuggested.count > 0 {
+                SharedData.instance.removeFavorite(id: Int(arraySuggested[index.row].biblionumber ?? "0") ?? 0)
+            }
+            
         }
     }
 }

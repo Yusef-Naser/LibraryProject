@@ -21,11 +21,14 @@ class ApiClient <T : Decodable > {
     
     @discardableResult
     static public func performRequest(route:ApiRouter, decoder: JSONDecoder = JSONDecoder(), completion:@escaping (Result<T,AFError> , _ statusCode : Int )->Void) -> DataRequest {
+#if DEBUG
+        print(route.urlRequest?.url?.absoluteString ?? "URL NOT DEFIEND")
+#endif
         return AF.request(route)
                 .responseDecodable(decoder:decoder) {(response: DataResponse<  T , AFError >) in
 #if DEBUG
                     if let data = response.data {
-                        print("Response:/n\(String(describing: String(data: data, encoding: .utf8)))")
+                        print("Response:\n\(String(describing: String(data: data, encoding: .utf8)))")
                     }
 #endif
                     completion(response.result , response.response?.statusCode ?? -1 )

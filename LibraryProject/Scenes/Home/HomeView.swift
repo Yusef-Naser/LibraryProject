@@ -81,26 +81,47 @@ class HomeView : UIView {
         return l
     }()
     
-    let collectioViewSlider : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 5
-        let l = UICollectionView(frame: .zero , collectionViewLayout: layout)
-        l.showsHorizontalScrollIndicator = false
-        l.backgroundColor = .clear
-        l.register( CellSlider.self , forCellWithReuseIdentifier: CellSlider.getIdentifier())
-        
-        return l
-    }()
     
     let sectionNewBooks : SectionBooksView = {
         let l = SectionBooksView(title: SString.newBooks)
         return l
     }()
     
-    let sectionFeatureBooks : SectionBooksView = {
-        let l = SectionBooksView(title: SString.featureBooks)
+    private let labelFeaturedBooks : LLabel = {
+        let l = LLabel(isBold: true , fontSize: .size_20)
+        l.text = SString.featureBooks
+        return l
+    }()
+    
+    let buttonViewAll : UIButton = {
+        let l = UIButton()
+        l.setTitle(SString.viewAll, for: .normal)
+        l.setTitleColor(Colors.colorPrimary, for: .normal)
+        return l
+    }()
+    
+    private lazy var viewLabelFeaturedBooks : UIView = {
+        let l = UIView()
+        
+        l.addSubview(labelFeaturedBooks)
+        l.addSubview(buttonViewAll)
+        
+        labelFeaturedBooks.anchor(top: l.topAnchor , leading: l.leadingAnchor , bottom: l.bottomAnchor)
+        buttonViewAll.anchor(top: l.topAnchor , bottom: l.bottomAnchor , trailing: l.trailingAnchor )
+        
+        return l
+    }()
+    
+    let tableFeaturedBooks : FitTableView = {
+        let l = FitTableView()
+        l.tableFooterView = UIView()
+        l.register(FavoriteCell.self , forCellReuseIdentifier: FavoriteCell.getIdentifier() )
+        l.separatorStyle = .none
+        return l
+    }()
+    
+    let sectionSeggestedBooks : SectionBooksView = {
+        let l = SectionBooksView(title: SString.suggestedBooks)
         return l
     }()
     
@@ -108,10 +129,12 @@ class HomeView : UIView {
         let l = UIStackView()
         l.spacing = 10
         l.axis = .vertical
-        l.distribution = .fillEqually
+       // l.distribution = .fillEqually
         
         l.addArrangedSubview(sectionNewBooks)
-        l.addArrangedSubview(sectionFeatureBooks)
+        l.addArrangedSubview(viewLabelFeaturedBooks)
+        l.addArrangedSubview(tableFeaturedBooks)
+        l.addArrangedSubview(sectionSeggestedBooks)
         
         return l
     }()
@@ -147,7 +170,6 @@ class HomeView : UIView {
         addSubview(stackViewSearch)
         addSubview(scrollView)
         
-        parentView.addSubview(collectioViewSlider)
         parentView.addSubview(stackSectionBooks)
         parentView.addSubview(imageViewFooter)
         
@@ -160,20 +182,18 @@ class HomeView : UIView {
         stackViewSearch.anchor(top: labelSubTitle.bottomAnchor , leading: leadingAnchor , trailing: trailingAnchor , paddingTop: 20 , paddingLeft: 16 , paddingRight: 16 )
         
         scrollView.anchor(top: stackViewSearch.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor )
-        
-        collectioViewSlider.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 0, paddingBottom: 0, paddingRight: 0 , height: (UIScreen.main.bounds.width / 2) + 30 )
-        
-        stackSectionBooks.anchor(top: collectioViewSlider.bottomAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16  )
+                
+        stackSectionBooks.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 )
         
         imageViewFooter.anchor(top: stackSectionBooks.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 , height: 100 )
         
     }
     
     func setDelegates (delegate : HomeVC?) {
-        collectioViewSlider.delegate = delegate
-        collectioViewSlider.dataSource = delegate
-        sectionFeatureBooks.delegateView = delegate
+        sectionSeggestedBooks.delegateView = delegate
         sectionNewBooks.delegateView = delegate
+        tableFeaturedBooks.delegate = delegate
+        tableFeaturedBooks.dataSource = delegate
     }
     
 }

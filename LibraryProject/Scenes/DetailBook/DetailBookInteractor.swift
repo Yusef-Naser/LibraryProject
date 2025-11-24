@@ -39,7 +39,7 @@ class DetailBookInteractor {
     func addHold (biblioID : Int , libraryID : String , completion : @escaping CompletionHandler<ModelHold>) {
         let data : [String : Any] = [
                 "patron_id":SharedData.instance.getUserID(),
-                "pickup_library_id":"ROST",
+                "pickup_library_id":"TWZ",
                 "biblio_id":biblioID
         ]
         ApiClient<ModelHold>.performRequest(route: .addHold(data: data )) { result , statusCode in

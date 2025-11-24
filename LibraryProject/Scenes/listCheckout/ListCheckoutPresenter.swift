@@ -63,7 +63,7 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     }
     
     func getBookForHold (bibloID : String) {
-        self.view?.showLoading()
+
         interactor.getBook(bibloID: bibloID) { data , error , statusCode in
             guard let data = data else {
                 self.view?.hideLoading()
@@ -86,12 +86,15 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
     func getCheckoutList() {
         self.view?.showLoading()
         interactor.getCheckoutList { data , error , statusCode in
+            
             guard let data = data else {
+                self.view?.hideLoading()
                 return
             }
             self.listCheckoutArray = data
             //self.view?.fetchCheckoutList()
             guard self.listCheckoutArray.count > 0 else {
+                self.view?.hideLoading()
                 return
             }
             self.getItem(itemID: "\(self.listCheckoutArray[0].itemID ?? 0)")

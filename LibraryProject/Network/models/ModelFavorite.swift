@@ -20,4 +20,8 @@ struct ModelFavorite : Codable {
     static func getModelFavorite (book : ModelLatest) -> ModelFavorite {
         return ModelFavorite(id: book.biblionumber, title: book.title , image: book.image)
     }
+    
+    static func getModelFavorite (book : ModelSuggestedBook) -> ModelFavorite {
+        return ModelFavorite(id: Int(book.biblionumber ?? "0"), title: book.title , image: book.imageURL)
+    }
 }

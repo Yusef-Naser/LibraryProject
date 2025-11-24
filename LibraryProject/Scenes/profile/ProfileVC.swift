@@ -46,7 +46,7 @@ class ProfileVC : BaseVC<ProfileView> {
         presenter?.updateProfile(name: mainView.textfieldName.text ?? "" ,
                                  city: mainView.textfieldCity.text ?? "" ,
                                  address: mainView.textfieldAddress.text ?? "",
-                                 categoryID: mainView.textfieldCategoryID.text ?? "",
+                                // categoryID: mainView.textfieldCategoryID.text ?? "",
                                  libraryID: mainView.textfieldLibraryID.text ?? "" )
     }
     
