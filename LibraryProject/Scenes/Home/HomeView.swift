@@ -171,7 +171,7 @@ class HomeView : UIView {
         addSubview(scrollView)
         
         parentView.addSubview(stackSectionBooks)
-        parentView.addSubview(imageViewFooter)
+      //  parentView.addSubview(imageViewFooter)
         
         imageBackground.anchor(top: topAnchor , leading: leadingAnchor, bottom: self.bottomAnchor, trailing: trailingAnchor )
         
@@ -183,9 +183,9 @@ class HomeView : UIView {
         
         scrollView.anchor(top: stackViewSearch.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor )
                 
-        stackSectionBooks.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingRight: 16 )
+        stackSectionBooks.anchor(top: parentView.topAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16 , paddingLeft: 16 , paddingBottom: 16 ,paddingRight: 16 )
         
-        imageViewFooter.anchor(top: stackSectionBooks.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 , height: 100 )
+//        imageViewFooter.anchor(top: stackSectionBooks.bottomAnchor , leading: parentView.leadingAnchor , bottom: parentView.bottomAnchor , trailing: parentView.trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 , height: 100 )
         
     }
     
