@@ -20,6 +20,7 @@ class ChangePasswordView : UIView {
         let l = LTextField()
         l.placeholder = SString.password
         l.title = SString.newPassword
+        l.enablePassword()
         return l
     }()
     
@@ -27,6 +28,7 @@ class ChangePasswordView : UIView {
         let l = LTextField()
         l.placeholder = SString.repeatedPassword
         l.title = SString.repeatedPassword
+        l.enablePassword()
         return l
     }()
     
@@ -34,6 +36,7 @@ class ChangePasswordView : UIView {
         let l = LTextField()
         l.placeholder = SString.oldPassword
         l.title = SString.oldPassword
+        l.enablePassword()
         return l
     }()
     

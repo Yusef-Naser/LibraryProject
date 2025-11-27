@@ -66,7 +66,7 @@ enum ApiRouter : URLRequestConvertible {
             ]
         case .getBookDetails ,
                 .getItemByItemID , .getBibloItem  ,
-                .addCheckout , .removeCheckout , .changePassword , .getLibrary  :
+                .addCheckout , .removeCheckout , .getLibrary  :
             return [
                 "Accept" : "application/marc-in-json" ,
                 "Authorization" : "Basic \(SharedData.instance.getBase64())"
@@ -75,7 +75,7 @@ enum ApiRouter : URLRequestConvertible {
             ]
         case .itemsBook , .getProfile , .addHold , .getLibraries ,
                 .getCheckoutList , .getHoldList , .getSuggestions , .updateProfile ,
-                .addSuggest :
+                .addSuggest , .changePassword :
             return [
                 "Content-Type" : "application/json" ,
                 "Accept" : "application/json" ,

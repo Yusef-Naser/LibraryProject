@@ -64,6 +64,7 @@ class LoginView : UIView {
         l.textField.isSecureTextEntry = true
         l.placeholder = SString.password
         l.title = SString.password
+        l.enablePassword()
         return l
     }()
     
