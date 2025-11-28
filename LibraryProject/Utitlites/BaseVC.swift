@@ -9,6 +9,8 @@ import UIKit
 
 class BaseVC <T : UIView> : UIViewController , StatusApi  {
     
+    var previousScreenBeforeLogin = false
+    
     func showMessage(_ message: String) {
         SnackBar.instance.setMessage(message)
     }
@@ -48,6 +50,16 @@ class BaseVC <T : UIView> : UIViewController , StatusApi  {
 
     override var prefersStatusBarHidden: Bool {
         return false
+    }
+    
+    func isLogin() -> Bool {
+        SharedData.instance.userExist()
+    }
+    
+    func openLoginScreen() {
+        let login = LoginVC()
+        login.previousScreenBeforeLogin = true
+        self.navigationController?.pushViewController( login , animated: true)
     }
     
 }

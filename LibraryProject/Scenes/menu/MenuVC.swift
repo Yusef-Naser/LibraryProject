@@ -34,11 +34,25 @@ class MenuVC : BaseVC<MenuView> {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
-        mainView.setUserID(id: "UserID: \(SharedData.instance.getUserID())")
-        mainView.setUserName(name: SharedData.instance.getUserName())
+        mainView.ButtonLogin.addTarget(self , action: #selector(actionLogin), for: .touchUpInside)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if SharedData.instance.userExist() {
+            mainView.hideLoginButton()
+            mainView.setUserID(id: "UserID: \(SharedData.instance.getUserID())")
+            mainView.setUserName(name: SharedData.instance.getUserName())
+        }else {
+            mainView.hideMenu()
+        }
+        mainView.tableView.reloadData()
+    }
+    
+    @objc private func actionLogin () {
+        openLoginScreen()
+    }
     
 }
 
@@ -135,7 +149,7 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
             parentNavigationController?.navigationBar.barTintColor = UIColor.orange
             parentNavigationController?.navigationBar.tintColor = UIColor.white
             parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-            let vc = LoginVC()
+            let vc = MainLayoutTapsRouter.createModule()
             parentNavigationController?.viewControllers = [vc]
             appDelegate.window?.rootViewController = parentNavigationController
             appDelegate.window?.makeKeyAndVisible()

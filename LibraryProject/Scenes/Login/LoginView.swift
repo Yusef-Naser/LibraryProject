@@ -95,7 +95,7 @@ class LoginView : UIView {
     }
     
     private func addViews () {
-        //addSubview(backButton)
+        
         addSubview(backgroundImage)
         addSubview(imageLogo)
         addSubview(labelTitle)
@@ -103,8 +103,9 @@ class LoginView : UIView {
         addSubview(textFieldEmail)
         addSubview(textFieldPassword)
         addSubview(buttonLogin)
+        addSubview(backButton)
         
-//        backButton.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: heightStatusBar + 8 , paddingLeft: 8 )
+        backButton.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: heightStatusBar + 8 , paddingLeft: 8 )
         
         backgroundImage.anchor(top: self.topAnchor , leading: self.leadingAnchor , bottom: self.bottomAnchor, trailing: self.trailingAnchor)
         

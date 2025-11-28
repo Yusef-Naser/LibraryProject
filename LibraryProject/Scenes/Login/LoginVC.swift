@@ -32,6 +32,10 @@ extension LoginVC : ProLoginView  {
         self.navigationController?.popViewController(animated: true )
     }
     func loginSuccess() {
+        guard !previousScreenBeforeLogin else {
+            dismissView()
+            return
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         parentNavigationController = UINavigationController()
         parentNavigationController?.navigationBar.isHidden = true

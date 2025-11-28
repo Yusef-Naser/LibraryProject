@@ -55,7 +55,7 @@ class MenuPresenter : ProMenuPresetner {
     }
     
     func getListMenu() -> [( String , String)] {
-        if SharedData.instance.getUserID() == 0 {
+        if !SharedData.instance.userExist() {
             return [
                 ( SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" , "menu_lang" ),
                 (SString.login , "menu_logout")

@@ -23,6 +23,7 @@ class SharedData {
     private let USER_NAME = "USER_NAME"
     private let CATEGORIES = "Categories"
     private let FAVORITE_KEY = "FavoriteKey"
+    private let ON_BOARDING = "OnBording"
     
     
     public func getLangauge() -> String {
@@ -43,6 +44,10 @@ class SharedData {
     }
     func getUserID () -> Int {
         userDefault.integer(forKey: USER_ID)
+    }
+    
+    func userExist() -> Bool {
+        userDefault.object(forKey: USER_ID) != nil
     }
     
     func setUserName (name : String?) {
@@ -102,6 +107,14 @@ class SharedData {
             }
         }
         return nil
+    }
+    
+    func setFirstTimeOnBoarding() {
+        userDefault.set(true, forKey: ON_BOARDING)
+    }
+    
+    func getOnBoaringValue () -> Bool {
+        userDefault.bool(forKey: ON_BOARDING)
     }
     
     

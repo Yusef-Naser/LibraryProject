@@ -90,6 +90,11 @@ struct SString {
     static var theresNoHold : String { return getText(key: "theresNoHold")}
     static var youHaveNoSuggestion : String { return getText(key: "youHaveNoSuggestion")}
     static var thereIsNoBranches : String { return getText(key: "thereIsNoBranches")}
+    static var onboard1 : String { return getText(key: "onboard1")}
+    static var onboard2 : String { return getText(key: "onboard2")}
+    static var onboard3 : String { return getText(key: "onboard3")}
+    static var finish : String { return getText(key: "finish")}
+    static var next : String { return getText(key: "next")}
     
     
     
@@ -185,6 +190,11 @@ struct SString {
         "theresNoHold" : "There is no Hold list",
         "youHaveNoSuggestion" : "You have no suggestion",
         "thereIsNoBranches" : "There is no branches",
+        "onboard1" : "Discover and explore a wide collection of books that match your interests and curiosity",
+        "onboard2" : "Easily borrow any book you love by sending a quick request right from the app",
+        "onboard3" : "Save your favorite books to build your own reading list and access them anytime.",
+        "finish" : "Finish",
+        "next" : "Next"
         
     ]
     
@@ -270,7 +280,11 @@ struct SString {
         "theresNoHold" : "لا يوجد قائمة للحجز",
         "youHaveNoSuggestion" : "لايوجد اقتراحات",
         "thereIsNoBranches" : "لا يوجد فروع",
-
+        "onboard1" : "اكتشف واستكشف مجموعة واسعة من الكتب التي تناسب اهتماماتك وفضولك.",
+        "onboard2" : "استعر أي كتاب تحبه بسهولة عبر إرسال طلب سريع مباشرة من داخل التطبيق.",
+        "onboard3" : "احفظ كتبك المفضلة لبناء قائمة القراءة الخاصة بك والوصول إليها في أي وقت.",
+        "finish" : "إنهاء",
+        "next" : "التالي"
     ]
     
 }

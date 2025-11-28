@@ -76,6 +76,13 @@ class MenuView : UIView {
       return datePicker
     }()
     
+    let ButtonLogin : LButton = {
+        let l = LButton()
+        l.setTitle(SString.login, for: .normal)
+        l.isHidden = true
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
@@ -91,10 +98,12 @@ class MenuView : UIView {
     }
     
     private func addViews () {
+
         addSubview(labelTitle)
         addSubview(imageProfile)
         addSubview(stackViewProfile)
         addSubview(tableView)
+        addSubview(ButtonLogin)
         
         labelTitle.anchor(top: topAnchor , leading: leadingAnchor , paddingTop: (topSafeArea ?? 0) + 16 , paddingLeft: 16)
         
@@ -102,6 +111,8 @@ class MenuView : UIView {
         stackViewProfile.anchor(top: imageProfile.topAnchor , leading: imageProfile.trailingAnchor , bottom: imageProfile.bottomAnchor, centerY: imageProfile.centerYAnchor , paddingLeft: 16)
         
         tableView.anchor(top: imageProfile.bottomAnchor , leading: leadingAnchor , bottom: bottomAnchor , trailing: trailingAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16 )
+        
+        ButtonLogin.anchor( leading: self.leadingAnchor, trailing: self.trailingAnchor , centerX: self.centerXAnchor , centerY: self.centerYAnchor , paddingLeft: 32 , paddingRight: 32 , height: 50)
     }
     
     func setUserName (name : String?){
@@ -111,6 +122,22 @@ class MenuView : UIView {
     
     func setUserID (id: String? ) {
         labelUserID.text = id
+    }
+    
+    func hideMenu() {
+        labelTitle.isHidden = true
+        imageProfile.isHidden = true
+        stackViewProfile.isHidden = true
+        tableView.isHidden = true
+        ButtonLogin.isHidden = false
+    }
+    
+    func hideLoginButton() {
+        labelTitle.isHidden = false
+        imageProfile.isHidden = false
+        stackViewProfile.isHidden = false
+        tableView.isHidden = false
+        ButtonLogin.isHidden = true
     }
     
     

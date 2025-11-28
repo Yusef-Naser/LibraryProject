@@ -55,6 +55,10 @@ class DetailBookVC : BaseVC<DetailBookView> {
     }
     
     @objc private func actionAddHold () {
+        guard isLogin() else {
+            openLoginScreen()
+            return
+        }
         presenter?.addHold(id: (bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0")) ?? 0)
     }
     

@@ -37,22 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parentNavigationController?.navigationBar.tintColor = UIColor.white
             parentNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         
-        if SharedData.instance.getUserID() == 0 {
-            let vc = LoginVC()
-            parentNavigationController?.viewControllers = [vc]
-        }else {
+
+        if SharedData.instance.getOnBoaringValue() {
             let vc = MainLayoutTapsRouter.createModule()
             parentNavigationController?.viewControllers = [vc]
-        }
-            
             window?.rootViewController = parentNavigationController
             window?.makeKeyAndVisible()
-//        }else {
-//            parentNavigationController = UINavigationController(rootViewController: LoginVC())
-//
-//            window?.rootViewController = parentNavigationController
-//        }
+        }else {
+            window?.rootViewController = OnBoardingVC()
+        }
         
+        window?.makeKeyAndVisible()
 
 
  

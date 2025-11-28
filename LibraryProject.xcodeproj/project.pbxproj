@@ -255,6 +255,7 @@
 		2C8473412EC36E010006FAB1 /* fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fonts; sourceTree = "<group>"; };
 		2CCAD9D42EC78D2F007EE6C2 /* cells */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = cells; sourceTree = "<group>"; };
 		2CCAD9E42ECB3E60007EE6C2 /* viewFilter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = viewFilter; sourceTree = "<group>"; };
+		2CD2C2602ED8835700AABC18 /* onBoarding */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = onBoarding; sourceTree = "<group>"; };
 		2CF363772ED3508F007BBB75 /* ViewALL */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewALL; sourceTree = "<group>"; };
 		2CF3637E2ED37D60007BBB75 /* branches */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = branches; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -571,6 +572,7 @@
 		2CE5D6F227989E6B00BBCA15 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2CD2C2602ED8835700AABC18 /* onBoarding */,
 				2CF3637E2ED37D60007BBB75 /* branches */,
 				2CF363772ED3508F007BBB75 /* ViewALL */,
 				2CF4A36B27C90AA1002E34EC /* Favorites */,
@@ -663,6 +665,7 @@
 				2C8473412EC36E010006FAB1 /* fonts */,
 				2CCAD9D42EC78D2F007EE6C2 /* cells */,
 				2CCAD9E42ECB3E60007EE6C2 /* viewFilter */,
+				2CD2C2602ED8835700AABC18 /* onBoarding */,
 				2CF363772ED3508F007BBB75 /* ViewALL */,
 				2CF3637E2ED37D60007BBB75 /* branches */,
 			);
