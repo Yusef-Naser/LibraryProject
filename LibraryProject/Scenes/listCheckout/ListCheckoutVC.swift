@@ -70,10 +70,13 @@ extension ListCheckoutVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellCheckout.getIdentifier() , for: indexPath ) as! CellCheckout
         let book = presenter?.getCheckoutElement(index: indexPath.row)
-        cell.labelTitle.text = book?.getTitle(type: .title)
-        cell.labelAuthorValue.text = book?.getTitle(type: .author)
-        cell.labelCallNumberValue.text = book?.getTitle(type: .callNumber , subfields: [.a , .b])
-        cell.labelItemTypeValue.text = book?.getTitle(type: .itemType , subfields: [.c])
+        let imageURL = BASEIMAGEURL("\(presenter?.getBiblioID(index: indexPath.row) ?? 0)")
+        cell.setTitle(title: book?.getTitle(type: .title))
+        cell.setAuthor(author: book?.getTitle(type: .author))
+        cell.setImage(image: imageURL )
+        //cell.labelCallNumberValue.text = book?.getTitle(type: .callNumber , subfields: [.a , .b])
+        cell.setHoldDate(date: presenter?.getHoldItem(index: indexPath.row)?.holdDate)
+        //cell.labelItemTypeValue.text = book?.getTitle(type: .itemType , subfields: [.c])
         return cell
     }
     

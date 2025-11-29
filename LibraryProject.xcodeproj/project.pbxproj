@@ -30,6 +30,7 @@
 		2C5264AA2EBF87FA00177437 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264A92EBF87FA00177437 /* MainViewController.swift */; };
 		2C5264AC2EBF881A00177437 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264AB2EBF881A00177437 /* MainView.swift */; };
 		2C5264AE2EBF885C00177437 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5264AD2EBF885C00177437 /* TabBar.swift */; };
+		2C56E36E2EDB3C960093997D /* ModelPrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C56E36D2EDB3C960093997D /* ModelPrivacyPolicy.swift */; };
 		2C68FC5027A0853C00F62BB8 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */; };
 		2C7066A727BB5E1800825EAE /* ModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066A627BB5E1800825EAE /* ModelItem.swift */; };
 		2C7066AB27BB6CC100825EAE /* ModelListHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7066AA27BB6CC100825EAE /* ModelListHold.swift */; };
@@ -153,6 +154,7 @@
 		2C5264A92EBF87FA00177437 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C5264AB2EBF881A00177437 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2C5264AD2EBF885C00177437 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		2C56E36D2EDB3C960093997D /* ModelPrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPrivacyPolicy.swift; sourceTree = "<group>"; };
 		2C68FC4F27A0853C00F62BB8 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
 		2C7066A627BB5E1800825EAE /* ModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItem.swift; sourceTree = "<group>"; };
 		2C7066AA27BB6CC100825EAE /* ModelListHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelListHold.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2C56E3642EDB3AF50093997D /* privacyPolicy */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = privacyPolicy; sourceTree = "<group>"; };
 		2C8473412EC36E010006FAB1 /* fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fonts; sourceTree = "<group>"; };
 		2CCAD9D42EC78D2F007EE6C2 /* cells */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = cells; sourceTree = "<group>"; };
 		2CCAD9E42ECB3E60007EE6C2 /* viewFilter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = viewFilter; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 				2CF4A37427C90CE2002E34EC /* ModelFavorite.swift */,
 				2CF363752ED33A15007BBB75 /* ModelSuggestedBooks.swift */,
 				2CF363892ED381CB007BBB75 /* ModelBranches.swift */,
+				2C56E36D2EDB3C960093997D /* ModelPrivacyPolicy.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -572,6 +576,7 @@
 		2CE5D6F227989E6B00BBCA15 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2C56E3642EDB3AF50093997D /* privacyPolicy */,
 				2CD2C2602ED8835700AABC18 /* onBoarding */,
 				2CF3637E2ED37D60007BBB75 /* branches */,
 				2CF363772ED3508F007BBB75 /* ViewALL */,
@@ -662,6 +667,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2C56E3642EDB3AF50093997D /* privacyPolicy */,
 				2C8473412EC36E010006FAB1 /* fonts */,
 				2CCAD9D42EC78D2F007EE6C2 /* cells */,
 				2CCAD9E42ECB3E60007EE6C2 /* viewFilter */,
@@ -772,6 +778,7 @@
 			files = (
 				2CBC67E8279C00930041E39A /* SearchPresenter.swift in Sources */,
 				2C5264AC2EBF881A00177437 /* MainView.swift in Sources */,
+				2C56E36E2EDB3C960093997D /* ModelPrivacyPolicy.swift in Sources */,
 				05B3D252279C3593007AB73C /* MainLayoutTapsViewController.swift in Sources */,
 				2CBC67FB279C37E40041E39A /* StatusApi.swift in Sources */,
 				2CC1AAB827AD6167006A6021 /* LButton.swift in Sources */,

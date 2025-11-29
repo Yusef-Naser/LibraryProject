@@ -141,6 +141,8 @@ extension MenuVC : UITableViewDelegate , UITableViewDataSource , CellMenuDelegat
             changeLanguage()
         case "English":
             changeLanguage()
+        case SString.privacy :
+            self.navigationController?.pushViewController(PrivacyPolicyVC(), animated: true)
         case SString.logout :
             SharedData.instance.removeData()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

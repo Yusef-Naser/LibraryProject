@@ -70,6 +70,7 @@ class MenuPresenter : ProMenuPresetner {
                     (SString.holdList , "menu_hold"),
                     ( SString.suggestions , "menu_book" ),
                     (SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) ? "العربية" : "English" , "menu_lang"),
+                    ( SString.privacy , "menu_privacy" ),
                     (SString.logout, "menu_logout")
             ]
         }

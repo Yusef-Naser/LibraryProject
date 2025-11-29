@@ -16,12 +16,15 @@ protocol ProListCheckoutPresetner {
     func getListData ()
     func getCount () -> Int
     func getCheckoutElement (index : Int) -> ModelBook?
+    func getHoldItem(index: Int) -> ModelHoldElement? 
+    func getBiblioID (index : Int) -> Int?
     func refreshCheckout ()
     
 }
 
 
 class ListCheckoutPresenter : ProListCheckoutPresetner {
+    
     
     weak var view : ProListCheckoutView?
     private let interactor = ListCheckoutInteractor()
@@ -58,26 +61,32 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
             guard self.listHolds.count > 0 else {
                 return
             }
-            self.getBookForHold(bibloID: "\(self.listHolds[0].biblioID ?? 0)")
+            self.getBookForHold(index: 0)
         }
     }
     
-    func getBookForHold (bibloID : String) {
+    func getBookForHold (index : Int) {
+        guard self.listHolds.count > index else {
+            self.view?.hideLoading()
+            self.view?.fetchCheckoutList()
+            return
+        }
 
-        interactor.getBook(bibloID: bibloID) { data , error , statusCode in
+        let item = self.listHolds[index]
+        interactor.getBook(bibloID: "\(item.biblioID ?? 0)" ) { data , error , statusCode in
             guard let data = data else {
                 self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }
             self.listBooks.append(data)
-            self.listHolds.remove(at: 0)
-            guard self.listHolds.count > 0 else {
-                self.view?.hideLoading()
-                self.view?.fetchCheckoutList()
-                return
-            }
-            self.getBookForHold(bibloID: "\(self.listHolds[0].biblioID ?? 0)")
+           // self.listHolds.remove(at: 0)
+//            guard self.listHolds.count > 0 else {
+//                self.view?.hideLoading()
+//                self.view?.fetchCheckoutList()
+//                return
+//            }
+            self.getBookForHold(index: index + 1)
         }
         
     }
@@ -108,7 +117,7 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
                 guard self.listItems.count > 0 else {
                     return
                 }
-                self.getBook(bibloID: "\(self.listItems[0].biblioID ?? 0)")
+                self.getBook(index: 0)
                 return
             }
             self.listItems.append(data)
@@ -117,28 +126,35 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
                 guard self.listItems.count > 0 else {
                     return
                 }
-                self.getBook(bibloID: "\(self.listItems[0].biblioID ?? 0)")
+                self.getBook(index: 0)
                 return
             }
             self.getItem(itemID: "\(self.listCheckoutArray[0].itemID ?? 0)")
         }
     }
     
-    func getBook (bibloID : String) {
-        interactor.getBook(bibloID: bibloID) { data , error , statusCode in
+    func getBook (index : Int) {
+        guard self.listItems.count > index else {
+            self.view?.hideLoading()
+            self.view?.fetchCheckoutList()
+            return
+        }
+
+        let item = listItems[index]
+        interactor.getBook(bibloID: "\(item.biblioID ?? 0)") { data , error , statusCode in
             guard let data = data else {
                 self.view?.hideLoading()
                 self.view?.fetchCheckoutList()
                 return
             }
             self.listBooks.append(data)
-            self.listItems.remove(at: 0)
-            guard self.listItems.count > 0 else {
-                self.view?.hideLoading()
-                self.view?.fetchCheckoutList()
-                return
-            }
-            self.getBook(bibloID: "\(self.listItems[0].biblioID ?? 0)")
+//            self.listItems.remove(at: 0)
+//            guard self.listItems.count > 0 else {
+//                self.view?.hideLoading()
+//                self.view?.fetchCheckoutList()
+//                return
+//            }
+            self.getBook(index: index + 1)
         }
     }
     
@@ -152,10 +168,38 @@ class ListCheckoutPresenter : ProListCheckoutPresetner {
         }
         return listBooks[index]
     }
+    func getBiblioID(index: Int) -> Int? {
+        switch screenType {
+        case .checkout:
+            guard self.listItems.count > index else {
+                return nil
+            }
+            return self.listItems[index].biblioID
+        case .hold:
+            guard listHolds.count > index else {
+                return nil
+            }
+            return listHolds[index].biblioID
+        case .none:
+            return nil
+        }
+    }
+    func getHoldItem(index: Int) -> ModelHoldElement? {
+        
+            guard listHolds.count > index else {
+                return nil
+            }
+            return listHolds[index]
+       
+       
+    }
     
     func refreshCheckout() {
         listBooks = []
-        getCheckoutList()
+        listHolds = []
+        listItems = []
+        listCheckoutArray = []
+        getListData()
     }
     
 }

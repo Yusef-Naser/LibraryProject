@@ -131,9 +131,23 @@ extension UIFont {
         return font
     }
     
+    static func regular(size : CGFloat) -> UIFont {
+        guard let font = UIFont(name: "Alexandria-Regular", size: size) else {
+            return UIFont.systemFont(ofSize: size)
+        }
+        return font
+    }
+    
     static func bold(size : FontSize)-> UIFont {
         guard let font = UIFont(name: "Alexandria-Bold", size: size.rawValue) else {
             return UIFont.boldSystemFont(ofSize: size.rawValue )
+        }
+        return font
+    }
+    
+    static func bold(size : CGFloat)-> UIFont {
+        guard let font = UIFont(name: "Alexandria-Bold", size: size) else {
+            return UIFont.boldSystemFont(ofSize: size )
         }
         return font
     }

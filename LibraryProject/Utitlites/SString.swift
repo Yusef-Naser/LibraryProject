@@ -95,6 +95,8 @@ struct SString {
     static var onboard3 : String { return getText(key: "onboard3")}
     static var finish : String { return getText(key: "finish")}
     static var next : String { return getText(key: "next")}
+    static var holdDate : String { return getText(key: "holdDate")}
+    static var privacy : String { return getText(key: "privacy")}
     
     
     
@@ -194,7 +196,10 @@ struct SString {
         "onboard2" : "Easily borrow any book you love by sending a quick request right from the app",
         "onboard3" : "Save your favorite books to build your own reading list and access them anytime.",
         "finish" : "Finish",
-        "next" : "Next"
+        "next" : "Next",
+        "holdDate" : "Hold Date",
+        "privacy" : "privacy Policy",
+        
         
     ]
     
@@ -284,7 +289,10 @@ struct SString {
         "onboard2" : "استعر أي كتاب تحبه بسهولة عبر إرسال طلب سريع مباشرة من داخل التطبيق.",
         "onboard3" : "احفظ كتبك المفضلة لبناء قائمة القراءة الخاصة بك والوصول إليها في أي وقت.",
         "finish" : "إنهاء",
-        "next" : "التالي"
+        "next" : "التالي",
+        "holdDate" : "تاريخ الحجز",
+        "privacy" : "سياسة الخصوصية",
+        
     ]
     
 }

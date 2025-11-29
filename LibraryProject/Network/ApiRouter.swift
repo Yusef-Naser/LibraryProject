@@ -39,6 +39,7 @@ enum ApiRouter : URLRequestConvertible {
     case getLibraries
     case getProfile
     case getBranches
+    case privacyPolicy
     
     
     private var Methods : HTTPMethod {
@@ -47,7 +48,7 @@ enum ApiRouter : URLRequestConvertible {
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
              .getHoldList , .login , .getLibrary ,.getLibraries , .getProfile ,
-             .getLatest , .getSuggestedBooks , .getBranches :
+             .getLatest , .getSuggestedBooks , .getBranches , .privacyPolicy :
             return .get
         case .addSuggest , .addCheckout , .removeCheckout ,
              .changePassword , .addHold :
@@ -60,12 +61,12 @@ enum ApiRouter : URLRequestConvertible {
     private var Headers : HTTPHeaders {
         switch self {
         case .getfeatured , .getLatest , .getSuggestedBooks , .search , .login ,
-                .getBranches :
+                .getBranches , .privacyPolicy:
             return [
                 "content-type" : "application/json;charset=utf-8",
             ]
         case .getBookDetails ,
-                .getItemByItemID , .getBibloItem  ,
+                .getBibloItem  ,
                 .addCheckout , .removeCheckout , .getLibrary  :
             return [
                 "Accept" : "application/marc-in-json" ,
@@ -75,7 +76,7 @@ enum ApiRouter : URLRequestConvertible {
             ]
         case .itemsBook , .getProfile , .addHold , .getLibraries ,
                 .getCheckoutList , .getHoldList , .getSuggestions , .updateProfile ,
-                .addSuggest , .changePassword :
+                .addSuggest , .changePassword , .getItemByItemID :
             return [
                 "Content-Type" : "application/json" ,
                 "Accept" : "application/json" ,
@@ -142,6 +143,8 @@ enum ApiRouter : URLRequestConvertible {
             return "\(BASEURL)/api/v1/patrons/\(SharedData.instance.getUserID())"
         case .getBranches:
             return "\(BASEURL)/api/v1/public/libraries"
+        case .privacyPolicy:
+            return "\(BASEURL):82/api/pages/privacy"
         }
         
     }
@@ -151,7 +154,7 @@ enum ApiRouter : URLRequestConvertible {
         case .getBookDetails , .getfeatured , .getSuggestedBooks , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
                 .getBibloItem , .getHoldList ,.getLibrary , .getLibraries , .getProfile ,
-                .getLatest , .getBranches :
+                .getLatest , .getBranches , .privacyPolicy  :
             return [:]
         case .updateProfile(let data ) , .addSuggest(let data ) ,
                 .addCheckout(let data) , .changePassword(let data ) ,
