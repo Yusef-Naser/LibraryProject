@@ -1,4 +1,5 @@
 # Uncomment the next line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'z`z
 # platform :ios, '9.0'
 
 target 'LibraryProject' do
@@ -7,11 +8,18 @@ target 'LibraryProject' do
 
   # Pods for LibraryProject
 pod "PINRemoteImage"
-pod "Alamofire"
+pod "Alamofire" ,'5.9.0'
 pod "TTGSnackbar"
 pod 'JGProgressHUD'
 pod 'BarcodeScanner'
 pod 'IQKeyboardManagerSwift'
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+  end
+end
 
 end

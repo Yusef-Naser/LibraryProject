@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#if SWIFT_PACKAGE
-@import PINOperation;
+#if !__has_include(<PINOperation/PINOperation.h>)
+#import "PINOperation.h"
 #else
 #import <PINOperation/PINOperation.h>
 #endif
 
 #import "PINRemoteImageCallbacks.h"
-#import "PINRemoteImageManager.h"
-#import "PINRemoteImageMacros.h"
+#import <PINRemoteImage/PINRemoteImageManager.h>
+#import <PINRemoteImage/PINRemoteImageMacros.h>
 #import "PINRemoteLock.h"
 #import "PINResume.h"
 

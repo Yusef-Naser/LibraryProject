@@ -6,44 +6,42 @@
 //
 //
 
-#import "PINRemoteImageManager.h"
+#import <PINRemoteImage/PINRemoteImageManager.h>
 
 #import <CommonCrypto/CommonDigest.h>
 
-#if SWIFT_PACKAGE
-@import PINOperation;
+#if !__has_include(<PINOperation/PINOperation.h>)
+#import "PINOperation.h"
 #else
 #import <PINOperation/PINOperation.h>
 #endif
 
 #import <objc/runtime.h>
 
-#import "PINAlternateRepresentationProvider.h"
-#import "PINRemoteImage.h"
+#import <PINRemoteImage/PINAlternateRepresentationProvider.h>
 #import "PINRemoteImageManagerConfiguration.h"
 #import "PINRemoteLock.h"
-#import "PINProgressiveImage.h"
+#import <PINRemoteImage/PINProgressiveImage.h>
 #import "PINRemoteImageCallbacks.h"
 #import "PINRemoteImageTask.h"
 #import "PINRemoteImageProcessorTask.h"
 #import "PINRemoteImageDownloadTask.h"
 #import "PINResume.h"
 #import "PINRemoteImageMemoryContainer.h"
-#import "PINRemoteImageCaching.h"
-#import "PINRequestRetryStrategy.h"
+#import <PINRemoteImage/PINRemoteImageCaching.h>
+#import <PINRemoteImage/PINRequestRetryStrategy.h>
 #import "PINRemoteImageDownloadQueue.h"
-#import "PINRequestRetryStrategy.h"
 #import "PINSpeedRecorder.h"
-#import "PINURLSessionManager.h"
+#import <PINRemoteImage/PINURLSessionManager.h>
 
-#import "NSData+ImageDetectors.h"
-#import "PINImage+DecodedImage.h"
-#import "PINImage+ScaledImage.h"
+#import <PINRemoteImage/NSData+ImageDetectors.h>
+#import <PINRemoteImage/PINImage+DecodedImage.h>
+#import <PINRemoteImage/PINImage+ScaledImage.h>
 #import "PINRemoteImageManager+Private.h"
-#import "NSHTTPURLResponse+MaxAge.h"
+#import <PINRemoteImage/NSHTTPURLResponse+MaxAge.h>
 
 #if USE_PINCACHE
-#import "PINCache+PINRemoteImageCaching.h"
+#import <PINRemoteImage/PINCache+PINRemoteImageCaching.h>
 #else
 #import "PINRemoteImageBasicCache.h"
 #endif
@@ -133,7 +131,6 @@ typedef void (^PINRemoteImageManagerDataCompletion)(NSData *data, NSURLResponse 
   PINAlternateRepresentationProvider *_defaultAlternateRepresentationProvider;
   __weak PINAlternateRepresentationProvider *_alternateRepProvider;
   NSURLSessionConfiguration *_sessionConfiguration;
-
 }
 
 @property (nonatomic, strong) id<PINRemoteImageCaching> cache;
@@ -151,13 +148,14 @@ typedef void (^PINRemoteImageManagerDataCompletion)(NSData *data, NSURLResponse 
 @property (nonatomic, assign) float highQualityBPSThreshold;
 @property (nonatomic, assign) float lowQualityBPSThreshold;
 @property (nonatomic, assign) BOOL shouldUpgradeLowQualityImages;
-@property (nonatomic, strong) PINRemoteImageManagerMetrics metricsCallback API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+@property (nonatomic, strong) PINRemoteImageManagerMetrics metricsCallback;
 @property (nonatomic, copy) PINRemoteImageManagerAuthenticationChallenge authenticationChallengeHandler;
 @property (nonatomic, copy) id<PINRequestRetryStrategy> (^retryStrategyCreationBlock)(void);
 @property (nonatomic, copy) PINRemoteImageManagerRequestConfigurationHandler requestConfigurationHandler;
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSString *> *httpHeaderFields;
 @property (nonatomic, readonly) BOOL diskCacheTTLIsEnabled;
 @property (nonatomic, readonly) BOOL memoryCacheTTLIsEnabled;
+
 #if DEBUG
 @property (nonatomic, assign) NSUInteger totalDownloads;
 #endif
@@ -328,12 +326,16 @@ static dispatch_once_t sharedDispatchToken;
     PINCache *pinCache = [[PINCache alloc] initWithName:kPINRemoteImageDiskCacheName rootPath:cacheURLRoot serializer:^NSData * _Nonnull(id<NSCoding>  _Nonnull object, NSString * _Nonnull key) {
         id <NSCoding, NSObject> obj = (id <NSCoding, NSObject>)object;
         if ([key hasPrefix:PINRemoteImageCacheKeyResumePrefix]) {
-            return [NSKeyedArchiver archivedDataWithRootObject:obj];
+            return [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:NO error:nil];
         }
         return (NSData *)object;
     } deserializer:^id<NSCoding> _Nonnull(NSData * _Nonnull data, NSString * _Nonnull key) {
         if ([key hasPrefix:PINRemoteImageCacheKeyResumePrefix]) {
-            return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSError *error = nil;
+            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+            NSAssert(!error, @"unarchiver init failed with error");
+            unarchiver.requiresSecureCoding = NO;
+            return [unarchiver decodeObjectForKey:NSKeyedArchiveRootObjectKey];
         }
         return data;
     } keyEncoder:nil keyDecoder:nil ttlCache:enableTtl];
@@ -373,14 +375,23 @@ static dispatch_once_t sharedDispatchToken;
     });
 }
 
-- (void)setRequestConfiguration:(PINRemoteImageManagerRequestConfigurationHandler)configurationBlock {
+- (void)setRequestConfiguration:(PINRemoteImageManagerRequestConfigurationHandler)configurationBlock
+                     completion:(void (^)(void))completion; {
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
         [strongSelf lock];
-            strongSelf.requestConfigurationHandler = configurationBlock;
+        strongSelf.requestConfigurationHandler = configurationBlock;
         [strongSelf unlock];
+
+        if(completion != nil) {
+            completion();
+        }
     });
+}
+
+- (void)setRequestConfiguration:(PINRemoteImageManagerRequestConfigurationHandler)configurationBlock {
+    [self setRequestConfiguration:configurationBlock completion:nil];
 }
 
 - (void)setAuthenticationChallenge:(PINRemoteImageManagerAuthenticationChallenge)challengeBlock {
@@ -859,7 +870,7 @@ static dispatch_once_t sharedDispatchToken;
                         UUID:(NSUUID *)UUID
 {
     PINResume *resume = nil;
-    if ((options & PINRemoteImageManagerDownloadOptionsIgnoreCache) == NO) {
+    if ((options & PINRemoteImageManagerDownloadOptionsIgnoreCache) == 0) {
         NSString *resumeKey = [self resumeCacheKeyForURL:url];
         resume = [self.cache objectFromDiskForKey:resumeKey];
         [self.cache removeObjectForKey:resumeKey completion:nil];
@@ -869,7 +880,7 @@ static dispatch_once_t sharedDispatchToken;
         PINRemoteImageDownloadTask *task = [self.tasks objectForKey:key];
     [self unlock];
     
-    [task scheduleDownloadWithRequest:[self requestWithURL:url task:task]
+    [task scheduleDownloadWithRequest:[self requestWithURL:url task:task downloadOption:options]
                                resume:resume
                             skipRetry:(options & PINRemoteImageManagerDownloadOptionsSkipRetry)
                              priority:priority
@@ -964,9 +975,14 @@ static dispatch_once_t sharedDispatchToken;
     return NO;
 }
 
-- (NSURLRequest *)requestWithURL:(NSURL *)url task:(PINRemoteImageTask *)task
+- (NSURLRequest *)requestWithURL:(NSURL *)url task:(PINRemoteImageTask *)task downloadOption:(PINRemoteImageManagerDownloadOptions)options
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    //set request cache policy as caller might pass in their own NSURLSessionConfiguration that enables cache
+    if ((options & PINRemoteImageManagerDownloadOptionsIgnoreCache) != 0) {
+        request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    }
 
     NSMutableDictionary *headers = [self.httpHeaderFields mutableCopy];
     
@@ -1272,7 +1288,7 @@ static dispatch_once_t sharedDispatchToken;
     [task didReceiveData:data];
 }
 
-- (void)didCollectMetrics:(nonnull NSURLSessionTaskMetrics *)metrics forURL:(nonnull NSURL *)url API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0))
+- (void)didCollectMetrics:(nonnull NSURLSessionTaskMetrics *)metrics forURL:(nonnull NSURL *)url
 {
     [self lock];
         if (self.metricsCallback) {

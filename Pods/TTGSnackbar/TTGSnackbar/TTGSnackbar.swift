@@ -25,6 +25,7 @@ import Darwin
     case middle = 3
     case long = 5
     case forever = 2147483647 // Must dismiss manually.
+    case custom = -1 // Must set customDuration
 }
 
 /**
@@ -86,7 +87,7 @@ open class TTGSnackbar: UIView {
     
     /// Snackbar min height
     @objc public static var snackbarMinHeight: CGFloat = 44
-    
+        
     // MARK: - Typealias.
     
     /// Action callback closure definition.
@@ -129,6 +130,9 @@ open class TTGSnackbar: UIView {
     /// Snackbar display duration. Default is Short = 1 second.
     @objc open dynamic var duration: TTGSnackbarDuration = TTGSnackbarDuration.short
     
+    /// Snackbar custom display duration (Unit: second). Default is -1 which means invalid.
+    @objc open dynamic var customDuration: TimeInterval = -1
+    
     /// Snackbar animation type. Default is SlideFromBottomBackToBottom.
     @objc open dynamic var animationType: TTGSnackbarAnimationType = TTGSnackbarAnimationType.slideFromBottomBackToBottom
     
@@ -143,6 +147,9 @@ open class TTGSnackbar: UIView {
             layer.masksToBounds = true
         }
     }
+    
+    /// Snackbar max width, default full width
+    @objc open dynamic var snackbarMaxWidth: CGFloat = -1 // Less than 0 is unused
     
     /// Border color of snackbar. Default is clear.
     @objc open dynamic var borderColor: UIColor? = .clear {
@@ -554,9 +561,12 @@ public extension TTGSnackbar {
             return
         }
         
+        // Determine the final display duration
+        var timeInterval = duration == .custom ? customDuration : (TimeInterval)(duration.rawValue)
+        timeInterval = max(timeInterval, (TimeInterval)(TTGSnackbarDuration.short.rawValue))
+        
         // Create dismiss timer
-        dismissTimer = Timer.init(timeInterval: (TimeInterval)(duration.rawValue),
-                                  target: self, selector: #selector(dismiss), userInfo: nil, repeats: false)
+        dismissTimer = Timer.init(timeInterval: timeInterval, target: self, selector: #selector(dismiss), userInfo: nil, repeats: false)
         RunLoop.main.add(dismissTimer!, forMode: .common)
         
         // Show or hide action button
@@ -612,6 +622,7 @@ public extension TTGSnackbar {
             rightMarginConstraint = NSLayoutConstraint.init(
                 item: self, attribute: .trailing, relatedBy: .equal,
                 toItem: relativeToItem, attribute: .trailing, multiplier: 1, constant: -rightMargin)
+            
 
             // Bottom margin constraint
             bottomMarginConstraint = NSLayoutConstraint.init(
@@ -642,8 +653,17 @@ public extension TTGSnackbar {
             centerXConstraint?.priority = UILayoutPriority(999)
             
             // Add constraints
-            superView.addConstraint(leftMarginConstraint!)
-            superView.addConstraint(rightMarginConstraint!)
+            if snackbarMaxWidth > 0{
+                centerXConstraint?.isActive = true
+
+            } else {
+                superView.addConstraint(leftMarginConstraint!)
+                superView.addConstraint(rightMarginConstraint!)
+                leftMarginConstraint?.isActive = self.shouldActivateLeftAndRightMarginOnCustomContentView ? true : customContentView == nil
+                rightMarginConstraint?.isActive = self.shouldActivateLeftAndRightMarginOnCustomContentView ? true : customContentView == nil
+                centerXConstraint?.isActive = customContentView != nil
+            }
+            
             superView.addConstraint(bottomMarginConstraint!)
             superView.addConstraint(topMarginConstraint!)
             superView.addConstraint(centerXConstraint!)
@@ -651,9 +671,6 @@ public extension TTGSnackbar {
             
             // Active or deactive
             topMarginConstraint?.isActive = false // For top animation
-            leftMarginConstraint?.isActive = self.shouldActivateLeftAndRightMarginOnCustomContentView ? true : customContentView == nil
-            rightMarginConstraint?.isActive = self.shouldActivateLeftAndRightMarginOnCustomContentView ? true : customContentView == nil
-            centerXConstraint?.isActive = customContentView != nil
             
             // Show
             showWithAnimation()
@@ -672,7 +689,11 @@ public extension TTGSnackbar {
      */
     fileprivate func showWithAnimation() {
         var animationBlock: (() -> Void)? = nil
-        let superViewWidth = (superview?.frame)!.width
+        let currentSuperViewWidth = (superview?.frame)!.width
+        var superViewWidth = snackbarMaxWidth <= 0 ? currentSuperViewWidth : snackbarMaxWidth
+        if superViewWidth > currentSuperViewWidth{
+            superViewWidth = currentSuperViewWidth
+        }
         let snackbarHeight = systemLayoutSizeFitting(.init(width: superViewWidth - leftMargin - rightMargin, height: TTGSnackbar.snackbarMinHeight)).height
         
         switch animationType {
@@ -1148,4 +1169,78 @@ open class TTGSnackbarLabel: UILabel {
         super.drawText(in: rect.inset(by: contentInset))
     }
     
+}
+
+// MARK: TTGSnackbarManager
+open class TTGSnackbarManager : NSObject {
+    @objc public static let shared = TTGSnackbarManager()
+    private override init() {}
+    
+    /// Queue to hold stacked snackBars
+    private var queuedSnackbars: [TTGSnackbar] = []
+        
+    /// Shows and queues for showing (if necesarrry) passed snackbars
+    @objc(showSnackbar:) public func show(snackbar: TTGSnackbar) {
+        
+        // Inline function to add the queuing and management of snackbars
+        // ****************************************************************
+        // Key to the SnackbarManager is queue management for that we make use of the existing snackbar
+        // dismissBlock. We don't overwrite the incoming snackbar.dismissBlock we harvest it and add to it.
+        func addDismissBlock() {
+            // grab the incoming snackbar.dismissBlock for reuse later
+            let existingSnackbarDismiss = snackbar.dismissBlock
+            snackbar.dismissBlock = { ( _ : TTGSnackbar) -> Void in
+                // variable to hold the nextSnackbar that will be called as soon as the currently active snackbar dismisses
+                var nextSnackbar: TTGSnackbar?
+                
+                // queue management
+                // all we care about here is if there at least 2 snackbars in queue, the currently active one is popped below, so we need the second in queue here.
+                if self.queuedSnackbars.count > 1 {
+                    // pop the queue ... FIFO
+                    nextSnackbar = self.queuedSnackbars[1]
+                }
+                
+                // if the incoming snackbar has a dismissBlock we execute it here
+                existingSnackbarDismiss?(snackbar)
+                                
+                // Currently active snackbar has displayed and dismissed, and we have popped the queuedSnackbars to the activeSnackbar, we show the next in queue
+                nextSnackbar?.show()
+                
+                // currently active snackbar is always self.queuedSnackbars[0] so pop it
+                _ = self.queuedSnackbars.removeFirst()
+            }
+        }
+        // Inline function - END
+        // ****************************************************************
+                
+        // append this snackbar request to the queue
+        self.queuedSnackbars.append(snackbar)
+        
+        if (self.queuedSnackbars.count <= 1) {
+            // we have no active snackbar this is the first in the queue
+            // self.queuedSnackbars[0] is always the current
+            
+            addDismissBlock() // add dismiss block
+            snackbar.show() // show snackbar
+            
+        } else {
+            // we have an active snackbar, active snackbar is always self.queuedSnackbars[0]
+            
+            // convenience variable grab currently active
+            let activeSnackbar = self.queuedSnackbars[0]
+                                    
+            // grab the dismiss code for the currently active snackbar, because we need to add the next snackbar.show to this one dismiss block
+            let activeSnackbarDismissBlock = activeSnackbar.dismissBlock
+            
+            // create a new dismissblock so we can show the newly queued snackbar once the currently active one has completed
+            activeSnackbar.dismissBlock = { ( _ : TTGSnackbar) -> Void in
+                
+                // add our dismiss code to incoming snackbar this is where queue management happens
+                addDismissBlock()
+                
+                // call the dismissBlock that was active prior to us replacing it with func above
+                activeSnackbarDismissBlock?(activeSnackbar)
+            }
+        }
+    }
 }

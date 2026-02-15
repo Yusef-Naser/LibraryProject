@@ -6,15 +6,15 @@
 //
 //
 
-#if SWIFT_PACKAGE
-@import PINOperation;
+#if !__has_include(<PINOperation/PINOperation.h>)
+#import "PINOperation.h"
 #else
 #import <PINOperation/PINOperation.h>
 #endif
 
 #import "PINRemoteImageManager+Private.h"
 #import "PINRemoteImageTask.h"
-#import "PINProgressiveImage.h"
+#import <PINRemoteImage/PINProgressiveImage.h>
 #import "PINResume.h"
 
 @interface PINRemoteImageDownloadTask : PINRemoteImageTask

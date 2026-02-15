@@ -6,15 +6,7 @@
 //
 //
 
-#import "NSData+ImageDetectors.h"
-
-#if PIN_WEBP
-    #if SWIFT_PACKAGE
-        @import libwebp;
-    #else
-        #import "webp/demux.h"
-    #endif
-#endif
+#import <PINRemoteImage/NSData+ImageDetectors.h>
 
 @implementation NSData (PINImageDetectors)
 
@@ -126,14 +118,71 @@ static inline BOOL advancePositionWithBytes(NSUInteger *position, Byte *bytes, N
 
 - (BOOL)pin_isAnimatedWebP
 {
-    WebPBitstreamFeatures features;
-    if (WebPGetFeatures([self bytes], [self length], &features) == VP8_STATUS_OK) {
-        return features.has_animation;
+    if (![self pin_isWebP]) {
+        return NO;
     }
     
-    return NO;
+    const NSInteger formatSize = 4;
+
+    NSInteger offset = 12;
+    if ([self length] < (offset + formatSize)) {
+        return NO;
+    }
+    
+    // VP8X is extended, which means this might be animated
+    Byte formatBytes[formatSize];
+    [self getBytes:&formatBytes range:NSMakeRange(offset, formatSize)];
+    if (formatBytes[0] != 'V' || formatBytes[1] != 'P' || formatBytes[2] != '8' || formatBytes[3] != 'X') {
+        return NO;
+    }
+    
+    offset += formatSize + 14;
+    
+    // Expecting `ANIM`
+    Byte animateBytes[formatSize];
+    [self getBytes:animateBytes range:NSMakeRange(offset, formatSize)];
+    if (animateBytes[0] != 'A' || animateBytes[1] != 'N' || animateBytes[2] != 'I' || animateBytes[3] != 'M') {
+        return NO;
+    }
+
+    return YES;
 }
 
+#endif
+#if PIN_APNG
+- (BOOL)pin_isAPNG
+{
+    const void* bytes = self.bytes;
+    if (self.length < 16) {
+        return NO;
+    }
+    
+    // This is a PNG signature.
+    if (memcmp(bytes, "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a", 8)) {
+        return NO;
+    }
+    // The correct PNG must exist in the head chunk.
+    bytes += 8; /* skip signature */
+    if (memcmp(bytes + 4, "IHDR", 4)) {
+        return NO;
+    }
+    
+    uint32_t length = ntohl(*(uint32_t*)(bytes));
+    bytes += 4; /* skip length */
+    bytes += 4; /* skip type code */
+    bytes += length; /* skip type data */
+    bytes += 4; /* skip crc */
+    if ((uint32_t)(bytes - self.bytes) > self.length - 4) {
+        return NO;
+    }
+    
+    // The correct APNG equal correct PNG + animation control chunk.
+    if (memcmp(bytes + 4, "acTL", 4)) {
+        return NO;
+    }
+
+    return YES;
+}
 #endif
 
 @end
