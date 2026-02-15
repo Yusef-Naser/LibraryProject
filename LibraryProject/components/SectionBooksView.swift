@@ -122,7 +122,7 @@ extension SectionBooksView : UICollectionViewDelegate , UICollectionViewDataSour
         }else {
             let item = arraySuggested[indexPath.row]
             cell.setTitle(title: item.title)
-            cell.setImage(image: item.imageURL)
+            cell.setImage(image: item.imageFullURL)
             cell.delegateCell = self
             
             let favorites = SharedData.instance.getFavorites()

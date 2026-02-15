@@ -14,7 +14,7 @@ protocol ProSearchPresetner {
 
     func getSearch (text : String)
     func getDataCount () -> Int
-    func getItem (index : Int) -> (String , String)?
+    func getItem (index : Int) -> Record?
     func callPagination (index : Int )
     var selectedFilter : String {get set}
     func setSelectedFilter (filter : String)
@@ -26,7 +26,7 @@ class SearchPresenter : ProSearchPresetner {
     
     weak var view : ProSearchView?
     private let interactor = SearchInteractor()
-    private var dataArray : [(String , String)] = []
+    private var dataArray : [Record] = []
     
     private var textSearch = ""
     private var loadSearch = false
@@ -54,7 +54,7 @@ class SearchPresenter : ProSearchPresetner {
         
         var editableText = ""
         if selectedFilter != "" {
-            editableText = selectedFilter + "=" + text
+            editableText = selectedFilter + "&" + text
         }else {
             editableText = text
         }
@@ -69,7 +69,7 @@ class SearchPresenter : ProSearchPresetner {
 //            if data.getTitleArray().count == 0 && self.dataArray.count > 0 {
 //                self.limitItems = true
 //            }
-            let array = data.getTitleArray()
+            let array = data.records
             if array.count == 0 {
                 self.loadSearch = true
             }else {
@@ -85,7 +85,7 @@ class SearchPresenter : ProSearchPresetner {
         dataArray.count
     }
     
-    func getItem(index: Int) -> (String , String)? {
+    func getItem(index: Int) -> Record? {
         guard getDataCount() > index else {
             return nil
         }

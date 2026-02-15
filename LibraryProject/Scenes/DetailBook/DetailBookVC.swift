@@ -36,8 +36,8 @@ class DetailBookVC : BaseVC<DetailBookView> {
         mainView.delegate = self
         mainView.fitTableView.delegate = self
         mainView.fitTableView.dataSource = self
-        mainView.imageBook.loadImage(url: bookItem?.image ?? bookSuggested?.imageURL ?? "" )
-        mainView.imageBookBackground.loadImage(url: bookItem?.image ?? bookSuggested?.imageURL ?? "" )
+        mainView.imageBook.loadImage(url: bookItem?.image ?? bookSuggested?.imageFullURL ?? "" )
+        mainView.imageBookBackground.loadImage(url: bookItem?.image ?? bookSuggested?.imageFullURL ?? "" )
         presenter?.getBookDetails(id: bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0") ?? 0 )
         presenter?.getItemsBook(id: bookItem?.biblionumber ?? Int(bookSuggested?.biblionumber ?? "0")
                                 ?? 0)

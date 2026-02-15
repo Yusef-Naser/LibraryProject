@@ -100,11 +100,11 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.getIdentifier(), for: indexPath) as! FavoriteCell
-        let id = presenter?.getItem(index: indexPath.row)?.1
+        let id = presenter?.getItem(index: indexPath.row)?.recordNumber
         
-        cell.setTitle(title: presenter?.getItem(index: indexPath.row)?.0)
+        cell.setTitle(title: presenter?.getItem(index: indexPath.row)?.title)
         //let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
-        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
+        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.recordNumber ?? "")")
         cell.setImage(image: icon )
         cell.delegateCell = self
         
@@ -122,16 +122,16 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = presenter?.getItem(index: indexPath.row)
-        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.1 ?? "")")
-        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: Int(item?.1 ?? "0") ?? 0, title: item?.0, image: icon )), animated: true )
+        let icon = BASEIMAGEURL("\(presenter?.getItem(index: indexPath.row)?.recordNumber ?? "")")
+        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: Int(item?.recordNumber ?? "0") ?? 0, title: item?.title, image: icon )), animated: true )
     }
     
     func actionFavorite(cell: FavoriteCell) {
         guard let index = mainView.tableView.indexPath(for: cell ) else {
             return
         }
-        let id = presenter?.getItem(index: index.row)?.1
-        let title = presenter?.getItem(index: index.row)?.0
+        let id = presenter?.getItem(index: index.row)?.recordNumber
+        let title = presenter?.getItem(index: index.row)?.title
         if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
             SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? "0"), title: title , image: BASEIMAGEURL(id ?? ""))))

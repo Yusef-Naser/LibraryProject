@@ -11,13 +11,17 @@ import Alamofire
 //public protocol URLRequestConvertible {
 //    func asURLRequest() -> URLRequest
 //}
-var BASEURL = "https://tawazun.alzad.ae"
+var BASEURL = "https://twk.alzad.ae"
+var SECOND_BASEURL = "https://alriwaq.tawazun.gov.ae"
 var BASEIMAGEURL : ((String) -> String) = { str in
-    return "https://tawazun.alzad.ae/cgi-bin/koha/opac-image.pl?biblionumber=\(str)"
+    return "\(BASEURL)/cgi-bin/koha/opac-image.pl?biblionumber=\(str)"
+}
+var COVER_IMAGE_URL : ((String) -> String) = { str in
+    return "\(SECOND_BASEURL)\(str)"
 }
 enum ApiRouter : URLRequestConvertible {
     
-    case getfeatured
+    case getMostRead
     case getLatest
     case getSuggestedBooks
     case getBookDetails (id : Int)
@@ -44,7 +48,7 @@ enum ApiRouter : URLRequestConvertible {
     
     private var Methods : HTTPMethod {
         switch self {
-        case .getfeatured , .getBookDetails , .search ,
+        case .getMostRead , .getBookDetails , .search ,
              .itemsBook , .getCheckoutList , .getSuggestions ,
              .getItemByItemID , .getBibloItem  ,
              .getHoldList , .login , .getLibrary ,.getLibraries , .getProfile ,
@@ -60,7 +64,7 @@ enum ApiRouter : URLRequestConvertible {
     
     private var Headers : HTTPHeaders {
         switch self {
-        case .getfeatured , .getLatest , .getSuggestedBooks , .search , .login ,
+        case .getMostRead , .getLatest , .getSuggestedBooks , .search , .login ,
                 .getBranches , .privacyPolicy:
             return [
                 "content-type" : "application/json;charset=utf-8",
@@ -93,21 +97,21 @@ enum ApiRouter : URLRequestConvertible {
             let user = data ["userid"] ?? ""
             let pass = data ["password"] ?? ""
             return "\(BASEURL)/cgi-bin/koha/svc/authentication?userid=\(user)&password=\(pass)"
-        case .getfeatured :
-            return "\(BASEURL):82/api/categories/best-sellers"
+        case .getMostRead :
+            return "\(SECOND_BASEURL)/api/categories/Popular-Titles"
         case .getLatest :
             return "\(BASEURL)/cgi-bin/koha/latestbooks.pl"
         case .getSuggestedBooks:
-            return "\(BASEURL):82/api/suggested-books"
+            return "\(SECOND_BASEURL)/api/suggested-books"
         case .getBookDetails(let id ) :
             return "\(BASEURL)/api/v1/public/biblios/\(id)"
         case .itemsBook(let id ) :
             return "\(BASEURL)/api/v1/public/biblios/\(id)/items"
         case let .search( text , from  , to ) :
             if text == "" {
-                return "\(BASEURL)/cgi-bin/koha/opac-sru.pl?startRecord=1&maximumRecords=10"
+                return "\(BASEURL)/cgi-bin/koha/opac-sru-facets.pl?startRecord=1&maximumRecords=10"
             }
-            return "\(BASEURL)/cgi-bin/koha/opac-sru.pl?query=\(text)&startRecord=\(from)&maximumRecords=\(to)"
+            return "\(BASEURL)/cgi-bin/koha/opac-sru-facets.pl?query=\(text)&startRecord=\(from)&maximumRecords=\(to)"
             
         case .getCheckoutList :
             return "\(BASEURL)/api/v1/checkouts?patron_id=\(userID)"
@@ -144,14 +148,14 @@ enum ApiRouter : URLRequestConvertible {
         case .getBranches:
             return "\(BASEURL)/api/v1/public/libraries"
         case .privacyPolicy:
-            return "\(BASEURL):82/api/pages/privacy"
+            return "\(SECOND_BASEURL)/api/pages/privacy"
         }
         
     }
     
     private var parameters : [String : Any] {
         switch self {
-        case .getBookDetails , .getfeatured , .getSuggestedBooks , .itemsBook , .search ,
+        case .getBookDetails , .getMostRead , .getSuggestedBooks , .itemsBook , .search ,
                 .getCheckoutList , .getSuggestions , .getItemByItemID ,
                 .getBibloItem , .getHoldList ,.getLibrary , .getLibraries , .getProfile ,
                 .getLatest , .getBranches , .privacyPolicy  :

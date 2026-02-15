@@ -71,10 +71,17 @@ struct ModelFeaturedBook: Codable {
     let title, author: String?
     let imageURL: String?
     let categoryName: String?
+    let biblionumber: Int?
 
+    var imageFullURL : String? {
+        guard let path = imageURL else { return nil }
+        return "\(COVER_IMAGE_URL(path))"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id, title, author
         case imageURL = "image_url"
         case categoryName = "category_name"
+        case biblionumber
     }
 }

@@ -65,14 +65,14 @@ extension HomeVC : SectionBooksViewDelegate {
 
 extension HomeVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return (self.presenter?.getFeaturedCount() ?? 0 > 0) ? 4 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.getIdentifier(), for: indexPath) as! FavoriteCell
         cell.setTitle(title: presenter?.getFeaturedItem(index: indexPath.row)?.title)
        // let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
-        cell.setImage(image: presenter?.getFeaturedItem(index: indexPath.row)?.imageURL ?? "" )
+        cell.setImage(image: presenter?.getFeaturedItem(index: indexPath.row)?.imageFullURL ?? "" )
         
         cell.delegateCell = self
         
@@ -91,7 +91,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = presenter?.getFeaturedItem(index: indexPath.row)
 //       let icon = "https://library.awresidence.com/cgi-bin/koha/opac-image.pl?biblionumber="
-        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: item?.id  ?? 0, title: item?.title, image: "\(item?.imageURL ?? "0")" )), animated: true )
+        self.navigationController?.pushViewController(DetailBookVC(bookItem: ModelLatest(biblionumber: item?.biblionumber  ?? 0, title: item?.title, image: "\(item?.imageFullURL ?? "0")" )), animated: true )
     }
     
     
@@ -106,7 +106,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource , FavoriteCellDel
         let title = item?.title
         if cell.buttonFavorite.imageView?.image == #imageLiteral(resourceName: "unfavorite") {
             cell.buttonFavorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
-            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? 0), title: title , image: item?.imageURL ?? "")))
+            SharedData.instance.setFavorite(favorite: ModelFavorite.getModelFavorite(book: ModelLatest(biblionumber: Int(id ?? 0), title: title , image: item?.imageFullURL ?? "")))
         }else {
             cell.buttonFavorite.setImage( #imageLiteral(resourceName: "unfavorite") , for: .normal)
             SharedData.instance.removeFavorite(id: Int(id ?? 0 ))

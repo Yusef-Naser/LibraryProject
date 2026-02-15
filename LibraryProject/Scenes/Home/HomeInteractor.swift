@@ -9,7 +9,7 @@
 class HomeInteractor {
     
     func getFeatured (completion : @escaping CompletionHandler<ModelFeatured> ) {
-        ApiClient<ModelFeatured>.performRequest(route: .getfeatured) { result , statusCode in
+        ApiClient<ModelFeatured>.performRequest(route: .getMostRead) { result , statusCode in
             switch result {
             case .success(let data) :
                 completion(data , nil, statusCode)

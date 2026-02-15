@@ -18,6 +18,7 @@ protocol ProHomePresetner {
     func getLatest ()
     func getFeatured ()
     func getFeaturedItem(index : Int) -> ModelFeaturedBook?
+    func getFeaturedCount () -> Int?
     func getSuggestedBooks()
     func viewWillAppear()
     
@@ -112,5 +113,9 @@ class HomePresenter : ProHomePresetner {
             return nil
         }
         return item
+    }
+    
+    func getFeaturedCount() -> Int? {
+        self.modelfeatured?.data?.books?.count ?? 0
     }
 }

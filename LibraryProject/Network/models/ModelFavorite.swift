@@ -22,6 +22,6 @@ struct ModelFavorite : Codable {
     }
     
     static func getModelFavorite (book : ModelSuggestedBook) -> ModelFavorite {
-        return ModelFavorite(id: Int(book.biblionumber ?? "0"), title: book.title , image: book.imageURL)
+        return ModelFavorite(id: Int(book.biblionumber ?? "0"), title: book.title , image: book.imageFullURL)
     }
 }

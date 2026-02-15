@@ -89,7 +89,7 @@ class HomeView : UIView {
     
     private let labelFeaturedBooks : LLabel = {
         let l = LLabel(isBold: true , fontSize: .size_20)
-        l.text = SString.featureBooks
+        l.text = SString.mostRead
         return l
     }()
     
@@ -97,6 +97,7 @@ class HomeView : UIView {
         let l = UIButton()
         l.setTitle(SString.viewAll, for: .normal)
         l.setTitleColor(Colors.colorPrimary, for: .normal)
+        l.titleLabel?.font = UIFont.regular(size: .size_16)
         return l
     }()
     

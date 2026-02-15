@@ -16,6 +16,11 @@ struct ModelSuggestedBook: Codable {
     let title, author, biblionumber: String?
     let imageURL: String?
 
+    var imageFullURL : String? {
+        guard let path = imageURL else { return nil }
+        return "\(COVER_IMAGE_URL(path))"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case title, author, biblionumber
         case imageURL = "image_url"

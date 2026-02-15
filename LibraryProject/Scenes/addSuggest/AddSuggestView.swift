@@ -50,8 +50,8 @@ class AddSuggestView : UIView {
     
     let textFieldAuthor : LTextField = {
         let l = LTextField()
-        l.placeholder = SString.author
-        l.title = SString.type + " " + SString.author
+        l.title = SString.author
+        l.placeholder = SString.type + " " + SString.author
         return l
     }()
     

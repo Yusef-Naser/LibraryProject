@@ -11,7 +11,7 @@ class ViewAllView : UIView {
     
     private let navigation : NavigationBar = {
         let l = NavigationBar()
-        l.labelTitle.text = SString.featureBooks
+        l.labelTitle.text = SString.mostRead
         return l
     }()
     
