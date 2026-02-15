@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
 
 var parentNavigationController : UINavigationController?
 
@@ -18,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        IQKeyboardManager.shared.enable = true
-        
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardToolbarManager.shared.isEnabled = true
+
         if SharedData.instance.getLangauge().contains( LanguageEnum.en.rawValue) {
             SharedData.instance.setLangauge(lang: .en)
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
