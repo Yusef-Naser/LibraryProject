@@ -12,7 +12,7 @@ pod "Alamofire" ,'5.9.0'
 pod "TTGSnackbar"
 pod 'JGProgressHUD'
 pod 'BarcodeScanner'
-pod 'IQKeyboardManagerSwift/IQKeyboardToolbarManager'
+pod 'IQKeyboardManagerSwift'
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
